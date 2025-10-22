@@ -50,3 +50,8 @@ dev = [
     "ruff",
 ]
 diagram = ["py2puml"]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
