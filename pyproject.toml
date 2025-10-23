@@ -1,6 +1,6 @@
 [project]
 authors = [
-    {name = "David Wilby", email = "dalby@bas.ac.uk"},
+    {name = "David Wyld", email = "dalby@bas.ac.uk"},
     {name = "Tom Kelly", email = "thokel@bas.ac.uk"},
 ]
 name = "matchmakeo"
