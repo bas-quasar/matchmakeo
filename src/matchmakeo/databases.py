@@ -116,7 +116,7 @@ class PostGISDatabase(Database):
             table_name:str,
             catalogue_fields:list[dict],
             product_fields:list[dict],
-            props:dict,
+            props:list[dict],
             ):
         
         # get the existing table and its columns
@@ -154,7 +154,6 @@ class PostGISDatabase(Database):
             
             raw_connection.commit()
             raw_connection.close()
-                
         
 class SpatialiteDatabase(Database):
 

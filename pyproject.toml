@@ -29,11 +29,6 @@ exclude = ["tests*"]
 build-backend = "hatchling.build"
 requires = ["hatchling"]
 
-[dependency-groups]
-dev = [
-    "geodatasets>=2024.8.0",
-]
-
 [project.optional-dependencies]
 earthengine = ["earthengine-api"]
 postgis = [
@@ -49,9 +44,13 @@ dev = [
     "pre-commit>=4.3.0",
     "ruff",
 ]
-diagram = ["py2puml"]
+gportal = [
+    "gportal>=0.4.0",
+]
+
 
 [tool.pytest.ini_options]
 testpaths = [
     "tests",
 ]
+

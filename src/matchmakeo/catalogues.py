@@ -15,7 +15,7 @@ from tqdm import tqdm
 from .databases import Database
 from .field import Field
 from .product import Product
-from .queryset import Queryset, NasaCMRQueryset
+from .queryset import Queryset, NasaCMRQueryset, EarthEngineQueryset
 from .utils import coords_to_polygon, daterange, setUpLogging
 
 log = setUpLogging(__name__)
@@ -29,8 +29,8 @@ __all__ = [
 
 class Catalogue(ABC):
 
-    def __init__(self, url, queryset_type: Queryset = None):
-        self.url = url
+    def __init__(self, queryset_type: Queryset = None):
+        
         self.fields = []
         
         if queryset_type:
@@ -82,7 +82,9 @@ class NasaCMR(Catalogue):
             client_id(str): Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group.
         """
 
-        super().__init__(url=url, queryset_type=queryset_type)
+        self.url = url
+
+        super().__init__(queryset_type=queryset_type)
 
         if client_id is None:
             log.warning("No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example.")
@@ -127,11 +129,17 @@ class NasaCMR(Catalogue):
                                                         product_fields = product.extra_fields,
                                                         props=[g[1] for g in granules],
                                                         )
+            
+            metadata = MetaData()
+            table = Table(product.table, metadata, autoload_with=connection.engine)
 
             for granule in granules:
                 insertion = table.insert().values(
-                    name=granule[1]['id'],
+                    # id=granule[1]['id'],
                     geometry=coords_to_polygon(granule[0][0]),
+                    datetime_start=granule[1]['time_start'],
+                    datetime_end=granule[1]['time_end'],
+                    **granule[1],
                     )
                 connection.execute(insertion)
                 connection.commit()
@@ -141,6 +149,7 @@ class NasaCMR(Catalogue):
                               product: Product,
                               queryset: Queryset,
                               date: date,
+                              dry_run:bool = False,
                               ):
         
         next_day = date + timedelta(days=1)
@@ -156,7 +165,7 @@ class NasaCMR(Catalogue):
         while more_data:
             # Query parameters
             params = {
-                "short_name": product.short_name,
+                "short_name": product.name,
                 "page_size": queryset.page_size,
                 'temporal': f"{date.strftime('%Y-%m-%d')}T00:00:00Z,{next_day.strftime('%Y-%m-%d')}T00:00:00Z"
             }
@@ -230,3 +239,138 @@ class NasaCMR(Catalogue):
             return footprints
 
 
+class EarthEngine(Catalogue):
+    """Interface for downloading footprints from Google Earth Engine.
+
+    Requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.
+
+    """
+
+    def __init__(self, queryset_type:Queryset = EarthEngineQueryset):
+        try:
+            import ee
+        except ImportError:
+            log.error("Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.")
+
+        super().__init__(queryset_type)
+
+        # add fields specific to this catalogue
+        additional_fields = [
+            Field('id', 'id', String),
+            Field('geometry', 'geometry', Geometry('POLYGON', srid=4326)),
+        ]
+        self.fields.extend(additional_fields)
+
+    def download_footprints(self, product, queryset, database, project_name:str, primary_key = "id", dry_run:bool=False):
+        super().download_footprints(product, queryset, database, primary_key)
+
+        import ee
+
+        try:
+            ee.Authenticate()
+            ee.Initialize(project=project_name) 
+            
+        except Exception as e:
+            log.error(f"Error initializing Earth Engine: {e}")
+            log.error("If this is your first time using Earth Engine, run 'earthengine authenticate' in your terminal")
+            raise(e)
+        
+      
+        for date in tqdm(daterange(queryset.start_date, queryset.end_date),
+            desc="Days to query ",
+            unit=" day",
+            colour="green",
+        ):
+
+            granules = self._download_single_date(product=product, queryset=queryset, date=date)
+
+            log.info(f"{len(granules)} found for {date}")
+
+            if dry_run:
+                log.info(f"dry_run: {dry_run}, skipping database insertion.")
+            else:
+
+                try:
+                    connection = database.connect()
+                except ConnectionError:
+                    raise ConnectionError(f"Database connection failed. Aborting.")
+
+                table = self._create_table(connection, product)
+
+                # 'flatten' the properties
+                props = []
+                for g in granules:
+                    p = g['properties']
+                    p.update({
+                        'id': g.get('id'),
+                        'version': g.get('version'),
+                        'type': g.get('type'),
+                        'bands': g.get('bands'),
+                    })
+                    props.append(p)
+
+                database.create_columns_from_footprint_props(table_name=product.table,
+                                                            catalogue_fields=self.fields,
+                                                            product_fields = product.extra_fields,
+                                                            props=props,
+                                                            )
+                
+                metadata = MetaData()
+                table = Table(product.table, metadata, autoload_with=connection.engine)
+
+                for granule in granules:
+                    insertion = table.insert().values(
+                        # id=granule['id'],
+                        geometry=coords_to_polygon(granule['properties']['system:footprint']['coordinates']),
+                        # type=granule.get('type'),
+                        # version=granule.get('version'),
+                        # bands=granule.get('bands'),
+                        **granule.get('properties'),
+                        )
+                    connection.execute(insertion)
+                    connection.commit()
+
+
+    def _download_single_date(self,
+                              product: Product,
+                              queryset: Queryset,
+                              date: date,
+                              ):
+
+        import ee
+
+        limit = 5000
+
+        bbox = ee.Geometry.BBox(
+            west=queryset.lon_min,
+            south=queryset.lat_min,
+            east=queryset.lon_max,
+            north=queryset.lat_max,
+            )
+        
+        start_date = datetime.combine(date, datetime.min.time()) # ee.Date accepts python datetimes but not dates
+        end_date = start_date + timedelta(days=1)
+
+        # Create Sentinel collection
+        collection = ee.ImageCollection(product.name).filterDate(ee.Date(start_date), ee.Date(end_date)).filterBounds(bbox).limit(limit)
+
+        # Get the collection info as a dictionary
+        collection_info = collection.getInfo()
+
+        # Extract the features (individual images)
+        features = collection_info.get('features', [])
+        log.info(f"Found {len(features)} {product.name} images between {start_date} and {end_date}")
+
+        if len(features) == limit:
+            warnings.warn(f"Limit of {limit} found, there may be more available. Try adjusting queryset.")
+
+        return features
+
+
+class JaxaGportal(Catalogue):
+    """Interface for downloading footprints from JAXA G-Portal.
+
+    Requires the gportal-python package install with `pip install matchmakeo[gportal]` or `pip install gportal`.
+
+    """
+    pass

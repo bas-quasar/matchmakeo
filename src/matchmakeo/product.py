@@ -9,7 +9,7 @@ __all__ = [
 @dataclass
 class Product:
 
-    short_name: str
+    name: str
     table: str
     extra_fields: list = field(default_factory=list)
 
