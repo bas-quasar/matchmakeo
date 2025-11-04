@@ -103,15 +103,19 @@ class NasaCMR(Catalogue):
                 queryset: Queryset,
                 database: Database,
                 primary_key:str = "id",
+                dry_run: bool = False,
                 ):
         super().download_footprints(product=product, queryset=queryset, database=database, primary_key=primary_key)
 
-        try:
-            connection = database.connect()
-        except ConnectionError:
-            raise ConnectionError(f"Database connection failed. Aborting.")
+        if dry_run:
+            log.info("dry_run enabled, skipping database operations")
+        else:
+            try:
+                connection = database.connect()
+            except ConnectionError:
+                raise ConnectionError(f"Database connection failed. Aborting.")
 
-        table = self._create_table(connection, product)
+            table = self._create_table(connection, product)
 
         # Iterate through years and months
         for date in tqdm(daterange(queryset.start_date, queryset.end_date),
@@ -124,42 +128,37 @@ class NasaCMR(Catalogue):
 
             log.info(f"{len(granules)} found for {date}")
 
-            database.create_columns_from_footprint_props(table_name=product.table,
-                                                        catalogue_fields=self.fields,
-                                                        product_fields = product.extra_fields,
-                                                        props=[g[1] for g in granules],
-                                                        )
-            
-            metadata = MetaData()
-            table = Table(product.table, metadata, autoload_with=connection.engine)
+            if not dry_run:
+                database.create_columns_from_footprint_props(table_name=product.table,
+                                                            catalogue_fields=self.fields,
+                                                            product_fields = product.extra_fields,
+                                                            props=[g[1] for g in granules],
+                                                            )
+                
+                metadata = MetaData()
+                table = Table(product.table, metadata, autoload_with=connection.engine)
 
-            for granule in granules:
-                insertion = table.insert().values(
-                    # id=granule[1]['id'],
-                    geometry=coords_to_polygon(granule[0][0]),
-                    datetime_start=granule[1]['time_start'],
-                    datetime_end=granule[1]['time_end'],
-                    **granule[1],
-                    )
-                connection.execute(insertion)
-                connection.commit()
+                for granule in granules:
+                    insertion = table.insert().values(
+                        # id=granule[1]['id'],
+                        geometry=coords_to_polygon(granule[0][0]),
+                        datetime_start=granule[1]['time_start'],
+                        datetime_end=granule[1]['time_end'],
+                        **granule[1],
+                        )
+                    connection.execute(insertion)
+                    connection.commit()
 
 
     def _download_single_date(self,
                               product: Product,
                               queryset: Queryset,
                               date: date,
-                              dry_run:bool = False,
-                              ):
+                            ):
         
         next_day = date + timedelta(days=1)
 
         more_data = True
-
-        geojson = {
-            "type": "FeatureCollection",
-            "features": []
-        }
 
         # iterate through pages of data
         while more_data:
@@ -167,7 +166,8 @@ class NasaCMR(Catalogue):
             params = {
                 "short_name": product.name,
                 "page_size": queryset.page_size,
-                'temporal': f"{date.strftime('%Y-%m-%d')}T00:00:00Z,{next_day.strftime('%Y-%m-%d')}T00:00:00Z"
+                'temporal': f"{date.strftime('%Y-%m-%d')}T00:00:00Z,{next_day.strftime('%Y-%m-%d')}T00:00:00Z",
+                "bounding_box": self._get_bounding_box(queryset),
             }
 
             headers = {}
@@ -220,24 +220,17 @@ class NasaCMR(Catalogue):
                     if not prop in ["polygons"]:
                         props[prop] = g[prop]
 
-                # if coords:
-                #     geojson["features"].append({
-                #         "type": "Feature",
-                #         "geometry": {
-                #             "type": "Polygon",
-                #             "coordinates": coords
-                #         },
-                #         "properties": props
-                #     })
-
                 footprints.append((coords, props))
 
-            # if not geojson["features"]:
-            #     print(f"No footprints found for {date}")
-            #     return
-            
             return footprints
 
+    def _get_bounding_box(self, queryset: Queryset) -> str:
+        "Returns bounding box string for NASA CMR spatial query, using queryset lat and lon."
+
+        # https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#g-bounding-box
+        # 4 comma-separated numbers: lower left longitude, lower left latitude, upper right longitude, upper right latitude.
+
+        return f"{min((queryset.lon_min, queryset.lon_max))},{min((queryset.lat_min, queryset.lat_max))},{max((queryset.lon_min, queryset.lon_max))},{max((queryset.lat_min, queryset.lat_max))}"
 
 class EarthEngine(Catalogue):
     """Interface for downloading footprints from Google Earth Engine.

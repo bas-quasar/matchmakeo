@@ -12,11 +12,12 @@ def test_queryset_type_warning(postgres_service: PostgresService):
     """Test that using the wrong queryset type for the catalogue results in a warning."""
     
     queryset = Queryset(
-        start_year=2025,
-        end_year=2025
+        start_date="2025-01-01",
+        end_date="2025-01-02"
     )
     product = Product(
-        short_name="test"
+        name="test",
+        table="test_table"
     )
     catalogue = NasaCMR()
     database = PostGISDatabase(
@@ -29,3 +30,28 @@ def test_queryset_type_warning(postgres_service: PostgresService):
     
     with pytest.warns(UserWarning):
         catalogue._check_queryset_type(queryset)
+
+def test_nasa_cmr_bounding_box_str():
+    "Test that bounding box string gives the correct order of coordinates, as expected by cmr."
+    
+    queryset = Queryset(
+        start_date="2025-01-01",
+        end_date="2025-01-02",
+    )
+    catalogue = NasaCMR()
+
+    assert catalogue._get_bounding_box(queryset) == "-180, -90, 180, 90"
+
+    queryset.lon_min = 0
+    queryset.lon_max = -120
+    queryset.lat_min = 0
+    queryset.lat_max = +20
+
+    assert catalogue._get_bounding_box(queryset) == "-120, 0, 0, 20"
+
+    queryset.lon_min = 0
+    queryset.lon_max = 0
+    queryset.lat_min = 0
+    queryset.lat_max = 0
+
+    assert catalogue._get_bounding_box(queryset) == "0, 0, 0, 0"

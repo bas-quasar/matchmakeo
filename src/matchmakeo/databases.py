@@ -55,7 +55,7 @@ class Database(ABC):
     def create_engine(self) -> Engine:
         self.engine = create_engine(
             self.url,
-            echo=True,
+            echo=False,
             plugins=["geoalchemy2"],
         )
         return self.engine
