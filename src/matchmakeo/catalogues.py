@@ -18,12 +18,15 @@ from .product import Product
 from .queryset import Queryset, NasaCMRQueryset, EarthEngineQueryset
 from .utils import coords_to_polygon, daterange, setUpLogging
 
-log = setUpLogging(__name__)
+import logging
+
+log = logging.getLogger(__name__)
 
 
 __all__ = [
     "Catalogue",
     "NasaCMR",
+    "EarthEngine",
 ]
 
 
@@ -108,7 +111,7 @@ class NasaCMR(Catalogue):
         super().download_footprints(product=product, queryset=queryset, database=database, primary_key=primary_key)
 
         if dry_run:
-            log.info("dry_run enabled, skipping database operations")
+            log.warning("dry_run enabled, skipping database operations")
         else:
             try:
                 connection = database.connect()
@@ -118,15 +121,11 @@ class NasaCMR(Catalogue):
             table = self._create_table(connection, product)
 
         # Iterate through years and months
-        for date in tqdm(daterange(queryset.start_date, queryset.end_date),
-            desc="Days to query ",
-            unit=" day",
-            colour="green",
-        ):
+        for date in tqdm(daterange(queryset.start_date, queryset.end_date), unit=" days"):
 
             granules = self._download_single_date(product=product, queryset=queryset, date=date)
 
-            log.info(f"{len(granules)} found for {date}")
+            log.info(f"{len(granules)} footprints found for {date}")
 
             if not dry_run:
                 database.create_columns_from_footprint_props(table_name=product.table,
@@ -202,7 +201,7 @@ class NasaCMR(Catalogue):
 
             granules = response.json()
 
-            log.info(response.text)
+            log.debug(response.text)
 
             more_data = len(granules["feed"]["entry"]) > 0
 
@@ -269,11 +268,7 @@ class EarthEngine(Catalogue):
             raise(e)
         
       
-        for date in tqdm(daterange(queryset.start_date, queryset.end_date),
-            desc="Days to query ",
-            unit=" day",
-            colour="green",
-        ):
+        for date in tqdm(daterange(queryset.start_date, queryset.end_date), unit=" days"):
 
             granules = self._download_single_date(product=product, queryset=queryset, date=date)
 
