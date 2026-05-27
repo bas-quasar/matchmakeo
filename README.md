@@ -89,7 +89,3 @@ catalogue.download_footprints(
 )
 ```
 
-
-## Development
-
-For working on development of `matchmakeo` we use [`uv`](https://docs.astral.sh/uv) for managing python packages as well as for running deveopment tasks such as testing and linting. It isn't necessary for contributing to the package, but it's a nice tool. You can also use whatever python virtual environment manager you prefer + conda or even not use conda at all.
