@@ -40,18 +40,18 @@ def test_nasa_cmr_bounding_box_str():
     )
     catalogue = NasaCMR()
 
-    assert catalogue._get_bounding_box(queryset) == "-180, -90, 180, 90"
+    assert catalogue._get_bounding_box(queryset) == "-180,-90,180,90"
 
     queryset.lon_min = 0
     queryset.lon_max = -120
     queryset.lat_min = 0
     queryset.lat_max = +20
 
-    assert catalogue._get_bounding_box(queryset) == "-120, 0, 0, 20"
+    assert catalogue._get_bounding_box(queryset) == "-120,0,0,20"
 
     queryset.lon_min = 0
     queryset.lon_max = 0
     queryset.lat_min = 0
     queryset.lat_max = 0
 
-    assert catalogue._get_bounding_box(queryset) == "0, 0, 0, 0"
+    assert catalogue._get_bounding_box(queryset) == "0,0,0,0"
