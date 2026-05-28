@@ -39,16 +39,11 @@ jobs:
       - name: Run Pa11y CI via Local Server
         run: |
           npm install -g pa11y-ci http-server
-          
-          # 1. Start a lightweight local server over your compiled static folder
+          npx puppeteer browsers install chrome
           npx http-server site -p 8080 &
           sleep 3
-          
-          # 2. Run Pa11y against the local sitemap. 
-          npx pa11y-ci --sitemap http://localhost:8080/sitemap.xml --sitemap-find https://bas-quasar.github.io/matchmakeo --sitemap-replace http://localhost:8080
-
-      - name: Run pa11y-ci.
-        run: npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
+          npx pa11y-ci --sitemap http://localhost:8080/sitemap.xml
+          npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
         
       - name: Read pa11y_output file.
         id: pa11y_output
