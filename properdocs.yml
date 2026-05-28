@@ -1,0 +1,67 @@
+site_name: MatchmakEO
+repo_url: https://github.com/bas-quasar/matchmakeo
+repo_name: bas-quasar/matchmakeo
+edit_uri: edit/dev/docs/
+theme:
+  name: materialx
+  custom_dir: ./docs/overrides
+  favicon: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/favicon/favicon-32x32.png
+  logo_light_mode: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/logos-symbols/bas-roundel-mono-transparent-64.png
+  logo_dark_mode: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/logos-symbols/bas-roundel-inverse-transparent-64.png
+  palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/brightness-auto
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    primary: cyan
+    accent: cyan
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode 
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    toggle:
+      icon: material/brightness-7
+      name: Switch to system preference
+  features:
+    - navigation.path
+    # - navigation.sections
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Users:
+    - Installation: installation.md
+    - Getting started: getting-started.md
+    - Databases: databases.md
+    - Metadata catalogues: metadata-catalogues.md
+    - Downloading footprints: downloading-footprints.md
+    - Querying: querying.md
+    - Visualisation: visualisation.md
+  - Developers:
+    - Contributing: contributing.md
+    - License: license.md
+
+markdown_extensions:
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+  - include-markdown
+  - mkdocs-autoapi:
+      autoapi_dir: src
+  - mkdocstrings:
+      handlers:
+        python:
+          paths:
+            - src

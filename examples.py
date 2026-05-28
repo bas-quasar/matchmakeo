@@ -48,7 +48,7 @@ catalogue.download_footprints(
     product=product,
     queryset=queryset,
     database=database,
-    dry_run=True
+    # dry_run=True
 )
 
 # catalogue = EarthEngine()

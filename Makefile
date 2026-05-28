@@ -32,6 +32,11 @@ test: ## Run tests quickly with the default Python
 	@echo "+ $@"
 	@uv run pytest
 
+.PHONY: serve-docs
+serve-docs: ## Serve the documentation in a development server
+	@echo "+ $@"
+	@uv run properdocs serve
+
 .PHONY: start-db
 start-db: ## Start a dev PostGIS instance in a docker container
 	@echo "+ $@"
