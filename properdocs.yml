@@ -65,3 +65,5 @@ plugins:
         python:
           paths:
             - src
+
+copyright: Copyright &copy; 2026 British Antarctic Survey
