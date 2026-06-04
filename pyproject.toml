@@ -10,11 +10,11 @@ version = "0.1.0"
 dependencies = [
     "requests>=2.32.3,<3",
     "sqlalchemy>=2",
-    "geoalchemy2>=0.18.0,<0.19",
-    "geopandas>=1.1.1,<2",
-    "tqdm>=4.67.1",
-    "shapely>=2.1.1",
-    "psycopg[binary]>=3.2.9",
+    "geoalchemy2",
+    "geopandas",
+    "tqdm",
+    "shapely",
+    "psycopg[binary]>=3",
 ]
 
 [project.urls]
@@ -37,23 +37,24 @@ postgis = [
 ]
 spatialite = ["spatialite"]
 gportal = [
-    "gportal>=0.4.0",
+    "gportal",
 ]
 
 [dependency-groups]
 docs = [
-    "mkdocs-autoapi[python]>=0.4.1",
-    "mkdocs-include-markdown-plugin>=7.3.0",
-    "mkdocs-materialx>=10.1.6",
-    "properdocs>=1.6.7",
-    "properdocs-theme-readthedocs>=1.6.5",
+    "mkdocs-autoapi[python]",
+    "mkdocs-include-markdown-plugin",
+    "mkdocs-materialx",
+    "properdocs",
+    "properdocs-theme-readthedocs",
 ]
 test = [
     "pytest",
-    "pytest-databases>=0.14.0",
+    "pytest-cov",
+    "pytest-databases",
 ]
 lint = [
-    "pre-commit>=4.3.0",
+    "pre-commit",
     "ruff",
 ]
 dev = [
