@@ -13,7 +13,10 @@ Some information on setting up each of these can be found below.
 
 There are too many ways to set up or get access to a PostGIS database to list here, perhaps you're running in the cloud and can set one up with your cloud provider, or you're working at an institution where a database administrator can set one up for you on your institution's network.
 
-### With docker :fontawesome-brands-docker:
+### In a container
+
+#### docker :fontawesome-brands-docker:
+
 The most hands-off way of setting up a local PostGIS database is using [docker](https://www.docker.com/get-started/).
 
 To launch a local container with a [PostGIS image](https://hub.docker.com/r/postgis/postgis), this command is a good starting point:
@@ -30,6 +33,53 @@ docker run \
 
 This will launch a postgis container named `matchmakeo-db` with a database named `matchmakeo` using the default username `postgres`, with data stored at local disk location `./data/db` - run `mkdir -p ./data/db` if you don't already have this location.
 
+#### apptainer
+
+!!! question "help!"
+    We're looking for feedback on this section! Help us out!
+
+On many HPC systems, docker containers are not permitted and the alternative container approach is using _apptainer_ (formerly known as _singularity_), a very similar tool to docker.
+
+You should consult with your HPC administrators and/or documentation before using containers on HPC, but here's the basic procedure:
+
+1.  Convert the official Docker Hub PostGIS image into an Apptainer `.sif` file:
+
+    ```bash
+    apptainer pull postgis.sif docker://postgis/postgis:latest
+    ```
+
+2.  Create some directories in your HPC workspace, here represented by $SCRATCH, for your database to use. Check with your HPC administrator where is the best location to use.
+
+    ```bash
+    mkdir -p $SCRATCH/pg_data $SCRATCH/pg_run
+    ```
+
+3. If this is your first time setting up this database, initialize the database cluster layout inside that folder:
+
+    ```bash
+    apptainer exec \
+        --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
+        --bind $SCRATCH/pg_run:/var/run/postgresql \
+        postgis.sif initdb -D /var/lib/postgresql/data
+    ```
+
+4. Run the container persistently in the background:
+
+    ```bash
+    apptainer instance start \
+        --cleanenv \
+        --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
+        --bind $SCRATCH/pg_run:/var/run/postgresql \
+        postgis.sif \
+        gis_db \
+        postgres -D /var/lib/postgresql/data -h 0.0.0.0 -p 5432
+    ```
+
+    + `instance start`: Tells Apptainer to run this container persistently in the background.
+    + `gis_db`: The custom name assigned to this specific running instance.
+    + `--cleanenv`: Erases your host HPC environment variables inside the container to prevent software version conflicts.
+    + `-h 0.0.0.0`: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.
+
 ### Connection details
 Whichever method you use, to tell MatchMakEO to connect to your database, you'll need the following connection details:
 
@@ -40,6 +90,9 @@ Whichever method you use, to tell MatchMakEO to connect to your database, you'll
 
 
 ## SpatiaLite
+
+!!! question "help!"
+    We're looking for feedback on this section! Help us out!
 
 SpatiaLite is less performant than PostGIS, but can be simpler in some cases since it doesn't require a server as SQLite/Spatialite databases are simply files.
 

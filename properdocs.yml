@@ -47,6 +47,7 @@ nav:
     - License: license.md
 
 markdown_extensions:
+  - admonition
   - pymdownx.superfences
   - attr_list
   - pymdownx.emoji:
