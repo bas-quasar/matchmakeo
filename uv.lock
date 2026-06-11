@@ -842,6 +842,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-databases" },
+    { name = "pytest-skip-slow" },
     { name = "ruff" },
 ]
 docs = [
@@ -859,6 +860,7 @@ test = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-databases" },
+    { name = "pytest-skip-slow" },
 ]
 
 [package.metadata]
@@ -888,6 +890,7 @@ dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-databases" },
+    { name = "pytest-skip-slow" },
     { name = "ruff" },
 ]
 docs = [
@@ -905,6 +908,7 @@ test = [
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-databases" },
+    { name = "pytest-skip-slow" },
 ]
 
 [[package]]
@@ -1597,6 +1601,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/9a/75/4e5de3287b710acc3c8e385cfc4bc9aa20bf4c5d8a4d09fd34b981375740/pytest_databases-0.14.0.tar.gz", hash = "sha256:42d7bd351c937fc7c08ee1e4695c02da36f5be2f04dae4c24b3926a44b177162", size = 195152, upload-time = "2025-06-14T22:09:39.532Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/46/47/2667655fa8c7eaccaaeb7f236c49913e32eb1c23566ab670cfa0be8dd5f3/pytest_databases-0.14.0-py3-none-any.whl", hash = "sha256:9e29cdc63ecc78050d9d5d3cfee740e081517a674671b57db07ba2f779d2f27b", size = 28534, upload-time = "2025-06-14T22:09:37.89Z" },
+]
+
+[[package]]
+name = "pytest-skip-slow"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pytest" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/30/fa/a7076ece17720b9164cbb93f81403c5b62ca86fe14419b8be6ad4341648f/pytest_skip_slow-1.1.0.tar.gz", hash = "sha256:b56efd39a6e2f333c01774767a76d2c1328139a635bbafc23e2e599c129dd0f2", size = 2196, upload-time = "2026-05-27T19:11:46.311Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/61/dd/8bacb16ecdae7132c21effdf5bb9a41dcf797838c442cd1757277b2d8e7b/pytest_skip_slow-1.1.0-py3-none-any.whl", hash = "sha256:d22c4c40831347aeb6d9cafa40219ae5d75103badf32080bb60317cee00bf10d", size = 3066, upload-time = "2026-05-27T19:11:45.523Z" },
 ]
 
 [[package]]

@@ -1,9 +1,11 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 
 __all__ = [
     "Queryset",
     "NasaCMRQueryset",
+    "EarthEngineQueryset",
+    "JaxaGportalQueryset",
 ]
 
 @dataclass(kw_only=True)
@@ -25,8 +27,22 @@ class NasaCMRQueryset(Queryset):
     version: str = None
     page_size: int = 200
 
-@dataclass
+@dataclass(kw_only=True)
 class EarthEngineQueryset(Queryset):
     "Extends the base Queryset with parameters specific to Google Earth Engine queries."
 
-    
+@dataclass(kw_only=True)
+class JaxaGportalQueryset(Queryset):
+    """
+    Extends the base Queryset with parameters specific to JAXA G-Portal queries.
+
+    params is a dictionary containing additional keys and values for JAXA G-Portal queries
+    see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManual_en.pdf appendix 7
+
+    e.g. {
+        "acquisitionType": "NOMINAL",
+        "polarisationChannels": "HH",
+    }
+    """
+
+    params:dict = field(default_factory=dict)
