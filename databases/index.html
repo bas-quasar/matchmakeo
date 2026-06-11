@@ -26,7 +26,7 @@
           <link rel="icon" href="https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/favicon/favicon-32x32.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.6">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.7">
     
     
       
@@ -34,7 +34,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.9d7f4a96.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ad98c137.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a45159b5.min.css">
@@ -482,13 +482,41 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#with-docker" class="md-nav__link">
+  <a href="#in-a-container" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With docker
+        In a container
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="In a container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apptainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apptainer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1146,13 +1174,41 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#with-docker" class="md-nav__link">
+  <a href="#in-a-container" class="md-nav__link">
     <span class="md-ellipsis">
       
-        With docker
+        In a container
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="In a container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        docker
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apptainer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        apptainer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1332,7 +1388,8 @@
 <p>Some information on setting up each of these can be found below.</p>
 <h2 id="postgis">PostGIS</h2>
 <p>There are too many ways to set up or get access to a PostGIS database to list here, perhaps you're running in the cloud and can set one up with your cloud provider, or you're working at an institution where a database administrator can set one up for you on your institution's network.</p>
-<h3 id="with-docker">With docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1zm0-204.3h-66.1v60.7h66.1zm78.2 144.8H362v59.4h66.1zm-156.3-72.1h-66.1v60.1h66.1zm78.1 0h-66.1v60.1h66.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1zm78.1 0h-66.1v59.4h66.1zm-78.1-72.1h-66.1v60.1h66.1z"/></svg></span></h3>
+<h3 id="in-a-container">In a container</h3>
+<h4 id="docker">docker <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1zm0-204.3h-66.1v60.7h66.1zm78.2 144.8H362v59.4h66.1zm-156.3-72.1h-66.1v60.1h66.1zm78.1 0h-66.1v60.1h66.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1zm78.1 0h-66.1v59.4h66.1zm-78.1-72.1h-66.1v60.1h66.1z"/></svg></span></h4>
 <p>The most hands-off way of setting up a local PostGIS database is using <a href="https://www.docker.com/get-started/">docker</a>.</p>
 <p>To launch a local container with a <a href="https://hub.docker.com/r/postgis/postgis">PostGIS image</a>, this command is a good starting point:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
@@ -1344,6 +1401,51 @@
 <span class="w">    </span>-d<span class="w"> </span>--rm<span class="w"> </span>postgis/postgis
 </code></pre></div>
 <p>This will launch a postgis container named <code>matchmakeo-db</code> with a database named <code>matchmakeo</code> using the default username <code>postgres</code>, with data stored at local disk location <code>./data/db</code> - run <code>mkdir -p ./data/db</code> if you don't already have this location.</p>
+<h4 id="apptainer">apptainer</h4>
+<div class="admonition question">
+<p class="admonition-title">help!</p>
+<p>We're looking for feedback on this section! Help us out!</p>
+</div>
+<p>On many HPC systems, docker containers are not permitted and the alternative container approach is using <em>apptainer</em> (formerly known as <em>singularity</em>), a very similar tool to docker.</p>
+<p>You should consult with your HPC administrators and/or documentation before using containers on HPC, but here's the basic procedure:</p>
+<ol>
+<li>
+<p>Convert the official Docker Hub PostGIS image into an Apptainer <code>.sif</code> file:</p>
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>pull<span class="w"> </span>postgis.sif<span class="w"> </span>docker://postgis/postgis:latest
+</code></pre></div>
+</li>
+<li>
+<p>Create some directories in your HPC workspace, here represented by $SCRATCH, for your database to use. Check with your HPC administrator where is the best location to use.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run
+</code></pre></div>
+</li>
+<li>
+<p>If this is your first time setting up this database, initialize the database cluster layout inside that folder:</p>
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>postgis.sif<span class="w"> </span>initdb<span class="w"> </span>-D<span class="w"> </span>/var/lib/postgresql/data
+</code></pre></div>
+</li>
+<li>
+<p>Run the container persistently in the background:</p>
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>instance<span class="w"> </span>start<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--cleanenv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>postgis.sif<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>gis_db<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>postgres<span class="w"> </span>-D<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span>-h<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>
+</code></pre></div>
+<ul>
+<li><code>instance start</code>: Tells Apptainer to run this container persistently in the background.</li>
+<li><code>gis_db</code>: The custom name assigned to this specific running instance.</li>
+<li><code>--cleanenv</code>: Erases your host HPC environment variables inside the container to prevent software version conflicts.</li>
+<li><code>-h 0.0.0.0</code>: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.</li>
+</ul>
+</li>
+</ol>
+<p><strong>TODO</strong>: Finish these apptainer docs.</p>
 <h3 id="connection-details">Connection details</h3>
 <p>Whichever method you use, to tell MatchMakEO to connect to your database, you'll need the following connection details:</p>
 <ul>
@@ -1353,6 +1455,10 @@
 <li>port - for postgres/gis this is often <code>5432</code> by default, but might be different for a number of reasons.</li>
 </ul>
 <h2 id="spatialite">SpatiaLite</h2>
+<div class="admonition question">
+<p class="admonition-title">help!</p>
+<p>We're looking for feedback on this section! Help us out!</p>
+</div>
 <p>SpatiaLite is less performant than PostGIS, but can be simpler in some cases since it doesn't require a server as SQLite/Spatialite databases are simply files.</p>
 <p>However, installing SpatiaLite is poorly documented by the official project at present, we've tried our best to summarise the installation and setup details for the most common platforms below. Alternatively, there are helpful guides online (from the <a href="https://docs.djangoproject.com/en/6.0/ref/contrib/gis/install/spatialite/">django project</a> for example).</p>
 <h3 id="setup">Setup</h3>
@@ -1507,7 +1613,7 @@ spatialite\&gt;
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "code": null, "features": ["navigation.path"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.4e7371e1.min.js"></script>
+      <script src="../assets/javascripts/bundle.fc193f93.min.js"></script>
       
     
   </body>
