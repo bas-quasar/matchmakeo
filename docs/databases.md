@@ -80,6 +80,8 @@ You should consult with your HPC administrators and/or documentation before usin
     + `--cleanenv`: Erases your host HPC environment variables inside the container to prevent software version conflicts.
     + `-h 0.0.0.0`: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.
 
+**TODO**: Finish these apptainer docs.
+
 ### Connection details
 Whichever method you use, to tell MatchMakEO to connect to your database, you'll need the following connection details:
 
