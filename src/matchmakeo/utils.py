@@ -1,4 +1,5 @@
 from datetime import date, datetime, timedelta
+import json
 import logging
 
 from pandas import Timestamp
@@ -22,6 +23,10 @@ log = setUpLogging(__name__)
 def coords_to_polygon(coords:list[tuple[float]]) -> str:
     """Takes an iterable of coordinate pairs and returns a WKT POLYGON string."""
     return shapely.Polygon(coords).wkt
+
+def geojon_to_polygon(geometry:str) -> str:
+    """Takes a geojson geometry and returns a WKT POLYGON string."""
+    return shapely.from_geojson(json.dumps(geometry)).wkt
 
 def daterange(start_date:date|str, end_date:date|str):
     """Returns a sequence of dates separated by one day. Inclusive of start and end date."""

@@ -16,7 +16,7 @@ from .databases import Database
 from .field import Field
 from .product import Product
 from .queryset import Queryset, NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
-from .utils import coords_to_polygon, daterange, setUpLogging
+from .utils import coords_to_polygon, daterange, setUpLogging, geojon_to_polygon
 
 import logging
 
@@ -385,12 +385,13 @@ class JaxaGportal(Catalogue):
             log.error("Got None for either username or password, these must be passed as arguments or set via the environment variables GPORTAL_USERNAME and GPORTAL_PASSWORD.")
 
 
-        # # add fields specific to this catalogue
-        # additional_fields = [
-        #     Field('id', 'id', String),
-        #     Field('geometry', 'geometry', Geometry('POLYGON', srid=4326)),
-        # ]
-        # self.fields.extend(additional_fields)
+        additional_fields = [
+            Field('identifier', 'id', String),
+            Field('geometry', 'geometry', Geometry('POLYGON', srid=4326)),
+            Field('beginPosition', 'datetime_start', DateTime),
+            Field('endPosition', 'datetime_end', DateTime),
+        ]
+        self.fields.extend(additional_fields)
 
     def download_footprints(self, product:Product, queryset:Queryset, database:Database=None, primary_key:str = "id", dry_run:bool=False):
         super().download_footprints(product, queryset, database, primary_key, dry_run)
@@ -422,30 +423,29 @@ class JaxaGportal(Catalogue):
         if dry_run:
             return search_results
 
-        products = search_results.products()
-
-        if not products:
+        if not search_results.products():
             log.warning("No products found.")
             return None
         
         if not dry_run:
-            # database.create_columns_from_footprint_props(table_name=product.table,
-            #                                             catalogue_fields=self.fields,
-            #                                             product_fields = product.extra_fields,
-            #                                             props=[g[1] for g in products],
-            #                                             )
+            database.create_columns_from_footprint_props(table_name=product.table,
+                                                        catalogue_fields=self.fields,
+                                                        product_fields = product.extra_fields,
+                                                        props=[p.properties for p in search_results.products()],
+                                                        )
             
-            # metadata = MetaData()
-            # table = Table(product.table, metadata, autoload_with=connection.engine)
+            metadata = MetaData()
+            table = Table(product.table, metadata, autoload_with=connection.engine)
 
-            for prod in products:
-                # example
+            for prod in search_results.products():
+                print(prod.to_dict())
+                # properties example:
                 # {'identifier': 'GW1AM2_202001010047_189D_L1SGRTBR_2220220', 'acquisitionType': 'NOMINAL', 'processingDate': '2020-01-01T02:53:36.000Z', 'processingLevel': 'AMSR2-L1R', 'processorVersion': '220,220', 'status': 'ARCHIVED', 'beginPosition': '2020-01-01T00:47:00.855Z', 'endPosition': '2020-01-01T01:36:21.574Z', 'platformShortName': 'GCOM-W1', 'instrumentShortName': 'AMSR2', 'wrsLongitudeGrid': 189, 'lastOrbitNumber': 40552, 'ascendingNodeDate': '2020-01-01T01:13:46.699Z', 'ascendingNodeLongitude': 3.81, 'multiExtentOf': '-176.886 84.355 139.298 86.437 103.605 83.761 102.901 79.831 110.928 76.268 121.735 73.532 117.055 73.948 112.168 74.257 107.127 74.455 101.996 74.534 96.852 74.498 91.769 74.341 63.323 70.726 46.055 64.290 35.785 56.614 26.568 44.128 20.757 31.106 16.562 17.820 10.550 -8.590 8.050 -22.133 5.735 -35.670 3.482 -49.183 1.934 -58.166 0.220 -67.125 -2.200 -76.059 -2.673 -77.399 -3.219 -78.739 -3.867 -80.077 -4.647 -81.415 -5.677 -82.750 -7.109 -84.082 -48.629 -86.429 -87.348 -83.868 -88.771 -79.846 -80.939 -76.150 -70.123 -73.278 -65.770 -72.766 -61.722 -72.153 -57.943 -71.464 -54.422 -70.709 -51.166 -69.892 -48.161 -69.020 -33.274 -62.206 -24.171 -54.387 -18.077 -46.085 -11.827 -33.164 -7.387 -19.934 -3.911 -6.531 1.498 19.964 3.900 33.510 6.240 47.039 8.732 60.543 10.701 69.522 13.831 78.490 29.726 87.356 47.611 88.561 113.749 89.120 162.142 88.237 174.920 86.989 -179.790 85.681 -176.886 84.355', 'product': {'fileName': 'https://gportal.jaxa.jp/download/standard/GCOM-W/GCOM-W.AMSR2/L1R/2/2020/01/GW1AM2_202001010047_189D_L1SGRTBR_2220220.h5', 'size': 51065652, 'version': 2}, 'browse': [{...}, {...}], 'gpp': {'datasetId': 11001002, 'totalQualityCode': 'Good', 'physicalQuantity': 'Brightness Temperature', 'parameterVersion': 220, 'algorithmVersion': 220, 'numberMissingData': 0, 'startPathNumber': 189, 'endPathNumber': 189, 'mapProjection': None, 'orbitDirection': 'Descending', 'pseq': 'EQ', 'topicCategory': '-', 'organizationName': 'JAXA', 'hasProduct': True}}
                 insertion = table.insert().values(
-                    geometry=coords_to_polygon(prod['geometry']['coordinates']),
-                    datetime_start=prod[1]['time_start'],
-                    datetime_end=prod[1]['time_end'],
-                    **prod['properties'],
+                    geometry=geojon_to_polygon(prod.geometry),
+                    datetime_start=prod.properties['beginPosition'],
+                    datetime_end=prod.properties['endPosition'],
+                    **{k: v for k, v in prod.properties.items() if k not in [f.catalogue_name for f in self.fields + product.extra_fields]}
                     )
                 connection.execute(insertion)
                 connection.commit()

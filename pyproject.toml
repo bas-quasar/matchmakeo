@@ -51,7 +51,7 @@ docs = [
 test = [
     "pytest",
     "pytest-cov",
-    "pytest-databases",
+    "pytest-databases[postgres]",
     "pytest-skip-slow",
 ]
 lint = [
