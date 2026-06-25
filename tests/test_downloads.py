@@ -3,6 +3,7 @@
 
 import json
 import os
+import unittest
 from unittest.mock import patch, Mock
 
 import gportal
@@ -17,93 +18,111 @@ from matchmakeo.catalogues import NasaCMR, Field, EarthEngine, JaxaGportal
 from matchmakeo.databases import PostGISDatabase
 
 
-@pytest.mark.slow # marked as slow because at present it performs an actual http request against jaxa gportal
-def test_gportal(postgres_service: PostgresService):
+@pytest.fixture(scope="module")
+def db(postgres_service: PostgresService):
 
-    db = PostGISDatabase(
+    yield PostGISDatabase(
         database=postgres_service.database,
         username=postgres_service.user,
         password=postgres_service.password,
         host=postgres_service.host,
         port=postgres_service.port
     )
+    
 
-    queryset = JaxaGportalQueryset(
-        start_date="2020-01-01",
-        end_date="2020-01-31",
-        lat_max=-70,
-        lat_min=-90,
-        lon_max=180,
-        lon_min=-180,
-    )
-    product = Product(name="11001002", table="test_amsr")
-    catalogue = JaxaGportal(
-        username="test",
-        password="password"
-    )
-    results = catalogue.download_footprints(product=product, queryset=queryset, database=None, dry_run=True)
-    assert results.params["datasetId"] == product.name
-    assert results.matched() > 0
+class TestJaxaGportal:
 
-    results = catalogue.download_footprints(product=product, queryset=queryset, database=db, dry_run=False)
+    @pytest.fixture
+    def queryset(self):
+        yield JaxaGportalQueryset(
+            start_date="2020-01-01",
+            end_date="2020-01-31",
+            lat_max=-70,
+            lat_min=-90,
+            lon_max=180,
+            lon_min=-180,
+        )
 
-@patch('gportal.search.Search.products')
-@patch('gportal.search.Search.matched')
-def test_mock_gportal(mock_search_matched, mock_search_products, postgres_service: PostgresService):
+    @pytest.fixture
+    def product(self):
+        yield Product(name="11001002", table="test_amsr")
 
-    db = PostGISDatabase(
-        database=postgres_service.database,
-        username=postgres_service.user,
-        password=postgres_service.password,
-        host=postgres_service.host,
-        port=postgres_service.port
-    )
+    @pytest.fixture
+    def catalogue(self):
+        yield JaxaGportal(
+            username="test",
+            password="password"
+        )
 
-    queryset = JaxaGportalQueryset(
-        start_date="2020-01-01",
-        end_date="2020-01-31",
-        lat_max=-70,
-        lat_min=-90,
-        lon_max=180,
-        lon_min=-180,
-    )
-    product = Product(name="11001002", table="test_amsr")
-    catalogue = JaxaGportal(
-        username="test",
-        password="password"
-    )
 
-    # create the mock products response
-    with open(os.path.join("tests", "fixtures", "gportal_products.json")) as fp:
-        mock_products_geojson = json.load(fp)
-    mock_products = [gportal.product.Product(geojson=p) for p in mock_products_geojson]
+    @patch('gportal.search.Search.products')
+    @patch('gportal.search.Search.matched')
+    def test_mock_gportal(
+        self,
+        mock_search_matched,
+        mock_search_products,
+        db,
+        queryset,
+        product,
+        catalogue,
+        ):
 
-    # test dry run behaviour
-    mock_search_matched.return_value = Mock()
-    mock_search_matched.return_value = len(mock_products)
+        # create the mock products response
+        with open(os.path.join("tests", "fixtures", "gportal_products.json")) as fp:
+            mock_products_geojson = json.load(fp)
+        mock_products = [gportal.product.Product(geojson=p) for p in mock_products_geojson]
 
-    results = catalogue.download_footprints(product=product, queryset=queryset, database=None, dry_run=True)
-    assert results.params["datasetId"] == product.name
-    assert results.matched() == len(mock_products)
+        # test dry run behaviour
+        mock_search_matched.return_value = Mock()
+        mock_search_matched.return_value = len(mock_products)
 
-    # test no products behaviour
-    mock_search_products.return_value = Mock()
-    mock_search_products.return_value = None
-    results = catalogue.download_footprints(product=product, queryset=queryset, database=db, dry_run=False)
-    assert results is None
+        results = catalogue.download_footprints(product=product, queryset=queryset, database=None, dry_run=True)
+        assert results.params["datasetId"] == product.name
+        assert results.matched() == len(mock_products)
 
-    # test with mocked products
-    def mock_products_generator():
-        yield from mock_products
-    mock_search_products.return_value = Mock()
-    mock_search_products.side_effect = mock_products_generator
+        # test no products behaviour
+        mock_search_products.return_value = Mock()
+        mock_search_products.return_value = None
+        results = catalogue.download_footprints(product=product, queryset=queryset, database=db, dry_run=False)
+        assert results is None
 
-    results = catalogue.download_footprints(product=product, queryset=queryset, database=db, dry_run=False)
+        # test with mocked products
+        def mock_products_generator():
+            yield from mock_products
+        mock_search_products.return_value = Mock()
+        mock_search_products.side_effect = mock_products_generator
 
-    metadata = sqlalchemy.MetaData()
-    table = sqlalchemy.Table(product.table, metadata, autoload_with=db.engine)
+        results = catalogue.download_footprints(product=product, queryset=queryset, database=db, dry_run=False)
 
-    with Session(db.engine) as session:
-        statement = sqlalchemy.select(table)
-        rows = session.execute(statement).all()
-        assert len(rows) == len(mock_products)
+        metadata = sqlalchemy.MetaData()
+        table = sqlalchemy.Table(product.table, metadata, autoload_with=db.engine)
+
+        with Session(db.engine) as session:
+            statement = sqlalchemy.select(table)
+            rows = session.execute(statement).all()
+            assert len(rows) == len(mock_products)
+
+    @pytest.mark.skip(reason="performs an actual http request, skipped for automated testing, preserved for occasional manual testing.")
+    def test_live_gportal(
+        self,
+        db,
+        queryset,
+        product,
+        catalogue,
+        ):
+
+        results = catalogue.download_footprints(product=product, queryset=queryset, database=None, dry_run=True)
+        assert results.params["datasetId"] == product.name
+        num_results = results.matched()
+        assert num_results > 0
+
+        results = catalogue.download_footprints(product=product, queryset=queryset, database=db, dry_run=False)
+
+        metadata = sqlalchemy.MetaData()
+        table = sqlalchemy.Table(product.table, metadata, autoload_with=db.engine)
+
+        with Session(db.engine) as session:
+            statement = sqlalchemy.select(table)
+            rows = session.execute(statement).all()
+            assert len(rows) == num_results
+
