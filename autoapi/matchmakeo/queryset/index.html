@@ -26,7 +26,7 @@
           <link rel="icon" href="https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/favicon/favicon-32x32.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.8">
     
     
       
@@ -34,7 +34,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ad98c137.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.314bbef5.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a45159b5.min.css">
@@ -953,6 +953,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#matchmakeo.queryset.JaxaGportalQueryset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JaxaGportalQueryset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#matchmakeo.queryset.NasaCMRQueryset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1066,6 +1077,17 @@
     <span class="md-ellipsis">
       
         EarthEngineQueryset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matchmakeo.queryset.JaxaGportalQueryset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JaxaGportalQueryset
       
     </span>
   </a>
@@ -1251,11 +1273,107 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/queryset.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">EarthEngineQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
     <span class="s2">&quot;Extends the base Queryset with parameters specific to Google Earth Engine queries.&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="matchmakeo.queryset.JaxaGportalQueryset" class="doc doc-heading">
+            <code>JaxaGportalQueryset</code>
+
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-dataclass"><code>dataclass</code></small>
+  </span>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="Queryset
+
+
+  
+      dataclass
+   (matchmakeo.queryset.Queryset)" href="#matchmakeo.queryset.Queryset">Queryset</a></code></p>
+
+
+
+        <p>Extends the base Queryset with parameters specific to JAXA G-Portal queries.</p>
+<p>params is a dictionary containing additional keys and values for JAXA G-Portal queries
+see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManual_en.pdf appendix 7</p>
+<p>e.g. {
+    "acquisitionType": "NOMINAL",
+    "polarisationChannels": "HH",
+}</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>src/matchmakeo/queryset.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportalQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extends the base Queryset with parameters specific to JAXA G-Portal queries.</span>
+
+<span class="sd">    params is a dictionary containing additional keys and values for JAXA G-Portal queries</span>
+<span class="sd">    see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManual_en.pdf appendix 7</span>
+
+<span class="sd">    e.g. {</span>
+<span class="sd">        &quot;acquisitionType&quot;: &quot;NOMINAL&quot;,</span>
+<span class="sd">        &quot;polarisationChannels&quot;: &quot;HH&quot;,</span>
+<span class="sd">    }</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">params</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1317,12 +1435,12 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/queryset.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
 <span class="normal">24</span>
 <span class="normal">25</span>
-<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">NasaCMRQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
     <span class="s2">&quot;Extends the base Queryset with parameters specific to NASA CMR queries.&quot;</span>
 
@@ -1382,16 +1500,16 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/queryset.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Queryset</span><span class="p">:</span>
     <span class="s2">&quot;Generic query parameters to be used in a catalogue request.&quot;</span>
 

@@ -24,7 +24,7 @@
           <link rel="icon" href="https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/favicon/favicon-32x32.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.7">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.8">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.ad98c137.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.314bbef5.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a45159b5.min.css">
@@ -990,6 +990,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#matchmakeo.utils.geojon_to_polygon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        geojon_to_polygon
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#matchmakeo.utils.infer_sql_type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1075,6 +1086,17 @@
     <span class="md-ellipsis">
       
         daterange
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matchmakeo.utils.geojon_to_polygon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        geojon_to_polygon
       
     </span>
   </a>
@@ -1229,9 +1251,9 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">coords_to_polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">coords_to_polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes an iterable of coordinate pairs and returns a WKT POLYGON string.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">shapely</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">wkt</span>
 </code></pre></div></td></tr></table></div>
@@ -1256,12 +1278,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
@@ -1269,7 +1286,12 @@
 <span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">daterange</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="n">date</span><span class="o">|</span><span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="n">date</span><span class="o">|</span><span class="nb">str</span><span class="p">):</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">daterange</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="n">date</span><span class="o">|</span><span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="n">date</span><span class="o">|</span><span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a sequence of dates separated by one day. Inclusive of start and end date.&quot;&quot;&quot;</span>
 
     <span class="n">date_format_string</span> <span class="o">=</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span>
@@ -1292,6 +1314,33 @@
 <div class="doc doc-object doc-function">
 
 
+<h2 id="matchmakeo.utils.geojon_to_polygon" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geojon_to_polygon</span><span class="p">(</span><span class="n">geometry</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Takes a geojson geometry and returns a WKT POLYGON string.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geojon_to_polygon</span><span class="p">(</span><span class="n">geometry</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes a geojson geometry and returns a WKT POLYGON string.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_geojson</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">geometry</span><span class="p">))</span><span class="o">.</span><span class="n">wkt</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h2 id="matchmakeo.utils.infer_sql_type" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">infer_sql_type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span></code>
 
@@ -1305,12 +1354,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
@@ -1325,7 +1369,12 @@
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">infer_sql_type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">infer_sql_type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;Takes a value and returns the appropriate SQL type.&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
