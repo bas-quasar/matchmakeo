@@ -84,6 +84,25 @@ class TestNasaCmr:
             rows = session.execute(statement).all()
             assert len(rows) == len(mock_cmr_products["feed"]["entry"])
 
+    @pytest.mark.skip(reason="performs an actual http request, skipped for automated testing, preserved for occasional manual testing.")
+    def test_live_cmr(
+        self,
+        database,
+        queryset,
+        product,
+        catalogue,
+        mock_cmr_products,
+        ):
+        
+        catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
+
+        metadata = sqlalchemy.MetaData()
+        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+
+        with Session(database.engine) as session:
+            statement = sqlalchemy.select(table)
+            rows = session.execute(statement).all()
+
 class TestJaxaGportal:
 
     @pytest.fixture
