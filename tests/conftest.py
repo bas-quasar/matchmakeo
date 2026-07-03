@@ -8,7 +8,7 @@ pytest_plugins = [
 
 @pytest.fixture(scope="session")
 def postgres_image() -> str:
-    return "postgis/postgis:16-3.4"
+    return "postgis/postgis:16-3.5"
 
 @pytest.fixture(scope="session", autouse=True)
 def init_test_database(postgres_service: PostgresService):

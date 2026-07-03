@@ -1,0 +1,1769 @@
+{
+    "feed": {
+        "updated": "2026-07-02T15:58:31.494Z",
+        "id": "https://cmr.earthdata.nasa.gov:443/search/granules.json?short_name=MOD021KM&page_size=200&temporal=2020-01-01T00%3A00%3A00Z%2C2020-01-31T00%3A00%3A00Z&bounding_box=-180%2C-90%2C180%2C-70",
+        "title": "ECHO granule metadata",
+        "entry": [
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0105.061.2020002183123.hdf",
+                "time_start": "2020-01-01T01:05:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139054062",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T01:10:00.000Z",
+                "id": "G1679840658-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "125.260332107544",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-69.353352 70.794162 -82.751282 162.051208 -64.77486 150.222139 -58.339947 104.833942 -69.353352 70.794162"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0105.061.2020002183123.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0105.061.2020002183123.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0105.061.2020002183123.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0105.061.2020002235146.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0105.007.2025106144906.nc",
+                "time_start": "2020-01-01T01:05:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850783714",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T01:10:00.000Z",
+                "id": "G3999510415-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "122.392314910889",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-69.352925 70.794052 -82.751378 162.047498 -64.774845 150.221016 -58.339591 104.833474 -69.352925 70.794052"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0105.007.2025106144906.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0105.007.2025106144906.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0105.007.2025106144906.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0110.061.2020002183129.hdf",
+                "time_start": "2020-01-01T01:10:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139054063",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T01:15:00.000Z",
+                "id": "G1679840659-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "125.452711105347",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-67.852436 19.853741 -78.638056 -55.716795 -82.120293 163.472378 -69.587959 71.280413 -67.852436 19.853741"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0110.061.2020002183129.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0110.061.2020002183129.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0110.061.2020002183129.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0110.061.2020002234650.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0110.007.2025106144903.nc",
+                "time_start": "2020-01-01T01:10:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850783715",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T01:15:00.000Z",
+                "id": "G3999510417-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "122.153635025024",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-67.852128 19.854553 -78.63822 -55.714836 -82.120401 163.469414 -69.587522 71.280365 -67.852128 19.854553"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0110.007.2025106144903.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0110.007.2025106144903.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0110.007.2025106144903.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0115.061.2020002183337.hdf",
+                "time_start": "2020-01-01T01:15:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139057105",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "BOTH",
+                "time_end": "2020-01-01T01:20:00.000Z",
+                "id": "G1679841020-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "120.053566932678",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-55.412035 -8.755213 -61.071787 -50.015278 -79.084592 -57.951462 -68.224111 19.513678 -55.412035 -8.755213"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0115.061.2020002183337.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0115.061.2020002183337.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0115.061.2020002183337.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0115.061.2020002234413.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0115.007.2025106144904.nc",
+                "time_start": "2020-01-01T01:15:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850783716",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "BOTH",
+                "time_end": "2020-01-01T01:20:00.000Z",
+                "id": "G3999510416-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "116.788857460022",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-55.411904 -8.754481 -61.071881 -50.014441 -79.084727 -57.949396 -68.223811 19.514512 -55.411904 -8.754481"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0115.007.2025106144904.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0115.007.2025106144904.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0115.007.2025106144904.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0245.061.2020002183655.hdf",
+                "time_start": "2020-01-01T02:45:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139058613",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T02:50:00.000Z",
+                "id": "G1679841455-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "116.505298614502",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-70.382022 34.667542 -86.189919 158.699134 -68.726031 126.095526 -61.448815 74.902661 -70.382022 34.667542"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0245.061.2020002183655.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0245.061.2020002183655.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0245.061.2020002183655.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0245.061.2020002234900.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0245.007.2025106144606.nc",
+                "time_start": "2020-01-01T02:45:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850779889",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T02:50:00.000Z",
+                "id": "G3999510372-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "113.454771995544",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-70.381594 34.667676 -86.190148 158.693805 -68.726023 126.094363 -61.448438 74.902213 -70.381594 34.667676"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0245.007.2025106144606.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0245.007.2025106144606.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0245.007.2025106144606.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0250.061.2020002183656.hdf",
+                "time_start": "2020-01-01T02:50:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139058614",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T02:55:00.000Z",
+                "id": "G1679841456-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "135.584794044495",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-65.680354 -13.561104 -74.747727 -77.471768 -85.52072 158.131166 -70.696973 35.054176 -65.680354 -13.561104"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0250.061.2020002183656.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0250.061.2020002183656.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0250.061.2020002183656.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0250.061.2020002235146.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0250.007.2025106144603.nc",
+                "time_start": "2020-01-01T02:50:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850779378",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T02:55:00.000Z",
+                "id": "G3999510360-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "132.304335594177",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-65.680092 -13.560254 -74.747865 -77.470269 -85.520962 158.126787 -70.696539 35.05439 -65.680092 -13.560254"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0250.007.2025106144603.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0250.007.2025106144603.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0250.007.2025106144603.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0255.061.2020002183326.hdf",
+                "time_start": "2020-01-01T02:55:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139056991",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "BOTH",
+                "time_end": "2020-01-01T03:00:00.000Z",
+                "id": "G1679840874-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "104.062048912048",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-52.017752 -37.254715 -57.110513 -74.694431 -75.223281 -78.944544 -66.023654 -13.994076 -52.017752 -37.254715"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0255.061.2020002183326.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0255.061.2020002183326.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0255.061.2020002183326.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0255.061.2020002234559.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0255.007.2025106144604.nc",
+                "time_start": "2020-01-01T02:55:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850778049",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "BOTH",
+                "time_end": "2020-01-01T03:00:00.000Z",
+                "id": "G3999510341-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "101.348257064819",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-52.017648 -37.254027 -57.1106 -74.693684 -75.223384 -78.942977 -66.023404 -13.993214 -52.017648 -37.254027"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0255.007.2025106144604.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0255.007.2025106144604.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0255.007.2025106144604.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0420.061.2020002183644.hdf",
+                "time_start": "2020-01-01T04:20:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139058616",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T04:25:00.000Z",
+                "id": "G1679841457-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "136.114377975464",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-64.195149 43.359871 -73.19831 101.405864 -54.984327 100.201068 -49.946208 64.879597 -64.195149 43.359871"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0420.061.2020002183644.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0420.061.2020002183644.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0420.061.2020002183644.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0420.061.2020003000236.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0420.007.2025106144906.nc",
+                "time_start": "2020-01-01T04:20:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850783717",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T04:25:00.000Z",
+                "id": "G3999510419-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "133.401903152466",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-64.194768 43.359434 -73.198286 101.404433 -54.984285 100.20035 -49.945897 64.879137 -64.194768 43.359434"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0420.007.2025106144906.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0420.007.2025106144906.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0420.007.2025106144906.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0425.061.2020002183939.hdf",
+                "time_start": "2020-01-01T04:25:00.000Z",
+                "updated": "2024-08-08T02:28:56.970Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139059803",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T04:30:00.000Z",
+                "id": "G1679841855-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "116.814218521118",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-70.614922 -2.180519 -87.106524 -155.306449 -72.652906 102.657733 -64.297349 43.839868 -70.614922 -2.180519"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0425.061.2020002183939.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0425.061.2020002183939.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0425.061.2020002183939.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0425.061.2020002235005.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0425.007.2025106144904.nc",
+                "time_start": "2020-01-01T04:25:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850783718",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T04:30:00.000Z",
+                "id": "G3999510421-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "113.64431476593",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-70.614512 -2.180115 -87.106938 -155.304338 -72.652915 102.656298 -64.29695 43.839468 -70.614512 -2.180115"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0425.007.2025106144904.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0425.007.2025106144904.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0425.007.2025106144904.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0430.061.2020002183136.hdf",
+                "time_start": "2020-01-01T04:30:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139054066",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T04:35:00.000Z",
+                "id": "G1679840663-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "147.275664329529",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-63.044278 -45.397195 -70.827602 -100.725128 -86.881896 -167.304234 -70.948537 -1.990963 -63.044278 -45.397195"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0430.061.2020002183136.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0430.061.2020002183136.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0430.061.2020002183136.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0430.061.2020002235102.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0430.007.2025106144902.nc",
+                "time_start": "2020-01-01T04:30:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850783719",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "DAY",
+                "time_end": "2020-01-01T04:35:00.000Z",
+                "id": "G3999510420-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "143.757038116455",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-63.044063 -45.396362 -70.827724 -100.72391 -86.882313 -167.303499 -70.94813 -1.990471 -63.044063 -45.396362"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0430.007.2025106144902.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0430.007.2025106144902.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0430.007.2025106144902.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0435.061.2020002183758.hdf",
+                "time_start": "2020-01-01T04:35:00.000Z",
+                "updated": "2024-08-08T02:28:43.440Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1km",
+                "data_center": "LAADS",
+                "title": "LAADS:5139058898",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "BOTH",
+                "time_end": "2020-01-01T04:40:00.000Z",
+                "id": "G1679841501-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "84.8365135192871",
+                "browse_flag": true,
+                "polygons": [
+                    [
+                        "-48.511075 -65.178543 -53.149054 -99.519139 -71.317049 -101.732927 -63.394747 -45.952028 -48.511075 -65.178543"
+                    ]
+                ],
+                "collection_concept_id": "C1378227407-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0435.061.2020002183758.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-hdfeos",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0435.061.2020002183758.hdf"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/2020/001/MOD021KM.A2020001.0435.061.2020002183758.hdf.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/browse#",
+                        "type": "image/jpeg",
+                        "title": "This Browse file may be downloaded directly from this link",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOBRGB/2020/001/MOBRGB.A2020001.0435.061.2020002234720.jpg"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/content/l1b-documents"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/metadata#",
+                        "hreflang": "en-US",
+                        "href": "https://doi.org/10.5067/MODIS/MOD021KM.061"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/search/order/2/MOD021KM--61"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/61/MOD021KM/contents.html"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/61/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_ver4.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C1378227407-LAADS"
+                    }
+                ]
+            },
+            {
+                "producer_granule_id": "MOD021KM.A2020001.0435.007.2025106144734.nc",
+                "time_start": "2020-01-01T04:35:00.000Z",
+                "updated": "2026-02-05T07:49:47.070Z",
+                "dataset_id": "MODIS/Terra Calibrated Radiances 5-Min L1B Swath 1000m V7",
+                "data_center": "LAADS",
+                "title": "LAADS:8850778777",
+                "coordinate_system": "GEODETIC",
+                "day_night_flag": "BOTH",
+                "time_end": "2020-01-01T04:40:00.000Z",
+                "id": "G3999510363-LAADS",
+                "original_format": "ECHO10",
+                "granule_size": "82.5809993743896",
+                "browse_flag": false,
+                "polygons": [
+                    [
+                        "-48.510993 -65.177897 -53.149134 -99.518462 -71.317132 -101.731669 -63.394541 -45.951183 -48.510993 -65.177897"
+                    ]
+                ],
+                "collection_concept_id": "C3861664481-LAADS",
+                "online_access_flag": true,
+                "links": [
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "https://data.laadsdaac.earthdatacloud.nasa.gov/prod-lads/MOD021KM/MOD021KM.A2020001.0435.007.2025106144734.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/s3#",
+                        "type": "application/x-netcdf",
+                        "hreflang": "en-US",
+                        "href": "s3://prod-lads/MOD021KM/MOD021KM.A2020001.0435.007.2025106144734.nc"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/service#",
+                        "type": "text/html",
+                        "title": "This file may be accessed using OPeNDAP directly from this link (OPENDAP DATA)",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/opendap/RemoteResources/laads/allData/7/MOD021KM/2020/001/MOD021KM.A2020001.0435.007.2025106144734.nc.html"
+                    },
+                    {
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "type": "text/html",
+                        "title": "A link to Data set landing page (Data Set Landing Page)",
+                        "hreflang": "en-US",
+                        "href": "http://doi.org/10.5067/MODIS/MOD021KM.007"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/modis_C7_L1B_Doc/M1054_PUG_REV_E_C7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "length": "0KB",
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://ladsweb.modaps.eosdis.nasa.gov/archive/allData/7/MOD021KM/"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/documentation#",
+                        "hreflang": "en-US",
+                        "href": "https://mcst.gsfc.nasa.gov/sites/default/files/file_attachments/MODIS_L1B_ATBD_C7_v7.pdf"
+                    },
+                    {
+                        "inherited": true,
+                        "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+                        "hreflang": "en-US",
+                        "href": "https://search.earthdata.nasa.gov/search/granules?p=C3861664481-LAADS"
+                    }
+                ]
+            }
+        ]
+    }
+}

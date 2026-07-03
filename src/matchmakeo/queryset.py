@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+import datetime
 from datetime import date
 
 __all__ = [
@@ -18,7 +19,18 @@ class Queryset:
     lat_min: float = -90
     lon_max: float = +180
     lon_min: float = -180
+    date_format: str = "%Y-%m-%d"
 
+    def __post_init__(self):
+
+        date_fields = ["start_date", "end_date"]
+        
+        for field in date_fields:
+            current_value = getattr(self, field)
+            
+            if isinstance(current_value, str):
+                parsed_date = datetime.datetime.strptime(current_value, self.date_format).date()
+                setattr(self, field, parsed_date)
 
 @dataclass(kw_only=True)
 class NasaCMRQueryset(Queryset):

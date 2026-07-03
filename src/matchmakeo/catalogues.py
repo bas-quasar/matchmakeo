@@ -127,56 +127,20 @@ class NasaCMR(Catalogue):
 
             table = self._create_table(connection, product)
 
-        # Iterate through years and months
-        for date in tqdm(daterange(queryset.start_date, queryset.end_date), unit=" days"):
+        # initialisation
+        response = None
+        headers = {}
+        granules = []
 
-            granules = self._download_single_date(product=product, queryset=queryset, date=date)
-
-            log.info(f"{len(granules)} footprints found for {date}")
-
-            if not dry_run:
-                database.create_columns_from_footprint_props(table_name=product.table,
-                                                            catalogue_fields=self.fields,
-                                                            product_fields = product.extra_fields,
-                                                            props=[g[1] for g in granules],
-                                                            )
-                
-                metadata = MetaData()
-                table = Table(product.table, metadata, autoload_with=connection.engine)
-
-                for granule in granules:
-                    insertion = table.insert().values(
-                        # id=granule[1]['id'],
-                        geometry=coords_to_polygon(granule[0][0]),
-                        datetime_start=granule[1]['time_start'],
-                        datetime_end=granule[1]['time_end'],
-                        **granule[1],
-                        )
-                    connection.execute(insertion)
-                    connection.commit()
-
-
-    def _download_single_date(self,
-                              product: Product,
-                              queryset: Queryset,
-                              date: date,
-                            ):
-        
-        next_day = date + timedelta(days=1)
-
-        more_data = True
-
-        # iterate through pages of data
-        while more_data:
+        # iterate through pages of data using Search-After
+        while True:
             # Query parameters
             params = {
                 "short_name": product.name,
                 "page_size": queryset.page_size,
-                'temporal': f"{date.strftime('%Y-%m-%d')}T00:00:00Z,{next_day.strftime('%Y-%m-%d')}T00:00:00Z",
+                'temporal': f"{queryset.start_date.strftime('%Y-%m-%d')}T00:00:00Z,{queryset.end_date.strftime('%Y-%m-%d')}T00:00:00Z",
                 "bounding_box": self._get_bounding_box(queryset),
             }
-
-            headers = {}
 
             if queryset.version:
                 params.update({"version": self.queryset.version})
@@ -186,7 +150,7 @@ class NasaCMR(Catalogue):
 
             # if there is a previous response, check for additional available pages
             # as recommended by CMR https://wiki.earthdata.nasa.gov/display/CMR/CMR+Harvesting+Best+Practices
-            if 'response' in locals():
+            if response:
 
                 # if previous response has CMR-Search-After header, add details to request headers
                 search_after = response.headers.get("CMR-Search-After", None)
@@ -194,10 +158,9 @@ class NasaCMR(Catalogue):
                     headers.update({
                         "CMR-Search-After": search_after,
                     })
-
                 else:
-                # if there is a previous response and does not have CMR-Search-After header, there is no more data
-                    more_data = False
+                    # if there is a previous response and does not have CMR-Search-After header, there is no more data
+                    break
             
             # Request granule metadata
             response = requests.get(self.url, params=params, headers=headers)
@@ -206,29 +169,52 @@ class NasaCMR(Catalogue):
                 log.info(f"Error: {response.text}")
                 return
 
-            granules = response.json()
+            results = response.json()
 
             log.debug(response.text)
 
-            more_data = len(granules["feed"]["entry"]) > 0
 
-            footprints = []
-            for g in granules["feed"]["entry"]:
+            for item in results["feed"]["entry"]:
 
                 coords = None
-                for poly in g["polygons"][0]:
+                for poly in item["polygons"][0]:
                     vals   =  list ( map (float, poly.split() ) )
                     coords = [list ( zip( vals[1::2], vals[::2] ) )]
 
                 props = {}
 
-                for prop in g:
+                for prop in item:
                     if not prop in ["polygons"]:
-                        props[prop] = g[prop]
+                        props[prop] = item[prop]
 
-                footprints.append((coords, props))
+                # TODO use a dictionary at least to store each footprint
+                granules.append((coords, props))
 
-            return footprints
+
+
+        log.info(f"{len(granules)} footprints found for {params['temporal']}")
+
+        if not dry_run:
+            database.create_columns_from_footprint_props(table_name=product.table,
+                                                        catalogue_fields=self.fields,
+                                                        product_fields = product.extra_fields,
+                                                        props=[g[1] for g in granules],
+                                                        )
+            
+            metadata = MetaData()
+            table = Table(product.table, metadata, autoload_with=connection.engine)
+
+            for granule in granules:
+                insertion = table.insert().values(
+                    # id=granule[1]['id'],
+                    geometry=coords_to_polygon(granule[0][0]),
+                    datetime_start=granule[1]['time_start'],
+                    datetime_end=granule[1]['time_end'],
+                    **granule[1],
+                    )
+                connection.execute(insertion)
+                connection.commit()
+
 
     def _get_bounding_box(self, queryset: Queryset) -> str:
         "Returns bounding box string for NASA CMR spatial query, using queryset lat and lon."

@@ -53,6 +53,7 @@ test = [
     "pytest-cov",
     "pytest-databases[postgres]",
     "pytest-skip-slow",
+    "requests-mock",
 ]
 lint = [
     "pre-commit",
