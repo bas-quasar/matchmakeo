@@ -12,6 +12,17 @@ from shapely import Polygon
 from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, DateTime, Float, Connection
 from tqdm import tqdm
 
+# optional dependencies
+try:
+    import gportal
+except:
+    gportal = None
+
+try:
+    import ee
+except:
+    ee = None
+
 from .databases import Database
 from .field import Field
 from .product import Product
@@ -231,11 +242,22 @@ class EarthEngine(Catalogue):
 
     """
 
-    def __init__(self, queryset_type:Queryset = EarthEngineQueryset):
+    def __init__(self, project_name:str=None, queryset_type:Queryset = EarthEngineQueryset):
+
+        if not project_name:
+            raise ValueError(f"Earth Engine requires a project name. Got {project_name=}")
+
+        if not ee:
+            raise ImportError("Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.")
+
         try:
-            import ee
-        except ImportError:
-            log.error("Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.")
+            ee.Authenticate()
+            ee.Initialize(project=project_name) 
+            
+        except Exception as e:
+            log.error(f"Error initializing Earth Engine: {e}")
+            log.error("If this is your first time using Earth Engine, run 'earthengine authenticate' in your terminal")
+            raise(e)
 
         super().__init__(queryset_type)
 
@@ -246,20 +268,8 @@ class EarthEngine(Catalogue):
         ]
         self.fields.extend(additional_fields)
 
-    def download_footprints(self, product, queryset, database, project_name:str, primary_key = "id", dry_run:bool=False):
+    def download_footprints(self, product, queryset, database, primary_key = "id", dry_run:bool=False):
         super().download_footprints(product, queryset, database, dry_run, primary_key)
-
-        import ee
-
-        try:
-            ee.Authenticate()
-            ee.Initialize(project=project_name) 
-            
-        except Exception as e:
-            log.error(f"Error initializing Earth Engine: {e}")
-            log.error("If this is your first time using Earth Engine, run 'earthengine authenticate' in your terminal")
-            raise(e)
-        
       
         for date in tqdm(daterange(queryset.start_date, queryset.end_date), unit=" days"):
 
@@ -360,10 +370,8 @@ class JaxaGportal(Catalogue):
     """
 
     def __init__(self, queryset_type:Queryset = JaxaGportalQueryset, username=os.getenv("GPORTAL_USERNAME", None), password=os.getenv("GPORTAL_PASSWORD", None)):
-        try:
-            import gportal
-        except ImportError:
-            log.error("JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`.")
+        if not gportal:
+            raise ImportError("JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`.")
 
         super().__init__(queryset_type)
 
