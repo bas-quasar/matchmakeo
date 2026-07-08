@@ -34,14 +34,13 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Users:
-    - Installation: installation.md
-    - Getting started: getting-started.md
-    - Databases: databases.md
-    - Metadata catalogues: metadata-catalogues.md
-    - Downloading footprints: downloading-footprints.md
-    - Querying: querying.md
-    - Visualisation: visualisation.md
+  - Installation: installation.md
+  - Getting started: getting-started.md
+  - Databases: databases.md
+  - Metadata catalogues: metadata-catalogues.md
+  - Downloading footprints: downloading-footprints.md
+  - Querying: querying.md
+  - Visualisation: visualisation.md
   - Developers:
     - Contributing: contributing.md
     - License: license.md
