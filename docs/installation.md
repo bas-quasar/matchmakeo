@@ -1,6 +1,6 @@
 ## Installation
 
-Install MatchMakEO using `pip` from the source on GitHub, we recommend doing so in a virtual environment such as venv or conda, or using a tool such as `uv`.
+Install matchmakeo using `pip` from the source on GitHub, we recommend doing so in a virtual environment such as venv or conda, or using a tool such as `uv`.
 
 ### with `pip`
 

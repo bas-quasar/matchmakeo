@@ -1,6 +1,6 @@
 # Databases
 
-MatchMakEO makes use of a geospatial database to store footprint metadata and make efficient geospatial queries.
+matchmakeo makes use of a geospatial database to store footprint metadata and make efficient geospatial queries.
 
 Supported geospatial database types are:
 
@@ -83,7 +83,7 @@ You should consult with your HPC administrators and/or documentation before usin
 **TODO**: Finish these apptainer docs.
 
 ### Connection details
-Whichever method you use, to tell MatchMakEO to connect to your database, you'll need the following connection details:
+Whichever method you use, to tell matchmakeo to connect to your database, you'll need the following connection details:
 
 + database user
 + database user's password

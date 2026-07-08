@@ -1,13 +1,13 @@
-site_name: MatchmakEO
+site_name: matchmakeo
 repo_url: https://github.com/bas-quasar/matchmakeo
 repo_name: bas-quasar/matchmakeo
 edit_uri: edit/dev/docs/
 theme:
   name: materialx
   custom_dir: ./docs/overrides
-  favicon: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/favicon/favicon-32x32.png
-  logo_light_mode: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/logos-symbols/bas-roundel-mono-transparent-64.png
-  logo_dark_mode: https://cdn.web.bas.ac.uk/bas-style-kit/0.7.3/img/logos-symbols/bas-roundel-inverse-transparent-64.png
+  favicon: images/logo_tiny.png
+  logo_light_mode: images/logo_tiny.png
+  logo_dark_mode: images/logo_tiny_dark.png
   palette:
   - media: "(prefers-color-scheme)"
     toggle:
