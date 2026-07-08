@@ -9,8 +9,7 @@ See what features we have planned for future releases and the status of current 
    Open Roadmap Board on GitHub
 </a>
 
-We welcome your input, please 
-[add to the existing planned feature issues](https://github.com/bas-quasar/matchmakeo/issues){target="_blank"}
- or 
-[open new ones](https://github.com/bas-quasar/matchmakeo/issues/new){target="_blank"}
-!
+We welcome your input, please:
++ [add to the existing planned feature issues](https://github.com/bas-quasar/matchmakeo/issues){target="_blank"}, or 
++ [open new ones](https://github.com/bas-quasar/matchmakeo/issues/new){target="_blank"}, or
++ [start a discussion!](https://github.com/bas-quasar/matchmakeo/discussions){target="_blank"}

@@ -2,7 +2,7 @@
 
 We welcome contributions and improvements to this package!
 
-Please submit bug reports and feature requests as issues [on the GitHub repo](https://github.com/bas-quasar/matchmakeo/issues/new) or if you don't have a GitHub account, email the maintainers at `dalby [at] bas.ac.uk`.
+Please submit bug reports and feature requests as issues <a href="https://github.com/bas-quasar/matchmakeo/issues/new" target="_blank">on the GitHub repo</a>, <a href="https://github.com/bas-quasar/matchmakeo/discussions" target="_blank">start a discussion</a> or if you don't have a GitHub account, email the maintainers at `dalby [at] bas.ac.uk`.
 
 ## Contributing Guide
 
