@@ -3,6 +3,7 @@
 
 import json
 import os
+from pathlib import Path
 import unittest
 from unittest.mock import patch, Mock
 
@@ -102,6 +103,55 @@ class TestNasaCmr:
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
             rows = session.execute(statement).all()
+
+class TestEarthEngine:
+
+    @pytest.fixture
+    def queryset(self):
+        yield EarthEngineQueryset(
+            start_date="2020-01-01",
+            end_date="2020-01-31",
+            lat_max=-70,
+            lat_min=-90,
+            lon_max=180,
+            lon_min=-180,
+        )
+
+    @pytest.fixture
+    def product(self):
+        yield Product(
+            name='COPERNICUS/S2_HARMONIZED',
+            table="s2",
+        )
+        
+    # @pytest.fixture
+    # def mock_earthengine_products(self):
+
+    # @patch('matchmakeo.catalogues.EarthEngine.initialise_earth_engine')
+    def test_mock_earthengine(
+            self,
+            # mock_initialise_ee,
+            # database,
+            queryset,
+            product,
+            ):
+
+        # mock_initialise_ee.return_value = Mock()
+        # mock_initialise_ee.return_value = True
+
+        catalogue = EarthEngine(
+            project_id="matchmakeo",
+            service_account=True,
+            )
+
+        catalogue.download_footprints(
+            product=product,
+            queryset=queryset,
+            database=None,
+            # dry_run=True,
+        )
+
+
 
 class TestJaxaGportal:
 

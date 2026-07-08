@@ -31,14 +31,6 @@ def geojon_to_polygon(geometry:str) -> str:
 def daterange(start_date:date|str, end_date:date|str):
     """Returns a sequence of dates separated by one day. Inclusive of start and end date."""
 
-    date_format_string = "%Y-%m-%d"
-
-    if isinstance(start_date, str):
-        start_date = datetime.strptime(start_date, date_format_string).date()
-
-    if isinstance(end_date, str):
-        end_date = datetime.strptime(end_date, date_format_string).date()
-
     days = int((end_date - start_date).days)  + 1
     for n in range(days):
         yield start_date + timedelta(n)

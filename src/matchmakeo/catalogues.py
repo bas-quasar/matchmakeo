@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
 from datetime import date, datetime, timedelta
 import itertools
+import json
+import logging
 from pathlib import Path
 import os
 from tempfile import TemporaryFile
@@ -23,13 +25,17 @@ try:
 except:
     ee = None
 
+try:
+    import google.auth
+except:
+    pass
+
 from .databases import Database
 from .field import Field
 from .product import Product
 from .queryset import Queryset, NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
 from .utils import coords_to_polygon, daterange, setUpLogging, geojon_to_polygon
 
-import logging
 
 log = logging.getLogger(__name__)
 
@@ -242,22 +248,20 @@ class EarthEngine(Catalogue):
 
     """
 
-    def __init__(self, project_name:str=None, queryset_type:Queryset = EarthEngineQueryset):
-
-        if not project_name:
-            raise ValueError(f"Earth Engine requires a project name. Got {project_name=}")
+    def __init__(
+            self,
+            project_id:str=None,
+            service_account:bool = False,
+            queryset_type:Queryset = EarthEngineQueryset,
+            ):
 
         if not ee:
             raise ImportError("Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.")
 
-        try:
-            ee.Authenticate()
-            ee.Initialize(project=project_name) 
-            
-        except Exception as e:
-            log.error(f"Error initializing Earth Engine: {e}")
-            log.error("If this is your first time using Earth Engine, run 'earthengine authenticate' in your terminal")
-            raise(e)
+        if not project_id:
+            raise ValueError(f"Earth Engine requires a project name. Got {project_id=}")
+
+        self.initialise_earth_engine(project_id=project_id,service_account=service_account)
 
         super().__init__(queryset_type)
 
@@ -267,6 +271,21 @@ class EarthEngine(Catalogue):
             Field('geometry', 'geometry', Geometry('POLYGON', srid=4326)),
         ]
         self.fields.extend(additional_fields)
+
+
+    def initialise_earth_engine(self, project_id:str, service_account:bool=False):
+
+        try:
+            if service_account:
+                credentials, _ = google.auth.default(scopes=['https://googleapis.com', 'https://googleapis.com'], quota_project_id=project_id)
+                ee.Initialize(credentials, project=project_id)
+            else:
+                ee.Authenticate()
+                ee.Initialize(project=project_id)
+        except Exception as e:
+            log.error("Earth Engine authentication failed.")
+            raise Exception(e)
+
 
     def download_footprints(self, product, queryset, database, primary_key = "id", dry_run:bool=False):
         super().download_footprints(product, queryset, database, dry_run, primary_key)
@@ -327,8 +346,6 @@ class EarthEngine(Catalogue):
                               queryset: Queryset,
                               date: date,
                               ):
-
-        import ee
 
         limit = 5000
 

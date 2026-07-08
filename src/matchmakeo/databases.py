@@ -194,3 +194,6 @@ class SpatialiteDatabase(Database):
     
     def write_gdf(self, gdf:GeoDataFrame, table:str):
         gdf.to_file(self.filename, driver='SQLite', spatialite=True)
+
+    def create_columns_from_footprint_props(self):
+        raise NotImplementedError
