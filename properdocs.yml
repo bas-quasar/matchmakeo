@@ -8,6 +8,8 @@ theme:
   favicon: images/logo_tiny.png
   logo_light_mode: images/logo_tiny.png
   logo_dark_mode: images/logo_tiny_dark.png
+  icon:
+    repo: fontawesome/brands/github
   palette:
   - media: "(prefers-color-scheme)"
     toggle:
