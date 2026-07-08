@@ -45,6 +45,7 @@ nav:
   - Developers:
     - Contributing: contributing.md
     - License: license.md
+  - Roadmap: roadmap.md
 
 markdown_extensions:
   - admonition
