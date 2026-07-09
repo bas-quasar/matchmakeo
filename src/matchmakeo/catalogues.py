@@ -49,6 +49,9 @@ __all__ = [
 
 
 class Catalogue(ABC):
+    """Abstract Base Class for defining catalogue interfaces.
+    Do not call this class directly. Subclass it and define methods.
+    """
 
     def __init__(self, queryset_type: Queryset = None):
         
@@ -162,8 +165,8 @@ class NasaCMR(Catalogue):
                 "bounding_box": self._get_bounding_box(queryset),
             }
 
-            if queryset.version:
-                params.update({"version": self.queryset.version})
+            if product.version:
+                params.update({"version": self.product.version})
 
             if getattr(queryset, "concept_id", None):
                 params.update(self.queryset.concept_id)

@@ -36,7 +36,6 @@ class Queryset:
 class NasaCMRQueryset(Queryset):
     "Extends the base Queryset with parameters specific to NASA CMR queries."
     
-    version: str = None
     page_size: int = 200
 
 @dataclass(kw_only=True)

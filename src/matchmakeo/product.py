@@ -8,8 +8,11 @@ __all__ = [
 
 @dataclass
 class Product:
+    """Class representing a data product.
+    """
 
     name: str
     table: str
     extra_fields: list = field(default_factory=list)
+    version: int = None
 
