@@ -4,7 +4,27 @@ We welcome contributions and improvements to this package!
 
 Please submit bug reports and feature requests as issues <a href="https://github.com/bas-quasar/matchmakeo/issues/new" target="_blank">on the GitHub repo</a>, <a href="https://github.com/bas-quasar/matchmakeo/discussions" target="_blank">start a discussion</a> or if you don't have a GitHub account, email the maintainers at `dalby [at] bas.ac.uk`.
 
-## Contributing Guide
+There are lots of ways to contribute:
+
+## Open new issues and dicussions
+
+### Issues
+
+Best for requesting new features (check out the [existing issues](https://github.com/bas-quasar/matchmakeo/issues) or [roadmap](https://github.com/orgs/bas-quasar/projects/1) first, add to the conversation there) or making bug reports.
+
+[Open a new issue!](https://github.com/bas-quasar/matchmakeo/issues/new)
+
+### Discussions
+
+Best for more general conversations about approaches or how best to achieve something using matchmakeo. If in doubt, start a discussion!
+
+[Start a discussion!](https://github.com/bas-quasar/matchmakeo/discussions)
+
+### If you're not on GitHub
+
+Send us an email at `dalby [at] bas.ac.uk`
+
+## Contributing to code
 
 When making changes to the source code (including to the docs):
 
