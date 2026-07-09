@@ -39,7 +39,10 @@ class Database(ABC):
         
         self.engine = None
         self.connection = None
-        
+    
+    def __str__(self):
+        return self.url
+
     @property
     def url(self):
         if self.db_url:
