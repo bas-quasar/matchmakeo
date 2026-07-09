@@ -45,6 +45,7 @@ docs = [
     "mkdocs-autoapi[python]",
     "mkdocs-include-markdown-plugin",
     "mkdocs-materialx",
+    "mkdocs-mermaid2-plugin",
     "properdocs",
     "properdocs-theme-readthedocs",
 ]

@@ -50,8 +50,12 @@ nav:
 
 markdown_extensions:
   - admonition
-  - pymdownx.superfences
   - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -61,6 +65,8 @@ markdown_extensions:
 plugins:
   - search
   - include-markdown
+  - mermaid2:
+      version: 11.16.0
   - mkdocs-autoapi:
       autoapi_dir: src
   - mkdocstrings:
