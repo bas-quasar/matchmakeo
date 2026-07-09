@@ -77,11 +77,15 @@ class Database(ABC):
             self.create_engine()
             return self.connect()
 
-    def write_gdf(self, gdf:GeoDataFrame, table:str):
-        pass
+    def write_gdf(self, gdf:GeoDataFrame, table:str): ...
 
-    def create_columns_from_footprint_props(self, table:Table, props:dict):
-        pass
+    def create_columns_from_footprint_props(
+            self,
+            table_name:str,
+            catalogue_fields:list[dict],
+            product_fields:list[dict],
+            props:list[dict],
+            ): ...
 
 class PostGISDatabase(Database):
     """Database connection for PostGIS databases.
@@ -162,12 +166,16 @@ class SpatialiteDatabase(Database):
 
     def __init__(
         self,
-        filename: str|Path,
-        db_url = None,
-        dialect = "sqlite",
+        filename: str|Path = None,
+        db_url: str = None,
+        dialect: str = "sqlite",
         ):
-
-        self.filename = filename
+        
+        if bool(db_url) == bool(filename):
+            raise ValueError(f"Got {db_url=} and {filename=}, you must set *one* of db_url *or* filename")
+        else:
+            self.db_url = db_url
+            self.filename = filename
 
         os.environ["SPATIALITE_LIBRARY_PATH"] = "mod_spatialite"
 
@@ -187,8 +195,7 @@ class SpatialiteDatabase(Database):
         # sqlite/spatialite connect strings/urls take a different format to standard so this class has a custom url prop method
         if self.db_url:
             return self.db_url
-        else:
-
+        elif self.filename:
             return f"sqlite:///{self.filename}"
         
     def connect(self):
@@ -198,5 +205,46 @@ class SpatialiteDatabase(Database):
     def write_gdf(self, gdf:GeoDataFrame, table:str):
         gdf.to_file(self.filename, driver='SQLite', spatialite=True)
 
-    def create_columns_from_footprint_props(self):
-        raise NotImplementedError
+    def create_columns_from_footprint_props(
+            self,
+            table_name:str,
+            catalogue_fields:list[dict],
+            product_fields:list[dict],
+            props:list[dict],
+            ):
+        
+        # get the existing table and its columns
+        metadata = MetaData()
+        table = Table(table_name, metadata, autoload_with=self.engine)
+        existing_column_names = set([c.name for c in table.columns])
+
+        gdf = GeoDataFrame(props)
+        properties = gdf.iloc[0].to_dict()
+
+        #TODO test
+
+        # get the corresponding *catalogue* names for all fields with names and types defined internally or by the user
+        predefined_fields_catalogue_names = [c.catalogue_name for c in catalogue_fields + product_fields]
+
+        # work out which fields are in the data but are NOT already defined above
+        extra_fields = [f for f in list(properties.keys()) if f not in predefined_fields_catalogue_names]
+
+        # get the *column* names
+        all_required_column_names = set([c.column_name for c in catalogue_fields + product_fields] + extra_fields)
+
+        # if all the columns we need already exist
+        if existing_column_names.issuperset(all_required_column_names):
+            return
+        else:
+            raw_connection = self.create_engine().raw_connection()
+            cursor = raw_connection.cursor()
+            # create new columns with types for any which do not already exist
+            for col_name in all_required_column_names.difference(existing_column_names):
+                data = properties.get(col_name, None)
+                if data is not None:
+                    sql_col_type = infer_sql_type(data)
+                    sql_cmd = f'ALTER TABLE {table_name} ADD COLUMN "{col_name}" {sql_col_type};'
+                    cursor.execute(sql_cmd)
+            
+            raw_connection.commit()
+            raw_connection.close()
