@@ -1,0 +1,4970 @@
+[
+    {
+        "type": "Image",
+        "bands": [
+            {
+                "id": "B1",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "B2",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B3",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B4",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B5",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B6",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B7",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B8",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B8A",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B9",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "B10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "B11",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B12",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "QA10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA20",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 4294967295
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA60",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_OPAQUE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_CIRRUS",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_SNOW_ICE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1600000
+                ]
+            }
+        ],
+        "version": 1783588974858440.0,
+        "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CVA",
+        "properties": {
+            "DATATAKE_IDENTIFIER": "GS2B_20200101T003749_014728_N05.00",
+            "SPACECRAFT_NAME": "Sentinel-2B",
+            "RADIO_ADD_OFFSET_B8A": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8A": 135.154878364658,
+            "RADIO_ADD_OFFSET_B10": -1000,
+            "MEAN_SOLAR_AZIMUTH_ANGLE": 73.8975226261881,
+            "system:footprint": {
+                "type": "LinearRing",
+                "coordinates": [
+                    [
+                        105.36856788395089,
+                        -76.32017560823171
+                    ],
+                    [
+                        105.36893596506181,
+                        -76.32011453191917
+                    ],
+                    [
+                        105.36983549145815,
+                        -76.31790882553229
+                    ],
+                    [
+                        105.35379579012151,
+                        -75.68445052524356
+                    ],
+                    [
+                        105.35351239293927,
+                        -75.68436094542028
+                    ],
+                    [
+                        104.68159284102504,
+                        -75.68441029824402
+                    ],
+                    [
+                        104.67067645179623,
+                        -75.6844403566202
+                    ],
+                    [
+                        104.64229754867286,
+                        -75.68457969760394
+                    ],
+                    [
+                        104.37889037525346,
+                        -75.74852646710806
+                    ],
+                    [
+                        103.75508750816036,
+                        -75.90083216603011
+                    ],
+                    [
+                        103.68259410618803,
+                        -75.9219437993579
+                    ],
+                    [
+                        103.62791310484492,
+                        -75.9388584987035
+                    ],
+                    [
+                        103.62754827099481,
+                        -75.94267390803851
+                    ],
+                    [
+                        103.66178439518794,
+                        -75.95578914157322
+                    ],
+                    [
+                        103.69642316278018,
+                        -75.9645803741103
+                    ],
+                    [
+                        104.41572757492166,
+                        -76.13496238919102
+                    ],
+                    [
+                        104.91699595124004,
+                        -76.24306833028025
+                    ],
+                    [
+                        105.00732678714083,
+                        -76.2602717710978
+                    ],
+                    [
+                        105.33438609438666,
+                        -76.32022378253141
+                    ],
+                    [
+                        105.36856788395089,
+                        -76.32017560823171
+                    ]
+                ]
+            },
+            "SOLAR_IRRADIANCE_B12": 87.75,
+            "SOLAR_IRRADIANCE_B10": 365.41,
+            "SENSOR_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B11": 247.08,
+            "GENERATION_TIME": 1682350642000,
+            "RADIO_ADD_OFFSET_B12": -1000,
+            "RADIO_ADD_OFFSET_B11": -1000,
+            "SOLAR_IRRADIANCE_B8A": 953.93,
+            "FORMAT_CORRECTNESS": "PASSED",
+            "CLOUD_COVERAGE_ASSESSMENT": 0,
+            "system:time_end": 1577839141692,
+            "SNOW_PIXEL_PERCENTAGE": 100,
+            "system:time_start": 1577839141692,
+            "RADIO_ADD_OFFSET_B1": -1000,
+            "RADIO_ADD_OFFSET_B2": -1000,
+            "DATASTRIP_ID": "S2B_OPER_MSI_L1C_DS_S2RP_20230424T153722_S20200101T003752_N05.00",
+            "RADIO_ADD_OFFSET_B3": -1000,
+            "RADIO_ADD_OFFSET_B4": -1000,
+            "RADIO_ADD_OFFSET_B5": -1000,
+            "PROCESSING_BASELINE": "05.00",
+            "SENSING_ORBIT_NUMBER": 116,
+            "RADIO_ADD_OFFSET_B6": -1000,
+            "RADIO_ADD_OFFSET_B7": -1000,
+            "SENSING_ORBIT_DIRECTION": "DESCENDING",
+            "GENERAL_QUALITY": "PASSED",
+            "GRANULE_ID": "L1C_T48CVA_A014728_20200101T003752",
+            "REFLECTANCE_CONVERSION_CORRECTION": 1.03409389260518,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8": 133.873055968732,
+            "DATATAKE_TYPE": "INS-NOBS",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B9": 135.32138704804,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B6": 134.846328206735,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B7": 134.973032964123,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B4": 134.45816290413,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B1": 9.9640620398093,
+            "RADIO_ADD_OFFSET_B8": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B5": 134.657868459616,
+            "RADIOMETRIC_QUALITY": "PASSED",
+            "RADIO_ADD_OFFSET_B9": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B2": 133.684942176903,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B3": 134.102026681794,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B5": 9.89750092073081,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B1": 135.290100732853,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B4": 9.8818026772499,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B3": 9.85828908812771,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B2": 9.84270677152456,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B9": 10.0229037074745,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8": 9.85054290688317,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B7": 9.91595898311794,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B6": 9.91521834785623,
+            "MEAN_SOLAR_ZENITH_ANGLE": 62.3695414427567,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8A": 9.93771247753811,
+            "MGRS_TILE": "48CVA",
+            "CLOUDY_PIXEL_PERCENTAGE": 0,
+            "PRODUCT_ID": "S2B_MSIL1C_20200101T003749_N0500_R116_T48CVA_20230424T153722",
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B10": 9.85703798202054,
+            "SOLAR_IRRADIANCE_B9": 817.58,
+            "DEGRADED_MSI_DATA_PERCENTAGE": 0,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B11": 9.8934335749079,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B12": 9.94325597160602,
+            "SOLAR_IRRADIANCE_B6": 1291.13,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B10": 134.322401492793,
+            "SOLAR_IRRADIANCE_B5": 1425.78,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B11": 134.807094638157,
+            "SOLAR_IRRADIANCE_B8": 1041.28,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B12": 135.251824660298,
+            "SOLAR_IRRADIANCE_B7": 1175.57,
+            "SOLAR_IRRADIANCE_B2": 1959.75,
+            "SOLAR_IRRADIANCE_B1": 1874.3,
+            "SOLAR_IRRADIANCE_B4": 1512.79,
+            "GEOMETRIC_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B3": 1824.93,
+            "system:asset_size": 206169932,
+            "system:index": "20200101T003749_20200101T003752_T48CVA",
+            "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CVA",
+            "version": 1783588974858440.0,
+            "type": "Image",
+            "bands": [
+                {
+                    "id": "B1",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B2",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B3",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B4",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B5",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B6",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B7",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B8",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B8A",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B9",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B11",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B12",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "QA10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA20",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 4294967295
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA60",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_OPAQUE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_CIRRUS",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_SNOW_ICE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "type": "Image",
+        "bands": [
+            {
+                "id": "B1",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "B2",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B3",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B4",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B5",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B6",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B7",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B8",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    399960,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B8A",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B9",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "B10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "B11",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B12",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    399960,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "QA10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA20",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 4294967295
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA60",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_OPAQUE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_CIRRUS",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_SNOW_ICE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    399960,
+                    0,
+                    -60,
+                    1700020
+                ]
+            }
+        ],
+        "version": 1783588974858440.0,
+        "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CVB",
+        "properties": {
+            "DATATAKE_IDENTIFIER": "GS2B_20200101T003749_014728_N05.00",
+            "SPACECRAFT_NAME": "Sentinel-2B",
+            "RADIO_ADD_OFFSET_B8A": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8A": 141.203455189447,
+            "RADIO_ADD_OFFSET_B10": -1000,
+            "MEAN_SOLAR_AZIMUTH_ANGLE": 74.2968370068909,
+            "system:footprint": {
+                "type": "LinearRing",
+                "coordinates": [
+                    [
+                        105.31611077945408,
+                        -75.51017581282807
+                    ],
+                    [
+                        105.31600695676919,
+                        -75.51017099949928
+                    ],
+                    [
+                        105.3159361290625,
+                        -75.51018484027665
+                    ],
+                    [
+                        105.26466319764918,
+                        -75.52314000713676
+                    ],
+                    [
+                        104.71206537091531,
+                        -75.66492178600168
+                    ],
+                    [
+                        104.32586942803356,
+                        -75.76298374580486
+                    ],
+                    [
+                        104.3257661555898,
+                        -75.76302840881182
+                    ],
+                    [
+                        104.32539160681222,
+                        -75.77110159826366
+                    ],
+                    [
+                        104.32553251458388,
+                        -75.77114176539837
+                    ],
+                    [
+                        104.32564627648328,
+                        -75.77119076789867
+                    ],
+                    [
+                        104.33664682982273,
+                        -75.77140207917103
+                    ],
+                    [
+                        104.34156138322538,
+                        -75.77146051983271
+                    ],
+                    [
+                        105.35556300560694,
+                        -75.77209931166013
+                    ],
+                    [
+                        105.35592743485873,
+                        -75.77202919252584
+                    ],
+                    [
+                        105.34972395744518,
+                        -75.51408463924194
+                    ],
+                    [
+                        105.34951635346873,
+                        -75.5128821867515
+                    ],
+                    [
+                        105.34873629258482,
+                        -75.51019642195418
+                    ],
+                    [
+                        105.34858515485897,
+                        -75.51015929436349
+                    ],
+                    [
+                        105.34845691942424,
+                        -75.51011278101436
+                    ],
+                    [
+                        105.31618980417063,
+                        -75.51015813711821
+                    ],
+                    [
+                        105.31611077945408,
+                        -75.51017581282807
+                    ]
+                ]
+            },
+            "SOLAR_IRRADIANCE_B12": 87.75,
+            "SOLAR_IRRADIANCE_B10": 365.41,
+            "SENSOR_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B11": 247.08,
+            "GENERATION_TIME": 1682350642000,
+            "RADIO_ADD_OFFSET_B12": -1000,
+            "RADIO_ADD_OFFSET_B11": -1000,
+            "SOLAR_IRRADIANCE_B8A": 953.93,
+            "FORMAT_CORRECTNESS": "PASSED",
+            "CLOUD_COVERAGE_ASSESSMENT": 0,
+            "system:time_end": 1577839138357,
+            "SNOW_PIXEL_PERCENTAGE": 100,
+            "system:time_start": 1577839138357,
+            "RADIO_ADD_OFFSET_B1": -1000,
+            "RADIO_ADD_OFFSET_B2": -1000,
+            "DATASTRIP_ID": "S2B_OPER_MSI_L1C_DS_S2RP_20230424T153722_S20200101T003752_N05.00",
+            "RADIO_ADD_OFFSET_B3": -1000,
+            "RADIO_ADD_OFFSET_B4": -1000,
+            "RADIO_ADD_OFFSET_B5": -1000,
+            "PROCESSING_BASELINE": "05.00",
+            "SENSING_ORBIT_NUMBER": 116,
+            "RADIO_ADD_OFFSET_B6": -1000,
+            "RADIO_ADD_OFFSET_B7": -1000,
+            "SENSING_ORBIT_DIRECTION": "DESCENDING",
+            "GENERAL_QUALITY": "PASSED",
+            "GRANULE_ID": "L1C_T48CVB_A014728_20200101T003752",
+            "REFLECTANCE_CONVERSION_CORRECTION": 1.03409389260518,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8": 136.211744261995,
+            "DATATAKE_TYPE": "INS-NOBS",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B9": 142.703135913596,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B6": 139.75383627475,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B7": 140.484425565368,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B4": 138.292644680544,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B1": 11.181165566996,
+            "RADIO_ADD_OFFSET_B8": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B5": 139.028733468774,
+            "RADIOMETRIC_QUALITY": "PASSED",
+            "RADIO_ADD_OFFSET_B9": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B2": 135.477932732699,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B3": 136.946244493759,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B5": 11.1183365542389,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B1": 141.96809378223,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B4": 11.1071909932418,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B3": 11.0915050887469,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B2": 11.0812785508725,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B9": 11.2015147643661,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8": 11.0854946347655,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B7": 11.1457572678514,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B6": 11.1310978087421,
+            "MEAN_SOLAR_ZENITH_ANGLE": 62.1111865454259,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8A": 11.1619620654851,
+            "MGRS_TILE": "48CVB",
+            "CLOUDY_PIXEL_PERCENTAGE": 0,
+            "PRODUCT_ID": "S2B_MSIL1C_20200101T003749_N0500_R116_T48CVB_20230424T153722",
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B10": 11.1028300028914,
+            "SOLAR_IRRADIANCE_B9": 817.58,
+            "DEGRADED_MSI_DATA_PERCENTAGE": 0,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B11": 11.1299493215125,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B12": 11.1672020965496,
+            "SOLAR_IRRADIANCE_B6": 1291.13,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B10": 137.964913091383,
+            "SOLAR_IRRADIANCE_B5": 1425.78,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B11": 139.692487004548,
+            "SOLAR_IRRADIANCE_B8": 1041.28,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B12": 141.420506655419,
+            "SOLAR_IRRADIANCE_B7": 1175.57,
+            "SOLAR_IRRADIANCE_B2": 1959.75,
+            "SOLAR_IRRADIANCE_B1": 1874.3,
+            "SOLAR_IRRADIANCE_B4": 1512.79,
+            "GEOMETRIC_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B3": 1824.93,
+            "system:asset_size": 43003720,
+            "system:index": "20200101T003749_20200101T003752_T48CVB",
+            "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CVB",
+            "version": 1783588974858440.0,
+            "type": "Image",
+            "bands": [
+                {
+                    "id": "B1",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B2",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B3",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B4",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B5",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B6",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B7",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B8",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        399960,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B8A",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B9",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B11",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B12",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        399960,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "QA10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA20",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 4294967295
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA60",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_OPAQUE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_CIRRUS",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_SNOW_ICE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        399960,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "type": "Image",
+        "bands": [
+            {
+                "id": "B1",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "B2",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B3",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B4",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B5",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B6",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B7",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B8",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "B8A",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B9",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "B10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "B11",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "B12",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "QA10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1600000
+                ]
+            },
+            {
+                "id": "QA20",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 4294967295
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1600000
+                ]
+            },
+            {
+                "id": "QA60",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1600000
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_OPAQUE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_CIRRUS",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_SNOW_ICE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            }
+        ],
+        "version": 1783588974858440.0,
+        "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CWA",
+        "properties": {
+            "DATATAKE_IDENTIFIER": "GS2B_20200101T003749_014728_N02.08",
+            "SPACECRAFT_NAME": "Sentinel-2B",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8A": 130.232694506,
+            "MEAN_SOLAR_AZIMUTH_ANGLE": 70.1538161453,
+            "system:footprint": {
+                "type": "LinearRing",
+                "coordinates": [
+                    [
+                        104.99892071976089,
+                        -76.24447636915426
+                    ],
+                    [
+                        104.99897874276837,
+                        -76.24449413005837
+                    ],
+                    [
+                        105.00350387426985,
+                        -76.24557039741009
+                    ],
+                    [
+                        105.04422992144751,
+                        -76.25470864955355
+                    ],
+                    [
+                        105.82325523087795,
+                        -76.42273823979473
+                    ],
+                    [
+                        106.45540203500444,
+                        -76.55433087331903
+                    ],
+                    [
+                        106.98590799452107,
+                        -76.6564396402735
+                    ],
+                    [
+                        107.00982626997467,
+                        -76.66055741629005
+                    ],
+                    [
+                        107.00998934528153,
+                        -76.66057534447631
+                    ],
+                    [
+                        107.02249704287097,
+                        -76.66056667273055
+                    ],
+                    [
+                        109.25656510335097,
+                        -76.63301765490083
+                    ],
+                    [
+                        109.25693158602182,
+                        -76.63294180039311
+                    ],
+                    [
+                        109.10881165516484,
+                        -76.14232727619685
+                    ],
+                    [
+                        108.97092407975029,
+                        -75.65162534671774
+                    ],
+                    [
+                        108.97061949318869,
+                        -75.65154028272282
+                    ],
+                    [
+                        104.99927535761363,
+                        -75.68457750366511
+                    ],
+                    [
+                        104.99891149651572,
+                        -75.68464710223427
+                    ],
+                    [
+                        104.99886813000458,
+                        -76.2444304697526
+                    ],
+                    [
+                        104.99892071976089,
+                        -76.24447636915426
+                    ]
+                ]
+            },
+            "SOLAR_IRRADIANCE_B12": 87.75,
+            "SOLAR_IRRADIANCE_B10": 365.41,
+            "SENSOR_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B11": 247.08,
+            "GENERATION_TIME": 1577842539000,
+            "SOLAR_IRRADIANCE_B8A": 953.93,
+            "FORMAT_CORRECTNESS": "PASSED",
+            "CLOUD_COVERAGE_ASSESSMENT": 99.9891,
+            "system:time_end": 1577839136928,
+            "system:time_start": 1577839136928,
+            "DATASTRIP_ID": "S2B_OPER_MSI_L1C_DS_SGS__20200101T013539_S20200101T003752_N02.08",
+            "PROCESSING_BASELINE": "02.08",
+            "SENSING_ORBIT_NUMBER": 116,
+            "SENSING_ORBIT_DIRECTION": "DESCENDING",
+            "GENERAL_QUALITY": "PASSED",
+            "GRANULE_ID": "L1C_T48CWA_A014728_20200101T003752",
+            "REFLECTANCE_CONVERSION_CORRECTION": 1.03409389261,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8": 130.877573977,
+            "DATATAKE_TYPE": "INS-NOBS",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B9": 130.380488449,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B6": 130.469702635,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B7": 130.269607655,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B4": 130.413220278,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B1": 5.63684510423,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B5": 130.332462957,
+            "RADIOMETRIC_QUALITY": "PASSED",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B2": 131.166241066,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B3": 130.661562741,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B5": 5.42805246806,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B1": 130.477791409,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B4": 5.39100483371,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B3": 5.32341585082,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B2": 5.26705306698,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B9": 5.69265683507,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8": 5.29297839157,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B7": 5.53180063691,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B6": 5.49041331317,
+            "MEAN_SOLAR_ZENITH_ANGLE": 61.5260082996,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8A": 5.5839968167,
+            "MGRS_TILE": "48CWA",
+            "CLOUDY_PIXEL_PERCENTAGE": 99.9891,
+            "PRODUCT_ID": "S2B_MSIL1C_20200101T003749_N0208_R116_T48CWA_20200101T013539",
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B10": 5.37866947349,
+            "SOLAR_IRRADIANCE_B9": 817.58,
+            "DEGRADED_MSI_DATA_PERCENTAGE": 0,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B11": 5.4774526548,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B12": 5.59000746971,
+            "SOLAR_IRRADIANCE_B6": 1291.13,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B10": 130.791446899,
+            "SOLAR_IRRADIANCE_B5": 1425.78,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B11": 130.354476553,
+            "SOLAR_IRRADIANCE_B8": 1041.28,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B12": 130.402765939,
+            "SOLAR_IRRADIANCE_B7": 1175.57,
+            "SOLAR_IRRADIANCE_B2": 1959.75,
+            "SOLAR_IRRADIANCE_B1": 1874.3,
+            "SOLAR_IRRADIANCE_B4": 1512.79,
+            "GEOMETRIC_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B3": 1824.93,
+            "system:asset_size": 1173285361,
+            "system:index": "20200101T003749_20200101T003752_T48CWA",
+            "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CWA",
+            "version": 1783588974858440.0,
+            "type": "Image",
+            "bands": [
+                {
+                    "id": "B1",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B2",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B3",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B4",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B5",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B6",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B7",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B8",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B8A",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B9",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B11",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "B12",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "QA10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "QA20",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 4294967295
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "QA60",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1600000
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_OPAQUE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_CIRRUS",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_SNOW_ICE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "type": "Image",
+        "bands": [
+            {
+                "id": "B1",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "B2",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B3",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B4",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B5",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B6",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B7",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B8",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1700020
+                ]
+            },
+            {
+                "id": "B8A",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B9",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "B10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "B11",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "B12",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1700020
+                ]
+            },
+            {
+                "id": "QA10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA20",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 4294967295
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA60",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_OPAQUE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_CIRRUS",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_SNOW_ICE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1700020
+                ]
+            }
+        ],
+        "version": 1783588974858440.0,
+        "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CWB",
+        "properties": {
+            "DATATAKE_IDENTIFIER": "GS2B_20200101T003749_014728_N05.00",
+            "SPACECRAFT_NAME": "Sentinel-2B",
+            "RADIO_ADD_OFFSET_B8A": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8A": 132.71021034485,
+            "RADIO_ADD_OFFSET_B10": -1000,
+            "MEAN_SOLAR_AZIMUTH_ANGLE": 70.7854066419536,
+            "system:footprint": {
+                "type": "LinearRing",
+                "coordinates": [
+                    [
+                        108.74325321969187,
+                        -74.75725844496459
+                    ],
+                    [
+                        108.74296760361389,
+                        -74.75717301096985
+                    ],
+                    [
+                        108.01937945239986,
+                        -74.76801883726122
+                    ],
+                    [
+                        108.00919715852957,
+                        -74.76819968590688
+                    ],
+                    [
+                        107.97711898846433,
+                        -74.76880530602689
+                    ],
+                    [
+                        107.89937401550438,
+                        -74.79135277670825
+                    ],
+                    [
+                        107.23873300945064,
+                        -74.98377210159103
+                    ],
+                    [
+                        106.65930453164097,
+                        -75.14776839912786
+                    ],
+                    [
+                        106.13374154786287,
+                        -75.29277935292546
+                    ],
+                    [
+                        105.59799323161238,
+                        -75.4365845331616
+                    ],
+                    [
+                        105.06905829802194,
+                        -75.57484782127061
+                    ],
+                    [
+                        105.00000253697687,
+                        -75.59637050693382
+                    ],
+                    [
+                        104.99927803498157,
+                        -75.60195113527278
+                    ],
+                    [
+                        104.99909753569213,
+                        -75.60393380528487
+                    ],
+                    [
+                        104.99908711984403,
+                        -75.77227225112976
+                    ],
+                    [
+                        104.99937007688838,
+                        -75.77236220650454
+                    ],
+                    [
+                        108.99534675546568,
+                        -75.73909947447419
+                    ],
+                    [
+                        108.865046470651,
+                        -75.24818102458953
+                    ],
+                    [
+                        108.74325321969187,
+                        -74.75725844496459
+                    ]
+                ]
+            },
+            "SOLAR_IRRADIANCE_B12": 87.75,
+            "SOLAR_IRRADIANCE_B10": 365.41,
+            "SENSOR_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B11": 247.08,
+            "GENERATION_TIME": 1682350642000,
+            "RADIO_ADD_OFFSET_B12": -1000,
+            "RADIO_ADD_OFFSET_B11": -1000,
+            "SOLAR_IRRADIANCE_B8A": 953.93,
+            "FORMAT_CORRECTNESS": "PASSED",
+            "CLOUD_COVERAGE_ASSESSMENT": 1.49240625026601,
+            "system:time_end": 1577839127200,
+            "SNOW_PIXEL_PERCENTAGE": 98.9052581211837,
+            "system:time_start": 1577839127200,
+            "RADIO_ADD_OFFSET_B1": -1000,
+            "RADIO_ADD_OFFSET_B2": -1000,
+            "DATASTRIP_ID": "S2B_OPER_MSI_L1C_DS_S2RP_20230424T153722_S20200101T003752_N05.00",
+            "RADIO_ADD_OFFSET_B3": -1000,
+            "RADIO_ADD_OFFSET_B4": -1000,
+            "RADIO_ADD_OFFSET_B5": -1000,
+            "PROCESSING_BASELINE": "05.00",
+            "SENSING_ORBIT_NUMBER": 116,
+            "RADIO_ADD_OFFSET_B6": -1000,
+            "RADIO_ADD_OFFSET_B7": -1000,
+            "SENSING_ORBIT_DIRECTION": "DESCENDING",
+            "GENERAL_QUALITY": "PASSED",
+            "GRANULE_ID": "L1C_T48CWB_A014728_20200101T003752",
+            "REFLECTANCE_CONVERSION_CORRECTION": 1.03409389260518,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8": 131.52399320274,
+            "DATATAKE_TYPE": "INS-NOBS",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B9": 133.069459432215,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B6": 132.382340084728,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B7": 132.537415993536,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B4": 132.032364941256,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B1": 9.39308953906047,
+            "RADIO_ADD_OFFSET_B8": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B5": 132.206045683432,
+            "RADIOMETRIC_QUALITY": "PASSED",
+            "RADIO_ADD_OFFSET_B9": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B2": 131.335208770779,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B3": 131.694856022416,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B5": 9.29768871055526,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B1": 132.894731671457,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B4": 9.28720178446358,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B3": 9.26099788169199,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B2": 9.23947487895245,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B9": 9.42216193860384,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8": 9.24829716805548,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B7": 9.34085161649021,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B6": 9.31731799580737,
+            "MEAN_SOLAR_ZENITH_ANGLE": 61.2656937447803,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8A": 9.36478815526409,
+            "MGRS_TILE": "48CWB",
+            "CLOUDY_PIXEL_PERCENTAGE": 1.49240625026601,
+            "PRODUCT_ID": "S2B_MSIL1C_20200101T003749_N0500_R116_T48CWB_20230424T153722",
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B10": 9.27022890110041,
+            "SOLAR_IRRADIANCE_B9": 817.58,
+            "DEGRADED_MSI_DATA_PERCENTAGE": 0.0051,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B11": 9.31432640384691,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B12": 9.36227085781974,
+            "SOLAR_IRRADIANCE_B6": 1291.13,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B10": 132.015435531373,
+            "SOLAR_IRRADIANCE_B5": 1425.78,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B11": 132.412474230036,
+            "SOLAR_IRRADIANCE_B8": 1041.28,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B12": 132.821775348417,
+            "SOLAR_IRRADIANCE_B7": 1175.57,
+            "SOLAR_IRRADIANCE_B2": 1959.75,
+            "SOLAR_IRRADIANCE_B1": 1874.3,
+            "SOLAR_IRRADIANCE_B4": 1512.79,
+            "GEOMETRIC_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B3": 1824.93,
+            "system:asset_size": 868215118,
+            "system:index": "20200101T003749_20200101T003752_T48CWB",
+            "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CWB",
+            "version": 1783588974858440.0,
+            "type": "Image",
+            "bands": [
+                {
+                    "id": "B1",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B2",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B3",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B4",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B5",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B6",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B7",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B8",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B8A",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B9",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B11",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "B12",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "QA10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA20",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 4294967295
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA60",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_OPAQUE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_CIRRUS",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_SNOW_ICE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1700020
+                    ]
+                }
+            ]
+        }
+    },
+    {
+        "type": "Image",
+        "bands": [
+            {
+                "id": "B1",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            },
+            {
+                "id": "B2",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1800040
+                ]
+            },
+            {
+                "id": "B3",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1800040
+                ]
+            },
+            {
+                "id": "B4",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1800040
+                ]
+            },
+            {
+                "id": "B5",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1800040
+                ]
+            },
+            {
+                "id": "B6",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1800040
+                ]
+            },
+            {
+                "id": "B7",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1800040
+                ]
+            },
+            {
+                "id": "B8",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    10980,
+                    10980
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    10,
+                    0,
+                    499980,
+                    0,
+                    -10,
+                    1800040
+                ]
+            },
+            {
+                "id": "B8A",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1800040
+                ]
+            },
+            {
+                "id": "B9",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            },
+            {
+                "id": "B10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            },
+            {
+                "id": "B11",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1800040
+                ]
+            },
+            {
+                "id": "B12",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    5490,
+                    5490
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    20,
+                    0,
+                    499980,
+                    0,
+                    -20,
+                    1800040
+                ]
+            },
+            {
+                "id": "QA10",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA20",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 4294967295
+                },
+                "crs": "EPSG:4326",
+                "crs_transform": [
+                    1,
+                    0,
+                    0,
+                    0,
+                    1,
+                    0
+                ]
+            },
+            {
+                "id": "QA60",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 65535
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_OPAQUE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_CIRRUS",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            },
+            {
+                "id": "MSK_CLASSI_SNOW_ICE",
+                "data_type": {
+                    "type": "PixelType",
+                    "precision": "int",
+                    "min": 0,
+                    "max": 255
+                },
+                "dimensions": [
+                    1830,
+                    1830
+                ],
+                "crs": "EPSG:32748",
+                "crs_transform": [
+                    60,
+                    0,
+                    499980,
+                    0,
+                    -60,
+                    1800040
+                ]
+            }
+        ],
+        "version": 1783588974858440.0,
+        "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CWC",
+        "properties": {
+            "DATATAKE_IDENTIFIER": "GS2B_20200101T003749_014728_N05.00",
+            "SPACECRAFT_NAME": "Sentinel-2B",
+            "RADIO_ADD_OFFSET_B8A": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8A": 138.063010130217,
+            "RADIO_ADD_OFFSET_B10": -1000,
+            "MEAN_SOLAR_AZIMUTH_ANGLE": 71.4095813669939,
+            "system:footprint": {
+                "type": "LinearRing",
+                "coordinates": [
+                    [
+                        107.69815646922815,
+                        -74.85964283051761
+                    ],
+                    [
+                        107.69827430812838,
+                        -74.85969015502003
+                    ],
+                    [
+                        107.70865522670356,
+                        -74.85974740489682
+                    ],
+                    [
+                        107.713213459823,
+                        -74.85973793353857
+                    ],
+                    [
+                        108.76402373137526,
+                        -74.84473297134625
+                    ],
+                    [
+                        108.76435038770362,
+                        -74.84465784862792
+                    ],
+                    [
+                        108.69737719801348,
+                        -74.56363231624682
+                    ],
+                    [
+                        108.69733466357539,
+                        -74.56359079093056
+                    ],
+                    [
+                        108.6913146628626,
+                        -74.56177515197352
+                    ],
+                    [
+                        108.69119714347276,
+                        -74.56177118234766
+                    ],
+                    [
+                        108.69112450394267,
+                        -74.56174625519878
+                    ],
+                    [
+                        108.69104012221793,
+                        -74.56174490959417
+                    ],
+                    [
+                        108.68634402828027,
+                        -74.56182256542249
+                    ],
+                    [
+                        108.68618325174964,
+                        -74.56183474680243
+                    ],
+                    [
+                        108.66636613912884,
+                        -74.56665844740967
+                    ],
+                    [
+                        108.49862589944105,
+                        -74.61240111800286
+                    ],
+                    [
+                        108.14656308244862,
+                        -74.7166052637877
+                    ],
+                    [
+                        107.6967007335328,
+                        -74.85149288284364
+                    ],
+                    [
+                        107.69661210453638,
+                        -74.85153921579672
+                    ],
+                    [
+                        107.69801543334793,
+                        -74.85960469292839
+                    ],
+                    [
+                        107.69815646922815,
+                        -74.85964283051761
+                    ]
+                ]
+            },
+            "SOLAR_IRRADIANCE_B12": 87.75,
+            "SOLAR_IRRADIANCE_B10": 365.41,
+            "SENSOR_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B11": 247.08,
+            "GENERATION_TIME": 1682350642000,
+            "RADIO_ADD_OFFSET_B12": -1000,
+            "RADIO_ADD_OFFSET_B11": -1000,
+            "SOLAR_IRRADIANCE_B8A": 953.93,
+            "FORMAT_CORRECTNESS": "PASSED",
+            "CLOUD_COVERAGE_ASSESSMENT": 0,
+            "system:time_end": 1577839117201,
+            "SNOW_PIXEL_PERCENTAGE": 99.9992608962372,
+            "system:time_start": 1577839117201,
+            "RADIO_ADD_OFFSET_B1": -1000,
+            "RADIO_ADD_OFFSET_B2": -1000,
+            "DATASTRIP_ID": "S2B_OPER_MSI_L1C_DS_S2RP_20230424T153722_S20200101T003752_N05.00",
+            "RADIO_ADD_OFFSET_B3": -1000,
+            "RADIO_ADD_OFFSET_B4": -1000,
+            "RADIO_ADD_OFFSET_B5": -1000,
+            "PROCESSING_BASELINE": "05.00",
+            "SENSING_ORBIT_NUMBER": 116,
+            "RADIO_ADD_OFFSET_B6": -1000,
+            "RADIO_ADD_OFFSET_B7": -1000,
+            "SENSING_ORBIT_DIRECTION": "DESCENDING",
+            "GENERAL_QUALITY": "PASSED",
+            "GRANULE_ID": "L1C_T48CWC_A014728_20200101T003752",
+            "REFLECTANCE_CONVERSION_CORRECTION": 1.03409389260518,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B8": 133.078154184657,
+            "DATATAKE_TYPE": "INS-NOBS",
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B9": 139.560465067588,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B6": 136.615437570741,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B7": 137.345159210824,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B4": 135.156199066636,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B1": 11.2136979712546,
+            "RADIO_ADD_OFFSET_B8": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B5": 135.891469004349,
+            "RADIOMETRIC_QUALITY": "PASSED",
+            "RADIO_ADD_OFFSET_B9": -1000,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B2": 132.345159751136,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B3": 133.811614016018,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B5": 11.1512463558086,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B1": 138.826621226598,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B4": 11.1401885159593,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B3": 11.1246659538696,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B2": 11.114614123788,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B9": 11.2339446240598,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8": 11.1187438737714,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B7": 11.1784849250395,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B6": 11.163914828453,
+            "MEAN_SOLAR_ZENITH_ANGLE": 61.0138274498592,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B8A": 11.1945934072835,
+            "MGRS_TILE": "48CWC",
+            "CLOUDY_PIXEL_PERCENTAGE": 0,
+            "PRODUCT_ID": "S2B_MSIL1C_20200101T003749_N0500_R116_T48CWC_20230424T153722",
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B10": 11.1358685932458,
+            "SOLAR_IRRADIANCE_B9": 817.58,
+            "DEGRADED_MSI_DATA_PERCENTAGE": 0,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B11": 11.1627741084824,
+            "MEAN_INCIDENCE_ZENITH_ANGLE_B12": 11.1998038976015,
+            "SOLAR_IRRADIANCE_B6": 1291.13,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B10": 134.829006123766,
+            "SOLAR_IRRADIANCE_B5": 1425.78,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B11": 136.554175720773,
+            "SOLAR_IRRADIANCE_B8": 1041.28,
+            "MEAN_INCIDENCE_AZIMUTH_ANGLE_B12": 138.279703142255,
+            "SOLAR_IRRADIANCE_B7": 1175.57,
+            "SOLAR_IRRADIANCE_B2": 1959.75,
+            "SOLAR_IRRADIANCE_B1": 1874.3,
+            "SOLAR_IRRADIANCE_B4": 1512.79,
+            "GEOMETRIC_QUALITY": "PASSED",
+            "SOLAR_IRRADIANCE_B3": 1824.93,
+            "system:asset_size": 51800466,
+            "system:index": "20200101T003749_20200101T003752_T48CWC",
+            "id": "COPERNICUS/S2_HARMONIZED/20200101T003749_20200101T003752_T48CWC",
+            "version": 1783588974858440.0,
+            "type": "Image",
+            "bands": [
+                {
+                    "id": "B1",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B2",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B3",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B4",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B5",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B6",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B7",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B8",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        10980,
+                        10980
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        10,
+                        0,
+                        499980,
+                        0,
+                        -10,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B8A",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B9",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B11",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "B12",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        5490,
+                        5490
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        20,
+                        0,
+                        499980,
+                        0,
+                        -20,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "QA10",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA20",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 4294967295
+                    },
+                    "crs": "EPSG:4326",
+                    "crs_transform": [
+                        1,
+                        0,
+                        0,
+                        0,
+                        1,
+                        0
+                    ]
+                },
+                {
+                    "id": "QA60",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 65535
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_OPAQUE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_CIRRUS",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                },
+                {
+                    "id": "MSK_CLASSI_SNOW_ICE",
+                    "data_type": {
+                        "type": "PixelType",
+                        "precision": "int",
+                        "min": 0,
+                        "max": 255
+                    },
+                    "dimensions": [
+                        1830,
+                        1830
+                    ],
+                    "crs": "EPSG:32748",
+                    "crs_transform": [
+                        60,
+                        0,
+                        499980,
+                        0,
+                        -60,
+                        1800040
+                    ]
+                }
+            ]
+        }
+    }
+]

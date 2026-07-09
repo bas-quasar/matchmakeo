@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta
 import itertools
 import json
@@ -34,7 +35,7 @@ from .databases import Database
 from .field import Field
 from .product import Product
 from .queryset import Queryset, NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
-from .utils import coords_to_polygon, daterange, setUpLogging, geojon_to_polygon
+from .utils import coords_to_polygon, setUpLogging, geojon_to_polygon, get_optimal_workers
 
 
 log = logging.getLogger(__name__)
@@ -80,6 +81,8 @@ class Catalogue(ABC):
             warnings.warn(f"Got dry_run: {dry_run} and database: {database}. Database needed unless dry_run=True.")
             
     def _create_table(self, connection:Connection, product:Product, primary_key:str='pk'):
+
+        log.info(f"Creating table {product.table}")
 
         metadata = MetaData()
         table = Table(product.table, metadata,
@@ -289,65 +292,6 @@ class EarthEngine(Catalogue):
 
     def download_footprints(self, product, queryset, database, primary_key = "id", dry_run:bool=False):
         super().download_footprints(product, queryset, database, dry_run, primary_key)
-      
-        for date in tqdm(daterange(queryset.start_date, queryset.end_date), unit=" days"):
-
-            granules = self._download_single_date(product=product, queryset=queryset, date=date)
-
-            log.info(f"{len(granules)} found for {date}")
-
-            if dry_run:
-                log.info(f"dry_run: {dry_run}, skipping database insertion.")
-            else:
-
-                try:
-                    connection = database.connect()
-                except ConnectionError:
-                    raise ConnectionError(f"Database connection failed. Aborting.")
-
-                table = self._create_table(connection, product)
-
-                # 'flatten' the properties
-                props = []
-                for g in granules:
-                    p = g['properties']
-                    p.update({
-                        'id': g.get('id'),
-                        'version': g.get('version'),
-                        'type': g.get('type'),
-                        'bands': g.get('bands'),
-                    })
-                    props.append(p)
-
-                database.create_columns_from_footprint_props(table_name=product.table,
-                                                            catalogue_fields=self.fields,
-                                                            product_fields = product.extra_fields,
-                                                            props=props,
-                                                            )
-                
-                metadata = MetaData()
-                table = Table(product.table, metadata, autoload_with=connection.engine)
-
-                for granule in granules:
-                    insertion = table.insert().values(
-                        # id=granule['id'],
-                        geometry=coords_to_polygon(granule['properties']['system:footprint']['coordinates']),
-                        # type=granule.get('type'),
-                        # version=granule.get('version'),
-                        # bands=granule.get('bands'),
-                        **granule.get('properties'),
-                        )
-                    connection.execute(insertion)
-                    connection.commit()
-
-
-    def _download_single_date(self,
-                              product: Product,
-                              queryset: Queryset,
-                              date: date,
-                              ):
-
-        limit = 5000
 
         bbox = ee.Geometry.BBox(
             west=queryset.lon_min,
@@ -355,24 +299,101 @@ class EarthEngine(Catalogue):
             east=queryset.lon_max,
             north=queryset.lat_max,
             )
+
+
+        def fetch_day_metadata(day_string):
+            """
+            Worker function executed in parallel. 
+            Retrieves image asset metadata and geometries for a single day.
+            """
+            current_date = ee.Date(day_string)
+            next_date = current_date.advance(1, 'day')
+            
+            # Filter the raw collection by Date and Spatial Bounds
+            day_collection = (ee.ImageCollection(product.name)
+                            .filterDate(current_date, next_date)
+                            .filterBounds(bbox))
+            
+            # Convert the ImageCollection into a FeatureCollection.
+            # converts each image's spatial footprint into a feature geometry
+            # while keeping all of the image's metadata.
+            metadata_features = ee.FeatureCollection(day_collection)
+            
+            # Filter properties to keep the payload small
+            # metadata_features = metadata_features.select(
+            #     propertySelectors=['system:index', 'system:time_start', 'CLOUDY_PIXEL_PERCENTAGE'], 
+            #     retainGeometry=True # Keeps the polygon boundary layout of the scene
+            # )
+            
+            # Fetch data
+            try:
+                data = metadata_features.getInfo()
+                return day_string, data.get('features', [])
+            except Exception as e:
+                print(f"Error processing date {day_string}: {e}")
+                return day_string, []
+
+        if not dry_run:
+            log.info(f"Connecting to database at {database}.")
+            try:
+                connection = database.connect()
+            except ConnectionError:
+                raise ConnectionError(f"Connection to {database} failed. Aborting.")
+
+            table = self._create_table(connection, product)
+
+        delta = queryset.end_date - queryset.start_date
+        start = queryset.start_date
         
-        start_date = datetime.combine(date, datetime.min.time()) # ee.Date accepts python datetimes but not dates
-        end_date = start_date + timedelta(days=1)
+        daily_strings = [(start + timedelta(days=i)).strftime('%Y-%m-%d') for i in range(delta.days)]
+        
+        with ThreadPoolExecutor(max_workers=get_optimal_workers()) as executor:
+            results = executor.map(fetch_day_metadata, daily_strings)
+            
+            for date_str, granules in results:
+                if not granules:
+                    log.info(f"{date_str}: No images intersected the bounds.")
+                    continue
+                    
+                log.info(f"{date_str}: Found {len(granules)} images.")
+                
+                if dry_run:
+                    log.info(f"dry_run: {dry_run}, skipping database insertion.")
+                else:
 
-        # Create Sentinel collection
-        collection = ee.ImageCollection(product.name).filterDate(ee.Date(start_date), ee.Date(end_date)).filterBounds(bbox).limit(limit)
 
-        # Get the collection info as a dictionary
-        collection_info = collection.getInfo()
+                    # 'flatten' the properties
+                    props = []
+                    for g in granules:
+                        p = g['properties']
+                        p.update({
+                            'id': g.get('id'),
+                            'version': g.get('version'),
+                            'type': g.get('type'),
+                            'bands': g.get('bands'),
+                        })
+                        props.append(p)
 
-        # Extract the features (individual images)
-        features = collection_info.get('features', [])
-        log.info(f"Found {len(features)} {product.name} images between {start_date} and {end_date}")
+                    database.create_columns_from_footprint_props(table_name=product.table,
+                                                                catalogue_fields=self.fields,
+                                                                product_fields = product.extra_fields,
+                                                                props=props,
+                                                                )
+                    
+                    metadata = MetaData()
+                    table = Table(product.table, metadata, autoload_with=connection.engine)
 
-        if len(features) == limit:
-            warnings.warn(f"Limit of {limit} found, there may be more available. Try adjusting queryset.")
-
-        return features
+                    for granule in granules:
+                        insertion = table.insert().values(
+                            # id=granule['id'],
+                            geometry=coords_to_polygon(granule['properties']['system:footprint']['coordinates']),
+                            # type=granule.get('type'),
+                            # version=granule.get('version'),
+                            # bands=granule.get('bands'),
+                            **granule.get('properties'),
+                            )
+                        connection.execute(insertion)
+                        connection.commit()
 
 
 class JaxaGportal(Catalogue):

@@ -1,11 +1,11 @@
-"""Integration tests to test downloading
+"""Integration tests for downloading
 """
 
 import json
 import os
 from pathlib import Path
 import unittest
-from unittest.mock import patch, Mock
+from unittest.mock import patch, Mock, MagicMock
 
 import gportal
 import pytest
@@ -85,7 +85,7 @@ class TestNasaCmr:
             rows = session.execute(statement).all()
             assert len(rows) == len(mock_cmr_products["feed"]["entry"])
 
-    @pytest.mark.skip(reason="performs an actual http request, skipped for automated testing, preserved for occasional manual testing.")
+    @pytest.mark.skip(reason="Performs requests against the live catalogue, skipped for automated testing, preserved for occasional manual testing.")
     def test_live_cmr(
         self,
         database,
@@ -110,7 +110,7 @@ class TestEarthEngine:
     def queryset(self):
         yield EarthEngineQueryset(
             start_date="2020-01-01",
-            end_date="2020-01-31",
+            end_date="2020-01-02",
             lat_max=-70,
             lat_min=-90,
             lon_max=180,
@@ -123,21 +123,63 @@ class TestEarthEngine:
             name='COPERNICUS/S2_HARMONIZED',
             table="s2",
         )
-        
-    # @pytest.fixture
-    # def mock_earthengine_products(self):
 
-    # @patch('matchmakeo.catalogues.EarthEngine.initialise_earth_engine')
+    @pytest.fixture
+    def mock_num_workers(self, monkeypatch):
+        monkeypatch.setenv("NUM_WORKERS", "1")
+        
+    @patch('matchmakeo.catalogues.ee')
     def test_mock_earthengine(
             self,
-            # mock_initialise_ee,
-            # database,
+            mock_ee,
+            mock_num_workers,
+            database,
             queryset,
             product,
             ):
 
-        # mock_initialise_ee.return_value = Mock()
-        # mock_initialise_ee.return_value = True
+        with open(os.path.join("tests", "fixtures", "earthengine_results.json"), "r") as f:
+            mock_info_features = json.load(f)
+        mock_info_response = {"features": mock_info_features}
+        
+        # Configure the chain to return our fake data when getInfo() is called
+        mock_feature_collection = MagicMock()
+        # mock_selected_collection = MagicMock() # we aren't using .select yet
+        
+        mock_ee.FeatureCollection.return_value = mock_feature_collection
+        # mock_feature_collection.select.return_value = mock_selected_collection
+        mock_feature_collection.getInfo.return_value = mock_info_response
+
+        catalogue = EarthEngine(
+            project_id="matchmakeo",
+            service_account=True,
+            )
+
+        catalogue.download_footprints(
+            product=product,    
+            queryset=queryset,
+            database=database,
+            dry_run=False,
+        )
+
+        mock_ee.ImageCollection.assert_called_with(product.name)
+
+        metadata = sqlalchemy.MetaData()
+        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+
+        with Session(database.engine) as session:
+            statement = sqlalchemy.select(table)
+            rows = session.execute(statement).all()
+            assert len(rows) == len(mock_info_features)
+
+    @pytest.mark.skip(reason="Performs requests against the live catalogue, skipped for automated testing, preserved for occasional manual testing.")
+    def test_live_earthengine(
+            self,
+            mock_num_workers,
+            database,
+            queryset,
+            product,
+            ):
 
         catalogue = EarthEngine(
             project_id="matchmakeo",
@@ -147,11 +189,16 @@ class TestEarthEngine:
         catalogue.download_footprints(
             product=product,
             queryset=queryset,
-            database=None,
-            # dry_run=True,
+            database=database,
+            dry_run=False,
         )
 
+        metadata = sqlalchemy.MetaData()
+        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
 
+        with Session(database.engine) as session:
+            statement = sqlalchemy.select(table)
+            rows = session.execute(statement).all()
 
 class TestJaxaGportal:
 
@@ -224,7 +271,7 @@ class TestJaxaGportal:
             rows = session.execute(statement).all()
             assert len(rows) == len(mock_products)
 
-    @pytest.mark.skip(reason="performs an actual http request, skipped for automated testing, preserved for occasional manual testing.")
+    @pytest.mark.skip(reason="Performs requests against the live catalogue, skipped for automated testing, preserved for occasional manual testing.")
     def test_live_gportal(
         self,
         database,
