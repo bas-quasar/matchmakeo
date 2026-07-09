@@ -30,6 +30,33 @@ jobs:
           python -m pip install --group docs
       - name: Build docs 📖
         run: properdocs build
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'latest'
+
+      - name: Run Pa11y CI via Local Server
+        run: |
+          npm install -g pa11y-ci http-server
+          npx puppeteer browsers install chrome
+          npx http-server site -p 8080 &
+          sleep 3
+          npx pa11y-ci --sitemap http://localhost:8080/sitemap.xml
+          npm run pa11y-ci:sitemap 2>&1 | tee pa11y_output.txt
+        
+      - name: Read pa11y_output file.
+        id: pa11y_output
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./pa11y_output.txt
+        
+      - name: Check for pa11y failures.
+        if: contains(steps.pa11y_output.outputs.content, 'errno 2')
+        run: |
+          echo "::error::The site is failing accessibility tests. Please review the comment in the pull request or the pa11y-ci step in the workflow for details."
+          exit 1
+
       - name: Deploy docs 🚀
         if: ${{ github.event_name == 'push' }}
         uses: JamesIves/github-pages-deploy-action@v4
