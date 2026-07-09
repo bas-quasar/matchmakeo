@@ -1239,9 +1239,9 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/queryset.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">EarthEngineQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
     <span class="s2">&quot;Extends the base Queryset with parameters specific to Google Earth Engine queries.&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -1311,7 +1311,8 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/queryset.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+<span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
@@ -1324,8 +1325,7 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
 <span class="normal">56</span>
 <span class="normal">57</span>
 <span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportalQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extends the base Queryset with parameters specific to JAXA G-Portal queries.</span>
@@ -1405,12 +1405,10 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
 <span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">NasaCMRQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
     <span class="s2">&quot;Extends the base Queryset with parameters specific to NASA CMR queries.&quot;</span>
 
-    <span class="n">version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span>
 </code></pre></div></td></tr></table></div>
               </details>
