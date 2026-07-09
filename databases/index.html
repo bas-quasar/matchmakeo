@@ -1328,7 +1328,7 @@
 <h4 id="apptainer">apptainer</h4>
 <div class="admonition question">
 <p class="admonition-title">help!</p>
-<p>We're looking for feedback on this section! Help us out!</p>
+<p>We're looking for feedback on this section! <a href="../contributing/">Help us out!</a></p>
 </div>
 <p>On many HPC systems, docker containers are not permitted and the alternative container approach is using <em>apptainer</em> (formerly known as <em>singularity</em>), a very similar tool to docker.</p>
 <p>You should consult with your HPC administrators and/or documentation before using containers on HPC, but here's the basic procedure:</p>
@@ -1344,11 +1344,15 @@
 </code></pre></div>
 </li>
 <li>
-<p>If this is your first time setting up this database, initialize the database cluster layout inside that folder:</p>
-<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>postgis.sif<span class="w"> </span>initdb<span class="w"> </span>-D<span class="w"> </span>/var/lib/postgresql/data
+<p>If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name:</p>
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
+--cleanenv<span class="w"> </span><span class="se">\</span>
+--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_USER</span><span class="o">=</span><span class="s2">&quot;my_user&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my_secure_password&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_DB</span><span class="o">=</span><span class="s2">&quot;my_spatial_db&quot;</span><span class="w"> </span><span class="se">\</span>
+--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
+postgis.sif
 </code></pre></div>
 </li>
 <li>
@@ -1358,18 +1362,44 @@
 <span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>postgis.sif<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>gis_db<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>matchmakeo-db<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>postgres<span class="w"> </span>-D<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span>-h<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>
 </code></pre></div>
 <ul>
 <li><code>instance start</code>: Tells Apptainer to run this container persistently in the background.</li>
-<li><code>gis_db</code>: The custom name assigned to this specific running instance.</li>
+<li><code>matchmakeo-db</code>: The custom name assigned to this specific running instance.</li>
 <li><code>--cleanenv</code>: Erases your host HPC environment variables inside the container to prevent software version conflicts.</li>
 <li><code>-h 0.0.0.0</code>: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.</li>
+<li><code>-p 5432</code>: binds to this port number, you may need to use a different one as this is the default for postgres.</li>
 </ul>
 </li>
+<li>
+<p>Connect with the database inside your python scipt:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;my_user&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;my_secure_password&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;my_spatial_db&quot;</span><span class="p">,</span> <span class="c1"># the default database name</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span> <span class="c1"># the port in the above step</span>
+<span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If running interactively or inside a Slurm script, get the node name with the <code>hostname</code> command.</p>
+<p>Or in your python script</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">())</span>
+</code></pre></div>
+</div>
+</li>
+<li>
+<p>Stop the container when you're done</p>
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>instance<span class="w"> </span>stop<span class="w"> </span>matchmakeo-db
+</code></pre></div>
+</li>
 </ol>
-<p><strong>TODO</strong>: Finish these apptainer docs.</p>
 <h3 id="connection-details">Connection details</h3>
 <p>Whichever method you use, to tell matchmakeo to connect to your database, you'll need the following connection details:</p>
 <ul>
@@ -1378,6 +1408,17 @@
 <li>hostname - if you're running locally this may be <code>localhost</code> or <code>127.0.0.1</code> or the name given to your docker container for example,</li>
 <li>port - for postgres/gis this is often <code>5432</code> by default, but might be different for a number of reasons.</li>
 </ul>
+<p>For example, in your python script:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;my_user&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;my_secure_password&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;my_spatial_db&quot;</span><span class="p">,</span> <span class="c1"># the default database name</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span> <span class="c1"># the port in the above step</span>
+<span class="p">)</span>
+</code></pre></div>
 <h2 id="spatialite">SpatiaLite</h2>
 <div class="admonition question">
 <p class="admonition-title">help!</p>
