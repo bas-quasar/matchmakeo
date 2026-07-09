@@ -36,7 +36,7 @@ This will launch a postgis container named `matchmakeo-db` with a database named
 #### apptainer
 
 !!! question "help!"
-    We're looking for feedback on this section! Help us out!
+    We're looking for feedback on this section! [Help us out!](contributing.md)
 
 On many HPC systems, docker containers are not permitted and the alternative container approach is using _apptainer_ (formerly known as _singularity_), a very similar tool to docker.
 
@@ -54,13 +54,17 @@ You should consult with your HPC administrators and/or documentation before usin
     mkdir -p $SCRATCH/pg_data $SCRATCH/pg_run
     ```
 
-3. If this is your first time setting up this database, initialize the database cluster layout inside that folder:
+3. If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name:
 
     ```bash
-    apptainer exec \
-        --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
-        --bind $SCRATCH/pg_run:/var/run/postgresql \
-        postgis.sif initdb -D /var/lib/postgresql/data
+    apptainer run \
+    --cleanenv \
+    --env APPTAINERENV_POSTGRES_USER="my_user" \
+    --env APPTAINERENV_POSTGRES_PASSWORD="my_secure_password" \
+    --env APPTAINERENV_POSTGRES_DB="my_spatial_db" \
+    --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
+    --bind $SCRATCH/pg_run:/var/run/postgresql \
+    postgis.sif
     ```
 
 4. Run the container persistently in the background:
@@ -71,16 +75,45 @@ You should consult with your HPC administrators and/or documentation before usin
         --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
         --bind $SCRATCH/pg_run:/var/run/postgresql \
         postgis.sif \
-        gis_db \
+        matchmakeo-db \
         postgres -D /var/lib/postgresql/data -h 0.0.0.0 -p 5432
     ```
 
     + `instance start`: Tells Apptainer to run this container persistently in the background.
-    + `gis_db`: The custom name assigned to this specific running instance.
+    + `matchmakeo-db`: The custom name assigned to this specific running instance.
     + `--cleanenv`: Erases your host HPC environment variables inside the container to prevent software version conflicts.
     + `-h 0.0.0.0`: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.
+    + `-p 5432`: binds to this port number, you may need to use a different one as this is the default for postgres.
 
-**TODO**: Finish these apptainer docs.
+5. Connect with the database inside your python scipt:
+
+    ```python
+    from matchmakeo.databases import PostGISDatabase
+
+    database = PostGISDatabase(
+        username="my_user", # as defined earlier
+        password="my_secure_password", # as defined earlier
+        database="my_spatial_db", # the default database name
+        host="localhost", # if running on the same host/node as the database
+        port=5432, # the port in the above step
+    )
+    ```
+
+    !!! note
+        If running interactively or inside a Slurm script, get the node name with the `hostname` command.
+
+        Or in your python script
+
+        ```python
+        import socket
+        print(socket.gethostname())
+        ```
+
+9. Stop the container when you're done
+
+    ```bash
+    apptainer instance stop matchmakeo-db
+    ```
 
 ### Connection details
 Whichever method you use, to tell matchmakeo to connect to your database, you'll need the following connection details:
@@ -90,6 +123,19 @@ Whichever method you use, to tell matchmakeo to connect to your database, you'll
 + hostname - if you're running locally this may be `localhost` or `127.0.0.1` or the name given to your docker container for example,
 + port - for postgres/gis this is often `5432` by default, but might be different for a number of reasons.
 
+For example, in your python script:
+
+```python
+from matchmakeo.databases import PostGISDatabase
+
+database = PostGISDatabase(
+    username="my_user", # as defined earlier
+    password="my_secure_password", # as defined earlier
+    database="my_spatial_db", # the default database name
+    host="localhost", # if running on the same host/node as the database
+    port=5432, # the port in the above step
+)
+```
 
 ## SpatiaLite
 
