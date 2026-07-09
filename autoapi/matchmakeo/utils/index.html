@@ -967,6 +967,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#matchmakeo.utils.get_optimal_workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_optimal_workers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#matchmakeo.utils.infer_sql_type" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1063,6 +1074,17 @@
     <span class="md-ellipsis">
       
         geojon_to_polygon
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matchmakeo.utils.get_optimal_workers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_optimal_workers
       
     </span>
   </a>
@@ -1217,9 +1239,9 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">coords_to_polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">coords_to_polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes an iterable of coordinate pairs and returns a WKT POLYGON string.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">shapely</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span><span class="o">.</span><span class="n">wkt</span>
 </code></pre></div></td></tr></table></div>
@@ -1244,12 +1266,12 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">daterange</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="n">date</span><span class="o">|</span><span class="nb">str</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="n">date</span><span class="o">|</span><span class="nb">str</span><span class="p">):</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">daterange</span><span class="p">(</span><span class="n">start_date</span><span class="p">:</span><span class="n">date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">:</span><span class="n">date</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns a sequence of dates separated by one day. Inclusive of start and end date.&quot;&quot;&quot;</span>
 
     <span class="n">days</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">start_date</span><span class="p">)</span><span class="o">.</span><span class="n">days</span><span class="p">)</span>  <span class="o">+</span> <span class="mi">1</span>
@@ -1277,11 +1299,95 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geojon_to_polygon</span><span class="p">(</span><span class="n">geometry</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geojon_to_polygon</span><span class="p">(</span><span class="n">geometry</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Takes a geojson geometry and returns a WKT POLYGON string.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">shapely</span><span class="o">.</span><span class="n">from_geojson</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">geometry</span><span class="p">))</span><span class="o">.</span><span class="n">wkt</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="matchmakeo.utils.get_optimal_workers" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_optimal_workers</span><span class="p">(</span><span class="n">default_per_core</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">maximum_cap</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Determines max_workers dynamically based on environment, 
+hardware, and system limits.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_optimal_workers</span><span class="p">(</span><span class="n">default_per_core</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">maximum_cap</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determines max_workers dynamically based on environment, </span>
+<span class="sd">    hardware, and system limits.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># if MAX_WORKERS env var set</span>
+    <span class="n">env_workers</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MAX_WORKERS&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">env_workers</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">env_workers</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">pass</span> 
+
+    <span class="c1"># fall back on slurm env vars</span>
+    <span class="n">hpc_cpus</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SLURM_CPUS_PER_TASK&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;SLURM_JOB_CPUS_PER_NODE&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hpc_cpus</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">hpc_cpus</span><span class="p">)</span>
+
+    <span class="c1"># Local Hardware Fallback (Laptops / Workstations)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Detects real available cores (handles cgroups/Docker constraints properly)</span>
+        <span class="n">cores</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sched_getaffinity</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="c1"># Fallback for Windows/macOS where sched_getaffinity doesn&#39;t exist</span>
+        <span class="n">cores</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">()</span>
+
+    <span class="c1"># For I/O bound can usually run more threads than raw physical CPU cores.</span>
+    <span class="n">calculated_workers</span> <span class="o">=</span> <span class="n">cores</span> <span class="o">*</span> <span class="n">default_per_core</span>
+
+    <span class="c1"># Cap it on local machines so we don&#39;t overwhelm the network interface</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">calculated_workers</span><span class="p">,</span> <span class="n">maximum_cap</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1304,9 +1410,7 @@
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
@@ -1324,7 +1428,9 @@
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
-<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">infer_sql_type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">infer_sql_type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;&quot;Takes a value and returns the appropriate SQL type.&quot;&quot;&quot;</span>
 
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
