@@ -83,8 +83,8 @@ queryset = NasaCMRQueryset(
 # the name argument defines which product is downloaded
 # table_name defines the name of the database table that these downloads are inserted into
 product = Product(
-    name="MOD021KM",
-    table_name="modis_aqua",
+    name="MOD021KM", # product name to download
+    table_name="modis_aqua", # table name to insert these into in your database
 )
 
 # run the download, passing in the product, queryset and database objects as arguments

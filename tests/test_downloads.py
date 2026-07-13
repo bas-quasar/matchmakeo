@@ -57,7 +57,7 @@ class TestNasaCmr:
 
     @pytest.fixture
     def product(self):
-        yield Product(name="MOD021KM", table="test_modis_aqua")
+        yield Product(name="MOD021KM", table_name="test_modis_aqua")
 
     @pytest.fixture
     def catalogue(self):
@@ -90,7 +90,7 @@ class TestNasaCmr:
             catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -110,7 +110,7 @@ class TestNasaCmr:
         catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -140,7 +140,7 @@ class TestEarthEngine:
     def product(self):
         yield Product(
             name='COPERNICUS/S2_HARMONIZED',
-            table="s2",
+            table_name="s2",
         )
 
     @pytest.fixture
@@ -189,7 +189,7 @@ class TestEarthEngine:
         mock_ee.ImageCollection.assert_called_with(product.name)
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -218,7 +218,7 @@ class TestEarthEngine:
         )
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -239,7 +239,7 @@ class TestJaxaGportal:
 
     @pytest.fixture
     def product(self):
-        yield Product(name="11001002", table="test_amsr")
+        yield Product(name="11001002", table_name="test_amsr")
 
     @pytest.fixture
     def catalogue(self):
@@ -318,7 +318,7 @@ class TestJaxaGportal:
         results = catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
