@@ -4,7 +4,7 @@ from matchmakeo.product import Product
 
 def test_product():
 
-    p = Product(name="MOD021KM", table="MOD021KM")
+    p = Product(name="MOD021KM", table_name="MOD021KM")
     assert p.version is None
     del p
 
@@ -13,4 +13,4 @@ def test_product():
         p = Product(name="MOD021KM")
 
     with pytest.raises(TypeError):
-        p = Product(table="MOD021KM")
+        p = Product(table_name="MOD021KM")

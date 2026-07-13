@@ -12,7 +12,7 @@ class Product:
     """
 
     name: str
-    table: str
+    table_name: str
     extra_fields: list = field(default_factory=list)
     version: int = None
 

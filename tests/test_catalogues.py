@@ -17,7 +17,7 @@ def test_queryset_type_warning(postgres_service: PostgresService):
     )
     product = Product(
         name="test",
-        table="test_table"
+        table_name="test_table"
     )
     catalogue = NasaCMR()
     database = PostGISDatabase(
