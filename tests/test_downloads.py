@@ -17,29 +17,6 @@ from sqlalchemy.orm import Session
 from matchmakeo.queryset import NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
 from matchmakeo.product import Product
 from matchmakeo.catalogues import NasaCMR, Field, EarthEngine, JaxaGportal
-from matchmakeo.databases import PostGISDatabase, SpatialiteDatabase
-
-@pytest.fixture(scope="module", params=["postgis", "spatialite"])
-def database(request):
-
-    backend = request.param
-
-    if backend == "postgis":
-        postgres_service = request.getfixturevalue("postgres_service")
-        yield PostGISDatabase(
-            database=postgres_service.database,
-            username=postgres_service.user,
-            password=postgres_service.password,
-            host=postgres_service.host,
-            port=postgres_service.port
-        )
-    elif backend == "spatialite":
-        spatialite_url = request.getfixturevalue("spatialite_url")
-        yield SpatialiteDatabase(
-            db_url=spatialite_url,
-        )
-    else:
-        raise ValueError(f"Backend type {backend} not supported.")
 
 class TestNasaCmr:
 
