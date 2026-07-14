@@ -39,7 +39,8 @@ class Database(ABC):
         
         self.engine = None
         self.connection = None
-    
+        self.metadata = MetaData()
+
     def __str__(self):
         return self.url
 
