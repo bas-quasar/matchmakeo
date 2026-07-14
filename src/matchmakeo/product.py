@@ -14,13 +14,25 @@ log = setUpLogging(__name__)
 
 @dataclass
 class Product:
-    """Class representing a data product.
+    """
+    Class representing a data product.
+
+    Args:
+        name (str): name used for downloading the product.
+        table_name (str): Name for the corresponding database table. Default: None. If not given, name will be used.
+        extra_fields (list):
+        version (int): version used for downloading the product if required.
     """
 
     name: str
-    table_name: str
+    table_name: str = None
     extra_fields: list = field(default_factory=list)
     version: int = None
+
+    def __post_init__(self):
+        if not self.table_name:
+            log.warning(f"No table_name specified, setting table_name to name {self.name}")
+            self.table_name = self.name
 
     def get_table(self, database: Database):
         "The table object corresponding to the product."

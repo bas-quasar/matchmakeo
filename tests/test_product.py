@@ -1,16 +1,17 @@
+import logging
+
 import pytest
 import sqlalchemy
 
 from matchmakeo.product import Product
 
-def test_product():
+def test_product(caplog):
 
     p = Product(name="MOD021KM", table_name="MOD021KM")
     assert p.version is None
     del p
 
-    # mainly because I don't trust dataclasses
-    with pytest.raises(TypeError):
+    with caplog.at_level(logging.WARNING):
         p = Product(name="MOD021KM")
 
     with pytest.raises(TypeError):
