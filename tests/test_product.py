@@ -26,7 +26,7 @@ def test_product_table(database):
         product.get_table(database)
 
     # create the table
-    metadata = sqlalchemy.MetaData()
+    metadata = database.metadata
     sqlalchemy.Table(
         prod_name,
         metadata,
