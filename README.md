@@ -14,7 +14,7 @@
 
 To install directly from GitHub with `pip`:
 
-`pip install git+ssh://git@github.com/bas-quasar/matchmakeo.git`
+`pip install git+https://github.com/bas-quasar/matchmakeo.git`
 
 Or from a locally cloned copy of the repo:
 
