@@ -39,8 +39,8 @@ nav:
   - Installation: installation.md
   - Getting started: getting-started.md
   - Databases: databases.md
-  - Metadata catalogues: metadata-catalogues.md
-  - Downloading footprints: downloading-footprints.md
+  - Catalogues: catalogues.md
+  - Downloading: downloading.md
   - Querying: querying.md
   - Visualisation: visualisation.md
   - Developers:

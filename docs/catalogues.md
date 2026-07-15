@@ -1,4 +1,4 @@
-# Metadata Catalogues
+# Catalogues
 
 Images and metadata are made available through a number of platforms, which in `matchmakeo` we call "catalogues". These are the services from which metadata is obtained. Built-in catalogue interfaces are:
 
@@ -14,10 +14,10 @@ The catalogues are each represented by a class in the `matchmakeo.catalogues` mo
 
 Some of the catalogues have a corresponding queryset class, e.g. `NasaCMRqueryset` which handle parameters which are specific to downloading from that catalogue, such as `page_size` (the number of records to download in one request).
 
-## NASA Common Metadata Repository (CMR)
+## NASA Common Metadata Repository (CMR) {#nasacmr}
 Home: <https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr>
 
-### Authentication
+### Authentication {#nasacmr-auth}
 `matchmakeo` currently does not support user authentication for NASA CMR, so only public data is accessible. If this is a feature you need, consider [contributing](contributing.md)!
 
 ### Finding products
@@ -31,13 +31,13 @@ You may also need the version, in this case it's "7".
 
 So to define the product to download, you would use `Product(name="MOD021KM", version=7)`.
 
-## Google EarthEngine
+## Google EarthEngine {#ee}
 Home: <https://earthengine.google.com/>
 
-### Dependencies
+### Dependencies {#ee-deps}
 Requires the `earthengine-api` package. Install either with the `[earthengine]` dependencies option when installing matchmakeo, i.e. `pip install git+https://github.com/bas-quasar/matchmakeo.git[earthengine]` or on its own with `pip install earthengine-api`.
 
-### Authentication
+### Authentication {#ee-auth}
 Follow the guidance on earth engine access at <https://developers.google.com/earth-engine/guides/access> including creating a google cloud project.
 
 Note that the earth engine catalogue runs the `ee.Initialize()` method. when instantiating the `matchmakeo.catalogues.EarthEngine` class.
@@ -48,14 +48,14 @@ Also note that for non-interactive execution, such as in an HPC job, you will ne
 The product name required by `matchmakeo.product.Product` can be found by looking for your matching product in the data catalogue at <https://developers.google.com/earth-engine/datasets/catalog>, for instance for the dataset at <https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED> you would use `Product(name="COPERNICUS_S2_SR_HARMONIZED")`.
 
 
-## JAXA G-Portal
+## JAXA G-Portal {#gportal}
 
 Home: <https://gportal.jaxa.jp/gpr/>
 
-### Dependencies
+### Dependencies {#gportal-deps}
 Requires the `gportal` package. Install either with the `[gportal]` dependencies option when installing matchmakeo, i.e. `pip install git+https://github.com/bas-quasar/matchmakeo.git[gportal]` or on its own with `pip install gportal`.
 
-### Authentication
+### Authentication {#grportal-auth}
 1. Register for an account at <https://gportal.jaxa.jp/gpr/user/regist1>
 2. Set your username and password in one of two ways:
     - Set the `GPORTAL_USERNAME` and `GPORTAL_PASSWORD` environment variables,
