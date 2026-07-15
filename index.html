@@ -498,14 +498,14 @@
   
   
     <li class="md-nav__item">
-      <a href="metadata-catalogues/" class="md-nav__link">
+      <a href="catalogues/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Metadata catalogues
+    Catalogues
   
 
     
@@ -525,14 +525,14 @@
   
   
     <li class="md-nav__item">
-      <a href="downloading-footprints/" class="md-nav__link">
+      <a href="downloading/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Downloading footprints
+    Downloading
   
 
     
@@ -1162,12 +1162,12 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <h2 id="basic-usage">Basic Usage</h2>
 <h3 id="download-a-set-of-footprint-metadata-to-your-database">Download a set of footprint metadata to your database</h3>
 <p>For example, for MODIS:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.queryset</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span> <span class="n">EarthEngineQueryset</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.product</span><span class="w"> </span><span class="kn">import</span> <span class="n">Product</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.catalogues</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMR</span><span class="p">,</span> <span class="n">Field</span><span class="p">,</span> <span class="n">EarthEngine</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.catalogues</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMR</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.queryset</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMRQueryset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Product</span>
 
-<span class="c1"># instantiate the database object to define the database connection</span>
+<span class="c1"># define your database object with the connection details</span>
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
     <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
@@ -1176,12 +1176,13 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
     <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># define the catalogue object, in this case for the NASA common metadata repository</span>
+<span class="c1"># make an instance of the catalogue object corresponding to which catalogue you want to download from</span>
 <span class="n">catalogue</span> <span class="o">=</span> <span class="n">NasaCMR</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;matchmakeo_user&quot;</span><span class="p">,</span>
+    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;my_name&quot;</span><span class="p">,</span> <span class="c1">#NasaCMR takes a client_id as recommended by CMR</span>
 <span class="p">)</span>
 
-<span class="c1"># define a queryset object containing the temporal and spatial bounds</span>
+<span class="c1"># define a queryset obect to filter the temporal and spatial bounds of your download</span>
+<span class="c1"># some catalogues have a corresponding queryset type, others just use the base Queryset</span>
 <span class="n">queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">(</span>
     <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span>
     <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;2020-01-31&quot;</span><span class="p">,</span>
@@ -1192,18 +1193,22 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
     <span class="n">lon_min</span><span class="o">=-</span><span class="mi">180</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># define the product from the data catalogue</span>
+<span class="c1"># define a product object corresponding to the data product you want to download</span>
+<span class="c1"># the name argument defines which product is downloaded</span>
+<span class="c1"># table_name defines the name of the database table that these downloads are inserted into</span>
 <span class="n">product</span> <span class="o">=</span> <span class="n">Product</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MOD021KM&quot;</span><span class="p">,</span> <span class="c1"># product name to download</span>
-    <span class="n">table</span><span class="o">=</span><span class="s2">&quot;modis_aqua&quot;</span><span class="p">,</span> <span class="c1"># table name to insert these into in your database</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MOD021KM&quot;</span><span class="p">,</span>
+    <span class="n">table_name</span><span class="o">=</span><span class="s2">&quot;modis_aqua&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># run the footprint download</span>
+<span class="c1"># run the download, passing in the product, queryset and database objects as arguments</span>
 <span class="n">catalogue</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span>
     <span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span>
     <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span>
     <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
-    <span class="c1"># dry_run=True</span>
+    <span class="c1"># optionally set dry run to be True, each catalogue behaves differently but nothing will be inserted into the database if so</span>
+    <span class="c1"># when dry_run=True database can be None, so you can run without a database set up</span>
+    <span class="c1"># dry_run=True,</span>
 <span class="p">)</span>
 </code></pre></div>
 
