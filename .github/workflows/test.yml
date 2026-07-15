@@ -20,6 +20,12 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Install SpatiaLite
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y spatialite-bin libsqlite3-mod-spatialite
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
