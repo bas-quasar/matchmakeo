@@ -51,8 +51,6 @@ catalogue.download_footprints(
     # when dry_run=True database can be None, so you can run without a database set up
     # dry_run=True,
 )
-
-
 ```
 
 

@@ -47,13 +47,13 @@ This will launch a postgis container named `matchmakeo-db` with a database named
 
 For example, for MODIS:
 
-```py
-from matchmakeo.queryset import NasaCMRQueryset, EarthEngineQueryset
-from matchmakeo.product import Product
-from matchmakeo.catalogues import NasaCMR, Field, EarthEngine
+```python
+from matchmakeo.catalogues import NasaCMR
 from matchmakeo.databases import PostGISDatabase
+from matchmakeo.queryset import NasaCMRQueryset
+from matchmakeo import Product
 
-# instantiate the database object to define the database connection
+# define your database object with the connection details
 database = PostGISDatabase(
     username="postgres",
     password="password",
@@ -62,12 +62,13 @@ database = PostGISDatabase(
     port=5432,
 )
 
-# define the catalogue object, in this case for the NASA common metadata repository
+# make an instance of the catalogue object corresponding to which catalogue you want to download from
 catalogue = NasaCMR(
-    client_id="matchmakeo_user",
+    client_id="my_name", #NasaCMR takes a client_id as recommended by CMR
 )
 
-# define a queryset object containing the temporal and spatial bounds
+# define a queryset obect to filter the temporal and spatial bounds of your download
+# some catalogues have a corresponding queryset type, others just use the base Queryset
 queryset = NasaCMRQueryset(
     start_date="2020-01-01",
     end_date="2020-01-31",
@@ -78,18 +79,21 @@ queryset = NasaCMRQueryset(
     lon_min=-180,
 )
 
-# define the product from the data catalogue
+# define a product object corresponding to the data product you want to download
+# the name argument defines which product is downloaded
+# table_name defines the name of the database table that these downloads are inserted into
 product = Product(
-    name="MOD021KM", # product name to download
-    table="modis_aqua", # table name to insert these into in your database
+    name="MOD021KM",
+    table_name="modis_aqua",
 )
 
-# run the footprint download
+# run the download, passing in the product, queryset and database objects as arguments
 catalogue.download_footprints(
     product=product,
     queryset=queryset,
     database=database,
-    # dry_run=True
+    # optionally set dry run to be True, each catalogue behaves differently but nothing will be inserted into the database if so
+    # when dry_run=True database can be None, so you can run without a database set up
+    # dry_run=True,
 )
 ```
-
