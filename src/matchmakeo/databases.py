@@ -39,7 +39,8 @@ class Database(ABC):
         
         self.engine = None
         self.connection = None
-    
+        self.metadata = MetaData()
+
     def __str__(self):
         return self.url
 
@@ -58,7 +59,7 @@ class Database(ABC):
     def create_engine(self) -> Engine:
         self.engine = create_engine(
             self.url,
-            echo=True,
+            echo=False,
             plugins=["geoalchemy2"],
         )
         return self.engine

@@ -3,6 +3,8 @@ import pytest
 from sqlalchemy import create_engine, text
 from pytest_databases.docker.postgres import PostgresService
 
+from matchmakeo.databases import PostGISDatabase, SpatialiteDatabase
+
 try:
     import sqlite3
 except ImportError:
@@ -11,6 +13,28 @@ except ImportError:
 pytest_plugins = [
     "pytest_databases.docker.postgres",
 ]
+
+@pytest.fixture(scope="module", params=["postgis", "spatialite"])
+def database(request):
+
+    backend = request.param
+
+    if backend == "postgis":
+        postgres_service = request.getfixturevalue("postgres_service")
+        yield PostGISDatabase(
+            database=postgres_service.database,
+            username=postgres_service.user,
+            password=postgres_service.password,
+            host=postgres_service.host,
+            port=postgres_service.port
+        )
+    elif backend == "spatialite":
+        spatialite_url = request.getfixturevalue("spatialite_url")
+        yield SpatialiteDatabase(
+            db_url=spatialite_url,
+        )
+    else:
+        raise ValueError(f"Backend type {backend} not supported.")
 
 @pytest.fixture(scope="session")
 def postgres_image() -> str:
