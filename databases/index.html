@@ -26,7 +26,7 @@
           <link rel="icon" href="../images/logo_tiny.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.8">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.2.0">
     
     
       
@@ -34,7 +34,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.314bbef5.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.d7aee198.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.a45159b5.min.css">
@@ -200,7 +200,7 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0">
-        <div class="md-search-result" data-md-component="search-result">
+        <div class="md-search-result md-search-result--pagefind" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
@@ -1295,7 +1295,9 @@
 
 
               
-              <article class="md-content__inner md-typeset">
+              
+              
+              <article class="md-content__inner md-typeset" data-pagefind-body>
                 
                   
   
@@ -1347,9 +1349,9 @@
 <p>If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name:</p>
 <div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 --cleanenv<span class="w"> </span><span class="se">\</span>
---env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_USER</span><span class="o">=</span><span class="s2">&quot;my_user&quot;</span><span class="w"> </span><span class="se">\</span>
---env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">&quot;my_secure_password&quot;</span><span class="w"> </span><span class="se">\</span>
---env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_DB</span><span class="o">=</span><span class="s2">&quot;my_spatial_db&quot;</span><span class="w"> </span><span class="se">\</span>
+--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_USER</span><span class="o">=</span><span class="s2">"my_user"</span><span class="w"> </span><span class="se">\</span>
+--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="w"> </span><span class="se">\</span>
+--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_DB</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="w"> </span><span class="se">\</span>
 --bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
 --bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
 postgis.sif
@@ -1378,10 +1380,10 @@ postgis.sif
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
 
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
-    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;my_user&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;my_secure_password&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;my_spatial_db&quot;</span><span class="p">,</span> <span class="c1"># the default database name</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">"my_user"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span> <span class="c1"># the default database name</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
     <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span> <span class="c1"># the port in the above step</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1412,10 +1414,10 @@ postgis.sif
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
 
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
-    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;my_user&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;my_secure_password&quot;</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;my_spatial_db&quot;</span><span class="p">,</span> <span class="c1"># the default database name</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">"my_user"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span> <span class="c1"># the default database name</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
     <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span> <span class="c1"># the port in the above step</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1575,10 +1577,17 @@ spatialite\&gt;
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "code": null, "features": ["navigation.path"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      
+      
+        
+        
+          
+          
+        
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "code": null, "features": ["navigation.path"], "search": {"options": {"baseUrl": "..", "bundleUrl": "../search/", "highlight": false, "searchOptions": {}}, "provider": "pagefind"}, "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.offline": "Switch to Lunr for offline search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.fc193f93.min.js"></script>
+      <script src="../assets/javascripts/bundle.44453a05.min.js"></script>
       
     
   </body>

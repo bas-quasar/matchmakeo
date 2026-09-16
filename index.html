@@ -24,7 +24,7 @@
           <link rel="icon" href="images/logo_tiny.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.8">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.2.0">
     
     
       
@@ -32,7 +32,7 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.314bbef5.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.d7aee198.min.css">
       
         
         <link rel="stylesheet" href="assets/stylesheets/palette.a45159b5.min.css">
@@ -198,7 +198,7 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0">
-        <div class="md-search-result" data-md-component="search-result">
+        <div class="md-search-result md-search-result--pagefind" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
@@ -1125,7 +1125,9 @@
 
 
               
-              <article class="md-content__inner md-typeset">
+              
+              
+              <article class="md-content__inner md-typeset" data-pagefind-body>
                 
                   
   
@@ -1169,23 +1171,23 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 
 <span class="c1"># define your database object with the connection details</span>
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
-    <span class="n">username</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;password&quot;</span><span class="p">,</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">&quot;matchmakeo&quot;</span><span class="p">,</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">"postgres"</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">"password"</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"matchmakeo"</span><span class="p">,</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span>
     <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># make an instance of the catalogue object corresponding to which catalogue you want to download from</span>
 <span class="n">catalogue</span> <span class="o">=</span> <span class="n">NasaCMR</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=</span><span class="s2">&quot;my_name&quot;</span><span class="p">,</span> <span class="c1">#NasaCMR takes a client_id as recommended by CMR</span>
+    <span class="n">client_id</span><span class="o">=</span><span class="s2">"my_name"</span><span class="p">,</span> <span class="c1">#NasaCMR takes a client_id as recommended by CMR</span>
 <span class="p">)</span>
 
 <span class="c1"># define a queryset obect to filter the temporal and spatial bounds of your download</span>
 <span class="c1"># some catalogues have a corresponding queryset type, others just use the base Queryset</span>
 <span class="n">queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">(</span>
-    <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span>
-    <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;2020-01-31&quot;</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="s2">"2020-01-01"</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="o">=</span><span class="s2">"2020-01-31"</span><span class="p">,</span>
     <span class="n">page_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
     <span class="n">lat_max</span><span class="o">=-</span><span class="mi">70</span><span class="p">,</span>
     <span class="n">lat_min</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span>
@@ -1197,8 +1199,8 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <span class="c1"># the name argument defines which product is downloaded</span>
 <span class="c1"># table_name defines the name of the database table that these downloads are inserted into</span>
 <span class="n">product</span> <span class="o">=</span> <span class="n">Product</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MOD021KM&quot;</span><span class="p">,</span>
-    <span class="n">table_name</span><span class="o">=</span><span class="s2">&quot;modis_aqua&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"MOD021KM"</span><span class="p">,</span>
+    <span class="n">table_name</span><span class="o">=</span><span class="s2">"modis_aqua"</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="c1"># run the download, passing in the product, queryset and database objects as arguments</span>
@@ -1286,10 +1288,17 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": ".", "code": null, "features": ["navigation.path"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      
+      
+        
+        
+          
+          
+        
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "code": null, "features": ["navigation.path"], "search": {"options": {"baseUrl": ".", "bundleUrl": "search/", "highlight": false, "searchOptions": {}}, "provider": "pagefind"}, "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.offline": "Switch to Lunr for offline search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.fc193f93.min.js"></script>
+      <script src="assets/javascripts/bundle.44453a05.min.js"></script>
       
     
   </body>

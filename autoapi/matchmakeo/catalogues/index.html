@@ -26,7 +26,7 @@
           <link rel="icon" href="../../../images/logo_tiny.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.8">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.2.0">
     
     
       
@@ -34,7 +34,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.314bbef5.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d7aee198.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a45159b5.min.css">
@@ -200,7 +200,7 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0">
-        <div class="md-search-result" data-md-component="search-result">
+        <div class="md-search-result md-search-result--pagefind" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
@@ -1235,7 +1235,9 @@
   </nav>
 
               
-              <article class="md-content__inner md-typeset">
+              
+              
+              <article class="md-content__inner md-typeset" data-pagefind-body>
                 
                   
   
@@ -1349,9 +1351,9 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
 <span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Catalogue</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract Base Class for defining catalogue interfaces.</span>
+<span class="w">    </span><span class="sd">"""Abstract Base Class for defining catalogue interfaces.</span>
 <span class="sd">    Do not call this class directly. Subclass it and define methods.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 
@@ -1365,27 +1367,27 @@ Do not call this class directly. Subclass it and define methods.</p>
                 <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
                 <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
                 <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
                 <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                 <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Abstract method&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Abstract method"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_queryset_type</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_database_dryrun</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_check_queryset_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span><span class="n">Queryset</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Raise UserWarning if queryset type does not match catalogue type.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Raise UserWarning if queryset type does not match catalogue type."""</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Queryset of type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="si">}</span><span class="s2"> is advised. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead. Some features may not work as intended.&quot;</span><span class="p">,</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Queryset of type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="si">}</span><span class="s2"> is advised. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead. Some features may not work as intended."</span><span class="p">,</span>
                           <span class="ne">UserWarning</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_check_database_dryrun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span><span class="n">Database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Raise UserWarning if not dry_run and no database specified&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">"""Raise UserWarning if not dry_run and no database specified"""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">Database</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2"> and database: </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">. Database needed unless dry_run=True.&quot;</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Got dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2"> and database: </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">. Database needed unless dry_run=True."</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span><span class="n">Connection</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span><span class="n">Product</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;pk&#39;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span><span class="n">Connection</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span><span class="n">Product</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">'pk'</span><span class="p">):</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Creating table </span><span class="si">{</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating table </span><span class="si">{</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
@@ -1418,7 +1420,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
 
 <h3 id="matchmakeo.catalogues.Catalogue.download_footprints" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1443,10 +1445,10 @@ Do not call this class directly. Subclass it and define methods.</p>
             <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
             <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
             <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+            <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
             <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abstract method&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Abstract method"""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_check_queryset_type</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_check_database_dryrun</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1642,11 +1644,11 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal">397</span>
 <span class="normal">398</span>
 <span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EarthEngine</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface for downloading footprints from Google Earth Engine.</span>
+<span class="w">    </span><span class="sd">"""Interface for downloading footprints from Google Earth Engine.</span>
 
 <span class="sd">    Requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
@@ -1656,10 +1658,10 @@ Do not call this class directly. Subclass it and define methods.</p>
             <span class="p">):</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ee</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`."</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">project_id</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Earth Engine requires a project name. Got </span><span class="si">{</span><span class="n">project_id</span><span class="si">=}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Earth Engine requires a project name. Got </span><span class="si">{</span><span class="n">project_id</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">initialise_earth_engine</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span><span class="n">service_account</span><span class="o">=</span><span class="n">service_account</span><span class="p">)</span>
 
@@ -1667,8 +1669,8 @@ Do not call this class directly. Subclass it and define methods.</p>
 
         <span class="c1"># add fields specific to this catalogue</span>
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">&#39;POLYGON&#39;</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 
@@ -1677,17 +1679,17 @@ Do not call this class directly. Subclass it and define methods.</p>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">service_account</span><span class="p">:</span>
-                <span class="n">credentials</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;https://googleapis.com&#39;</span><span class="p">,</span> <span class="s1">&#39;https://googleapis.com&#39;</span><span class="p">],</span> <span class="n">quota_project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+                <span class="n">credentials</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s1">'https://googleapis.com'</span><span class="p">,</span> <span class="s1">'https://googleapis.com'</span><span class="p">],</span> <span class="n">quota_project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
                 <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
                 <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Earth Engine authentication failed.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Earth Engine authentication failed."</span><span class="p">)</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
 
         <span class="n">bbox</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
@@ -1699,12 +1701,12 @@ Do not call this class directly. Subclass it and define methods.</p>
 
 
         <span class="k">def</span><span class="w"> </span><span class="nf">fetch_day_metadata</span><span class="p">(</span><span class="n">day_string</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">            </span><span class="sd">"""</span>
 <span class="sd">            Worker function executed in parallel. </span>
 <span class="sd">            Retrieves image asset metadata and geometries for a single day.</span>
-<span class="sd">            &quot;&quot;&quot;</span>
+<span class="sd">            """</span>
             <span class="n">current_date</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">day_string</span><span class="p">)</span>
-            <span class="n">next_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;day&#39;</span><span class="p">)</span>
+            <span class="n">next_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">)</span>
 
             <span class="c1"># Filter the raw collection by Date and Spatial Bounds</span>
             <span class="n">day_collection</span> <span class="o">=</span> <span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -1712,62 +1714,62 @@ Do not call this class directly. Subclass it and define methods.</p>
                             <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">bbox</span><span class="p">))</span>
 
             <span class="c1"># Convert the ImageCollection into a FeatureCollection.</span>
-            <span class="c1"># converts each image&#39;s spatial footprint into a feature geometry</span>
-            <span class="c1"># while keeping all of the image&#39;s metadata.</span>
+            <span class="c1"># converts each image's spatial footprint into a feature geometry</span>
+            <span class="c1"># while keeping all of the image's metadata.</span>
             <span class="n">metadata_features</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">day_collection</span><span class="p">)</span>
 
             <span class="c1"># Filter properties to keep the payload small</span>
             <span class="c1"># metadata_features = metadata_features.select(</span>
-            <span class="c1">#     propertySelectors=[&#39;system:index&#39;, &#39;system:time_start&#39;, &#39;CLOUDY_PIXEL_PERCENTAGE&#39;], </span>
+            <span class="c1">#     propertySelectors=['system:index', 'system:time_start', 'CLOUDY_PIXEL_PERCENTAGE'], </span>
             <span class="c1">#     retainGeometry=True # Keeps the polygon boundary layout of the scene</span>
             <span class="c1"># )</span>
 
             <span class="c1"># Fetch data</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">metadata_features</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-                <span class="k">return</span> <span class="n">day_string</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;features&#39;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="k">return</span> <span class="n">day_string</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'features'</span><span class="p">,</span> <span class="p">[])</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing date </span><span class="si">{</span><span class="n">day_string</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error processing date </span><span class="si">{</span><span class="n">day_string</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">day_string</span><span class="p">,</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connecting to database at </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connecting to database at </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Connection to </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2"> failed. Aborting.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connection to </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2"> failed. Aborting."</span><span class="p">)</span>
 
             <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
 
         <span class="n">delta</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
 
-        <span class="n">daily_strings</span> <span class="o">=</span> <span class="p">[(</span><span class="n">start</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">days</span><span class="p">)]</span>
+        <span class="n">daily_strings</span> <span class="o">=</span> <span class="p">[(</span><span class="n">start</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">days</span><span class="p">)]</span>
 
         <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">get_optimal_workers</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
             <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fetch_day_metadata</span><span class="p">,</span> <span class="n">daily_strings</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">date_str</span><span class="p">,</span> <span class="n">granules</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">granules</span><span class="p">:</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: No images intersected the bounds.&quot;</span><span class="p">)</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: No images intersected the bounds."</span><span class="p">)</span>
                     <span class="k">continue</span>
 
-                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> images.&quot;</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> images."</span><span class="p">)</span>
 
                 <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2">, skipping database insertion.&quot;</span><span class="p">)</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2">, skipping database insertion."</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
 
 
-                    <span class="c1"># &#39;flatten&#39; the properties</span>
+                    <span class="c1"># 'flatten' the properties</span>
                     <span class="n">props</span> <span class="o">=</span> <span class="p">[]</span>
                     <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
-                        <span class="n">p</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">]</span>
                         <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-                            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">),</span>
-                            <span class="s1">&#39;version&#39;</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;version&#39;</span><span class="p">),</span>
-                            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">),</span>
-                            <span class="s1">&#39;bands&#39;</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;bands&#39;</span><span class="p">),</span>
+                            <span class="s1">'id'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'id'</span><span class="p">),</span>
+                            <span class="s1">'version'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'version'</span><span class="p">),</span>
+                            <span class="s1">'type'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'type'</span><span class="p">),</span>
+                            <span class="s1">'bands'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'bands'</span><span class="p">),</span>
                         <span class="p">})</span>
                         <span class="n">props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
@@ -1782,12 +1784,12 @@ Do not call this class directly. Subclass it and define methods.</p>
 
                     <span class="k">for</span> <span class="n">granule</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
                         <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
-                            <span class="c1"># id=granule[&#39;id&#39;],</span>
-                            <span class="n">geometry</span><span class="o">=</span><span class="n">coords_to_polygon</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">][</span><span class="s1">&#39;system:footprint&#39;</span><span class="p">][</span><span class="s1">&#39;coordinates&#39;</span><span class="p">]),</span>
-                            <span class="c1"># type=granule.get(&#39;type&#39;),</span>
-                            <span class="c1"># version=granule.get(&#39;version&#39;),</span>
-                            <span class="c1"># bands=granule.get(&#39;bands&#39;),</span>
-                            <span class="o">**</span><span class="n">granule</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">),</span>
+                            <span class="c1"># id=granule['id'],</span>
+                            <span class="n">geometry</span><span class="o">=</span><span class="n">coords_to_polygon</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">][</span><span class="s1">'system:footprint'</span><span class="p">][</span><span class="s1">'coordinates'</span><span class="p">]),</span>
+                            <span class="c1"># type=granule.get('type'),</span>
+                            <span class="c1"># version=granule.get('version'),</span>
+                            <span class="c1"># bands=granule.get('bands'),</span>
+                            <span class="o">**</span><span class="n">granule</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'properties'</span><span class="p">),</span>
                             <span class="p">)</span>
                         <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
                         <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
@@ -1932,49 +1934,49 @@ or "11001002"</p>
 <span class="normal">484</span>
 <span class="normal">485</span>
 <span class="normal">486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportal</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface for downloading footprints from JAXA G-Portal.</span>
+<span class="w">    </span><span class="sd">"""Interface for downloading footprints from JAXA G-Portal.</span>
 
 <span class="sd">    Requires the gportal-python package install with `pip install matchmakeo[gportal]` or `pip install gportal`.</span>
 
 <span class="sd">    Product name should be a value in gportal.datasets(),</span>
-<span class="sd">    e.g. gportal.datasetts()[&quot;GCOM-W/AMSR2&quot;][&quot;LEVEL1&quot;][&quot;L1R-Brightness temperature(TB)&quot;]</span>
-<span class="sd">    or &quot;11001002&quot;</span>
+<span class="sd">    e.g. gportal.datasetts()["GCOM-W/AMSR2"]["LEVEL1"]["L1R-Brightness temperature(TB)"]</span>
+<span class="sd">    or "11001002"</span>
 
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset_type</span><span class="p">:</span><span class="n">Queryset</span> <span class="o">=</span> <span class="n">JaxaGportalQueryset</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GPORTAL_USERNAME&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">password</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;GPORTAL_PASSWORD&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset_type</span><span class="p">:</span><span class="n">Queryset</span> <span class="o">=</span> <span class="n">JaxaGportalQueryset</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_USERNAME"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">password</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_PASSWORD"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">gportal</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."</span><span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Got None for either username or password, these must be passed as arguments or set via the environment variables GPORTAL_USERNAME and GPORTAL_PASSWORD.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Got None for either username or password, these must be passed as arguments or set via the environment variables GPORTAL_USERNAME and GPORTAL_PASSWORD."</span><span class="p">)</span>
 
 
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;identifier&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">&#39;POLYGON&#39;</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;beginPosition&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_start&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;endPosition&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_end&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'identifier'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'beginPosition'</span><span class="p">,</span> <span class="s1">'datetime_start'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'endPosition'</span><span class="p">,</span> <span class="s1">'datetime_end'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span><span class="n">Product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span><span class="n">Queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span><span class="n">Database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span><span class="n">Product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span><span class="n">Queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span><span class="n">Database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">gportal</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`.&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;dry_run enabled, skipping database operations&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"dry_run enabled, skipping database operations"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database connection failed. Aborting.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database connection failed. Aborting."</span><span class="p">)</span>
 
             <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
 
@@ -1986,12 +1988,12 @@ or "11001002"</p>
             <span class="n">params</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">search_results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="n">search_results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">search_results</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">search_results</span><span class="o">.</span><span class="n">products</span><span class="p">():</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No products found.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"No products found."</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
@@ -2007,11 +2009,11 @@ or "11001002"</p>
             <span class="k">for</span> <span class="n">prod</span> <span class="ow">in</span> <span class="n">search_results</span><span class="o">.</span><span class="n">products</span><span class="p">():</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
                 <span class="c1"># properties example:</span>
-                <span class="c1"># {&#39;identifier&#39;: &#39;GW1AM2_202001010047_189D_L1SGRTBR_2220220&#39;, &#39;acquisitionType&#39;: &#39;NOMINAL&#39;, &#39;processingDate&#39;: &#39;2020-01-01T02:53:36.000Z&#39;, &#39;processingLevel&#39;: &#39;AMSR2-L1R&#39;, &#39;processorVersion&#39;: &#39;220,220&#39;, &#39;status&#39;: &#39;ARCHIVED&#39;, &#39;beginPosition&#39;: &#39;2020-01-01T00:47:00.855Z&#39;, &#39;endPosition&#39;: &#39;2020-01-01T01:36:21.574Z&#39;, &#39;platformShortName&#39;: &#39;GCOM-W1&#39;, &#39;instrumentShortName&#39;: &#39;AMSR2&#39;, &#39;wrsLongitudeGrid&#39;: 189, &#39;lastOrbitNumber&#39;: 40552, &#39;ascendingNodeDate&#39;: &#39;2020-01-01T01:13:46.699Z&#39;, &#39;ascendingNodeLongitude&#39;: 3.81, &#39;multiExtentOf&#39;: &#39;-176.886 84.355 139.298 86.437 103.605 83.761 102.901 79.831 110.928 76.268 121.735 73.532 117.055 73.948 112.168 74.257 107.127 74.455 101.996 74.534 96.852 74.498 91.769 74.341 63.323 70.726 46.055 64.290 35.785 56.614 26.568 44.128 20.757 31.106 16.562 17.820 10.550 -8.590 8.050 -22.133 5.735 -35.670 3.482 -49.183 1.934 -58.166 0.220 -67.125 -2.200 -76.059 -2.673 -77.399 -3.219 -78.739 -3.867 -80.077 -4.647 -81.415 -5.677 -82.750 -7.109 -84.082 -48.629 -86.429 -87.348 -83.868 -88.771 -79.846 -80.939 -76.150 -70.123 -73.278 -65.770 -72.766 -61.722 -72.153 -57.943 -71.464 -54.422 -70.709 -51.166 -69.892 -48.161 -69.020 -33.274 -62.206 -24.171 -54.387 -18.077 -46.085 -11.827 -33.164 -7.387 -19.934 -3.911 -6.531 1.498 19.964 3.900 33.510 6.240 47.039 8.732 60.543 10.701 69.522 13.831 78.490 29.726 87.356 47.611 88.561 113.749 89.120 162.142 88.237 174.920 86.989 -179.790 85.681 -176.886 84.355&#39;, &#39;product&#39;: {&#39;fileName&#39;: &#39;https://gportal.jaxa.jp/download/standard/GCOM-W/GCOM-W.AMSR2/L1R/2/2020/01/GW1AM2_202001010047_189D_L1SGRTBR_2220220.h5&#39;, &#39;size&#39;: 51065652, &#39;version&#39;: 2}, &#39;browse&#39;: [{...}, {...}], &#39;gpp&#39;: {&#39;datasetId&#39;: 11001002, &#39;totalQualityCode&#39;: &#39;Good&#39;, &#39;physicalQuantity&#39;: &#39;Brightness Temperature&#39;, &#39;parameterVersion&#39;: 220, &#39;algorithmVersion&#39;: 220, &#39;numberMissingData&#39;: 0, &#39;startPathNumber&#39;: 189, &#39;endPathNumber&#39;: 189, &#39;mapProjection&#39;: None, &#39;orbitDirection&#39;: &#39;Descending&#39;, &#39;pseq&#39;: &#39;EQ&#39;, &#39;topicCategory&#39;: &#39;-&#39;, &#39;organizationName&#39;: &#39;JAXA&#39;, &#39;hasProduct&#39;: True}}</span>
+                <span class="c1"># {'identifier': 'GW1AM2_202001010047_189D_L1SGRTBR_2220220', 'acquisitionType': 'NOMINAL', 'processingDate': '2020-01-01T02:53:36.000Z', 'processingLevel': 'AMSR2-L1R', 'processorVersion': '220,220', 'status': 'ARCHIVED', 'beginPosition': '2020-01-01T00:47:00.855Z', 'endPosition': '2020-01-01T01:36:21.574Z', 'platformShortName': 'GCOM-W1', 'instrumentShortName': 'AMSR2', 'wrsLongitudeGrid': 189, 'lastOrbitNumber': 40552, 'ascendingNodeDate': '2020-01-01T01:13:46.699Z', 'ascendingNodeLongitude': 3.81, 'multiExtentOf': '-176.886 84.355 139.298 86.437 103.605 83.761 102.901 79.831 110.928 76.268 121.735 73.532 117.055 73.948 112.168 74.257 107.127 74.455 101.996 74.534 96.852 74.498 91.769 74.341 63.323 70.726 46.055 64.290 35.785 56.614 26.568 44.128 20.757 31.106 16.562 17.820 10.550 -8.590 8.050 -22.133 5.735 -35.670 3.482 -49.183 1.934 -58.166 0.220 -67.125 -2.200 -76.059 -2.673 -77.399 -3.219 -78.739 -3.867 -80.077 -4.647 -81.415 -5.677 -82.750 -7.109 -84.082 -48.629 -86.429 -87.348 -83.868 -88.771 -79.846 -80.939 -76.150 -70.123 -73.278 -65.770 -72.766 -61.722 -72.153 -57.943 -71.464 -54.422 -70.709 -51.166 -69.892 -48.161 -69.020 -33.274 -62.206 -24.171 -54.387 -18.077 -46.085 -11.827 -33.164 -7.387 -19.934 -3.911 -6.531 1.498 19.964 3.900 33.510 6.240 47.039 8.732 60.543 10.701 69.522 13.831 78.490 29.726 87.356 47.611 88.561 113.749 89.120 162.142 88.237 174.920 86.989 -179.790 85.681 -176.886 84.355', 'product': {'fileName': 'https://gportal.jaxa.jp/download/standard/GCOM-W/GCOM-W.AMSR2/L1R/2/2020/01/GW1AM2_202001010047_189D_L1SGRTBR_2220220.h5', 'size': 51065652, 'version': 2}, 'browse': [{...}, {...}], 'gpp': {'datasetId': 11001002, 'totalQualityCode': 'Good', 'physicalQuantity': 'Brightness Temperature', 'parameterVersion': 220, 'algorithmVersion': 220, 'numberMissingData': 0, 'startPathNumber': 189, 'endPathNumber': 189, 'mapProjection': None, 'orbitDirection': 'Descending', 'pseq': 'EQ', 'topicCategory': '-', 'organizationName': 'JAXA', 'hasProduct': True}}</span>
                 <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
                     <span class="n">geometry</span><span class="o">=</span><span class="n">geojon_to_polygon</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">geometry</span><span class="p">),</span>
-                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;beginPosition&#39;</span><span class="p">]),</span>
-                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;endPosition&#39;</span><span class="p">]),</span>
+                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">'beginPosition'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span> <span class="c1"># using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11</span>
+                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">'endPosition'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span>
                     <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">catalogue_name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">+</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">]}</span>
                     <span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
@@ -2215,33 +2217,33 @@ Note: User accounts and hence access to restricted data are not currently suppor
 <span class="normal">246</span>
 <span class="normal">247</span>
 <span class="normal">248</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NasaCMR</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Interface to download from the NASA Common Metadata Repository (CMR) (&lt;https://cmr.earthdata.nasa.gov/&gt;) for all Earth Observing System Data and Information System (EOSDIS) metadata including MODIS footprints.&quot;</span>
+<span class="w">    </span><span class="sd">"""Interface to download from the NASA Common Metadata Repository (CMR) (&lt;https://cmr.earthdata.nasa.gov/&gt;) for all Earth Observing System Data and Information System (EOSDIS) metadata including MODIS footprints."</span>
 <span class="sd">    Note: User accounts and hence access to restricted data are not currently supported.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
                  <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">url</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://cmr.sit.earthdata.nasa.gov/search/granules.json&quot;</span><span class="p">,</span> <span class="c1">#&quot;https://cmr.earthdata.nasa.gov/search/granules.json&quot;,</span>
+                 <span class="n">url</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span> <span class="c1">#"https://cmr.earthdata.nasa.gov/search/granules.json",</span>
                  <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
                  <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">        </span><span class="sd">"""_summary_</span>
 <span class="sd">        Params:</span>
 <span class="sd">            client_id(str): Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="o">=</span><span class="n">queryset_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group&#39;s name, for example.&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example."</span><span class="p">)</span>
 
         <span class="c1"># add fields specific to this catalogue</span>
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">&#39;POLYGON&#39;</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;datetime_start&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_start&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;datetime_end&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_end&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_start'</span><span class="p">,</span> <span class="s1">'datetime_start'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_end'</span><span class="p">,</span> <span class="s1">'datetime_end'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 
@@ -2249,18 +2251,18 @@ Note: User accounts and hence access to restricted data are not currently suppor
                 <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
                 <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
                 <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span>
-                <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
                 <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
                 <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="n">primary_key</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;dry_run enabled, skipping database operations&quot;</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"dry_run enabled, skipping database operations"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Database connection failed. Aborting.&quot;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database connection failed. Aborting."</span><span class="p">)</span>
 
             <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
 
@@ -2273,16 +2275,16 @@ Note: User accounts and hence access to restricted data are not currently suppor
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="c1"># Query parameters</span>
             <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="s2">&quot;short_name&quot;</span><span class="p">:</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                <span class="s2">&quot;page_size&quot;</span><span class="p">:</span> <span class="n">queryset</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
-                <span class="s1">&#39;temporal&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z,</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z&quot;</span><span class="p">,</span>
-                <span class="s2">&quot;bounding_box&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounding_box</span><span class="p">(</span><span class="n">queryset</span><span class="p">),</span>
+                <span class="s2">"short_name"</span><span class="p">:</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="s2">"page_size"</span><span class="p">:</span> <span class="n">queryset</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
+                <span class="s1">'temporal'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z,</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z"</span><span class="p">,</span>
+                <span class="s2">"bounding_box"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounding_box</span><span class="p">(</span><span class="n">queryset</span><span class="p">),</span>
             <span class="p">}</span>
 
             <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
-                <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">version</span><span class="p">})</span>
+                <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"version"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">version</span><span class="p">})</span>
 
-            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="s2">&quot;concept_id&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="s2">"concept_id"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset</span><span class="o">.</span><span class="n">concept_id</span><span class="p">)</span>
 
             <span class="c1"># if there is a previous response, check for additional available pages</span>
@@ -2290,10 +2292,10 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
 
                 <span class="c1"># if previous response has CMR-Search-After header, add details to request headers</span>
-                <span class="n">search_after</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;CMR-Search-After&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+                <span class="n">search_after</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CMR-Search-After"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">search_after</span><span class="p">:</span>
                     <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-                        <span class="s2">&quot;CMR-Search-After&quot;</span><span class="p">:</span> <span class="n">search_after</span><span class="p">,</span>
+                        <span class="s2">"CMR-Search-After"</span><span class="p">:</span> <span class="n">search_after</span><span class="p">,</span>
                     <span class="p">})</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># if there is a previous response and does not have CMR-Search-After header, there is no more data</span>
@@ -2303,7 +2305,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
                 <span class="k">return</span>
 
             <span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -2311,17 +2313,17 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
 
-            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">&quot;feed&quot;</span><span class="p">][</span><span class="s2">&quot;entry&quot;</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">"feed"</span><span class="p">][</span><span class="s2">"entry"</span><span class="p">]:</span>
 
                 <span class="n">coords</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;polygons&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s2">"polygons"</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
                     <span class="n">vals</span>   <span class="o">=</span>  <span class="nb">list</span> <span class="p">(</span> <span class="nb">map</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">poly</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span>
                     <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span> <span class="p">(</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span> <span class="n">vals</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="p">)]</span>
 
                 <span class="n">props</span> <span class="o">=</span> <span class="p">{}</span>
 
                 <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;polygons&quot;</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">prop</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"polygons"</span><span class="p">]:</span>
                         <span class="n">props</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="n">prop</span><span class="p">]</span>
 
                 <span class="c1"># TODO use a dictionary at least to store each footprint</span>
@@ -2329,7 +2331,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
 
 
-        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> footprints found for </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;temporal&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> footprints found for </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">'temporal'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
@@ -2343,10 +2345,10 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
             <span class="k">for</span> <span class="n">granule</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
                 <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
-                    <span class="c1"># id=granule[1][&#39;id&#39;],</span>
+                    <span class="c1"># id=granule[1]['id'],</span>
                     <span class="n">geometry</span><span class="o">=</span><span class="n">coords_to_polygon</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
-                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;time_start&#39;</span><span class="p">]),</span>
-                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromisoformat</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;time_end&#39;</span><span class="p">]),</span>
+                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'time_start'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span> <span class="c1"># using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11</span>
+                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'time_end'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span>
                     <span class="o">**</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                     <span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
@@ -2354,12 +2356,12 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_bounding_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="s2">&quot;Returns bounding box string for NASA CMR spatial query, using queryset lat and lon.&quot;</span>
+        <span class="s2">"Returns bounding box string for NASA CMR spatial query, using queryset lat and lon."</span>
 
         <span class="c1"># https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#g-bounding-box</span>
         <span class="c1"># 4 comma-separated numbers: lower left longitude, lower left latitude, upper right longitude, upper right latitude.</span>
 
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">"</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -2380,7 +2382,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
 
 <h3 id="matchmakeo.catalogues.NasaCMR.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://cmr.sit.earthdata.nasa.gov/search/granules.json&#39;</span><span class="p">,</span> <span class="n">queryset_type</span><span class="o">=</span><span class="n">NasaCMRQueryset</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">'https://cmr.sit.earthdata.nasa.gov/search/granules.json'</span><span class="p">,</span> <span class="n">queryset_type</span><span class="o">=</span><span class="n">NasaCMRQueryset</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2420,27 +2422,27 @@ Params:
 <span class="normal">131</span>
 <span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
              <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-             <span class="n">url</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://cmr.sit.earthdata.nasa.gov/search/granules.json&quot;</span><span class="p">,</span> <span class="c1">#&quot;https://cmr.earthdata.nasa.gov/search/granules.json&quot;,</span>
+             <span class="n">url</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span> <span class="c1">#"https://cmr.earthdata.nasa.gov/search/granules.json",</span>
              <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
              <span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="w">    </span><span class="sd">"""_summary_</span>
 <span class="sd">    Params:</span>
 <span class="sd">        client_id(str): Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
 
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="o">=</span><span class="n">queryset_type</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group&#39;s name, for example.&quot;</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example."</span><span class="p">)</span>
 
     <span class="c1"># add fields specific to this catalogue</span>
     <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">&#39;POLYGON&#39;</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;datetime_start&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_start&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">&#39;datetime_end&#39;</span><span class="p">,</span> <span class="s1">&#39;datetime_end&#39;</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_start'</span><span class="p">,</span> <span class="s1">'datetime_start'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_end'</span><span class="p">,</span> <span class="s1">'datetime_end'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -2540,10 +2542,17 @@ Params:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "code": null, "features": ["navigation.path"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      
+      
+        
+        
+          
+          
+        
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "code": null, "features": ["navigation.path"], "search": {"options": {"baseUrl": "../../..", "bundleUrl": "../../../search/", "highlight": false, "searchOptions": {}}, "provider": "pagefind"}, "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.offline": "Switch to Lunr for offline search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fc193f93.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.44453a05.min.js"></script>
       
     
   </body>

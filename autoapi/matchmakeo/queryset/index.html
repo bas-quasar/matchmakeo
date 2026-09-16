@@ -26,7 +26,7 @@
           <link rel="icon" href="../../../images/logo_tiny.png">
         
       
-      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.1.8">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-materialx-10.2.0">
     
     
       
@@ -34,7 +34,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.314bbef5.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.d7aee198.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.a45159b5.min.css">
@@ -200,7 +200,7 @@
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" tabindex="0">
-        <div class="md-search-result" data-md-component="search-result">
+        <div class="md-search-result md-search-result--pagefind" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
@@ -1167,7 +1167,9 @@
   </nav>
 
               
-              <article class="md-content__inner md-typeset">
+              
+              
+              <article class="md-content__inner md-typeset" data-pagefind-body>
                 
                   
   
@@ -1243,7 +1245,7 @@
 <span class="normal">42</span>
 <span class="normal">43</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">EarthEngineQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
-    <span class="s2">&quot;Extends the base Queryset with parameters specific to Google Earth Engine queries.&quot;</span>
+    <span class="s2">"Extends the base Queryset with parameters specific to Google Earth Engine queries."</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1327,17 +1329,17 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
 <span class="normal">58</span>
 <span class="normal">59</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportalQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Extends the base Queryset with parameters specific to JAXA G-Portal queries.</span>
 
 <span class="sd">    params is a dictionary containing additional keys and values for JAXA G-Portal queries</span>
 <span class="sd">    see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManual_en.pdf appendix 7</span>
 
 <span class="sd">    e.g. {</span>
-<span class="sd">        &quot;acquisitionType&quot;: &quot;NOMINAL&quot;,</span>
-<span class="sd">        &quot;polarisationChannels&quot;: &quot;HH&quot;,</span>
+<span class="sd">        "acquisitionType": "NOMINAL",</span>
+<span class="sd">        "polarisationChannels": "HH",</span>
 <span class="sd">    }</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
 
     <span class="n">params</span><span class="p">:</span><span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1407,7 +1409,7 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
 <span class="normal">38</span>
 <span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">NasaCMRQueryset</span><span class="p">(</span><span class="n">Queryset</span><span class="p">):</span>
-    <span class="s2">&quot;Extends the base Queryset with parameters specific to NASA CMR queries.&quot;</span>
+    <span class="s2">"Extends the base Queryset with parameters specific to NASA CMR queries."</span>
 
     <span class="n">page_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span>
 </code></pre></div></td></tr></table></div>
@@ -1487,7 +1489,7 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
 <span class="normal">32</span>
 <span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">kw_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">Queryset</span><span class="p">:</span>
-    <span class="s2">&quot;Generic query parameters to be used in a catalogue request.&quot;</span>
+    <span class="s2">"Generic query parameters to be used in a catalogue request."</span>
 
     <span class="n">start_date</span><span class="p">:</span> <span class="n">date</span>
     <span class="n">end_date</span><span class="p">:</span> <span class="n">date</span>
@@ -1495,11 +1497,11 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
     <span class="n">lat_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span>
     <span class="n">lon_max</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">+</span><span class="mi">180</span>
     <span class="n">lon_min</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mi">180</span>
-    <span class="n">date_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">&quot;</span>
+    <span class="n">date_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-        <span class="n">date_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;start_date&quot;</span><span class="p">,</span> <span class="s2">&quot;end_date&quot;</span><span class="p">]</span>
+        <span class="n">date_fields</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"start_date"</span><span class="p">,</span> <span class="s2">"end_date"</span><span class="p">]</span>
 
         <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">date_fields</span><span class="p">:</span>
             <span class="n">current_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
@@ -1614,10 +1616,17 @@ see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManu
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "code": null, "features": ["navigation.path"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      
+      
+        
+        
+          
+          
+        
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "code": null, "features": ["navigation.path"], "search": {"options": {"baseUrl": "../../..", "bundleUrl": "../../../search/", "highlight": false, "searchOptions": {}}, "provider": "pagefind"}, "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "code.collapse": "Collapse", "code.download": "Download", "code.expand": "Expand remaining # lines", "code.select": "Toggle line selection", "search.offline": "Switch to Lunr for offline search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.fc193f93.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.44453a05.min.js"></script>
       
     
   </body>
