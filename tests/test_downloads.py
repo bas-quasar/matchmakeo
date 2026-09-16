@@ -117,6 +117,13 @@ class TestNasaCmr:
 
 class TestEarthEngine:
 
+    @pytest.fixture(autouse=True)
+    def isolate_gcp_credentials(self, monkeypatch, tmp_path):
+        """Prevent tests from inadvertently using local credentials."""
+        monkeypatch.setenv("CLOUDSDK_CONFIG", str(tmp_path / "empty_gcloud"))
+        monkeypatch.setenv("EARTHENGINE_CONFIG", str(tmp_path / "empty_ee"))
+        monkeypatch.setenv("GOOGLE_APPLICATION_CREDENTIALS", str(tmp_path / "missing.json"))
+
     @pytest.fixture
     def queryset(self):
         yield EarthEngineQueryset(
