@@ -138,16 +138,21 @@ class TestEarthEngine:
     @pytest.fixture
     def mock_num_workers(self, monkeypatch):
         monkeypatch.setenv("NUM_WORKERS", "1")
-        
+
+    @patch("google.auth.default")        
     @patch('matchmakeo.catalogues.ee')
     def test_mock_earthengine(
             self,
             mock_ee,
+            mock_google_auth,
             mock_num_workers,
             database,
             queryset,
             product,
             ):
+
+        # Mock google.auth.default to return a fake credential and project tuple
+        mock_google_auth.return_value = (MagicMock(), "matchmakeo")
 
         with open(os.path.join("tests", "fixtures", "earthengine_results.json"), "r") as f:
             mock_info_features = json.load(f)
