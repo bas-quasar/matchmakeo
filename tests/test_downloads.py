@@ -7,7 +7,8 @@ from pathlib import Path
 import unittest
 from unittest.mock import patch, Mock, MagicMock
 
-import gportal
+import gportal.product
+from gportal.search import Search
 import pytest
 from pytest_databases.docker.postgres import PostgresService
 import requests_mock
@@ -247,52 +248,58 @@ class TestJaxaGportal:
             password="password"
         )
 
-    @patch('gportal.search.Search.products')
-    @patch('gportal.search.Search.matched')
-    def test_mock_gportal(
-        self,
-        mock_search_matched,
-        mock_search_products,
-        database,
-        queryset,
-        product,
-        catalogue,
+    class TestJaxaGportal:
+
+    # Mocking is handled differently here because of a shadowed submodule (search) in gportal and 3.10's introspection.
+    # unittest.mock resolves string targets by reading attributes top-down. 
+    # gportal/__init__.py exposes a search() function (e.g., via from .search import search), gportal.search evaluates to that function rather than the sub-module.
+    # When mock tries to find Search on the function, it fails and attempts __import__('gportal.search.Search'), triggering the ModuleNotFoundError.
+    # Python 3.11+ updated unittest.mock to use importlib module inspection, which handles shadowed sub-modules gracefully.
+
+        @patch.object(Search, 'products')
+        @patch.object(Search, 'matched')
+        def test_mock_gportal(
+            self,
+            mock_search_matched,
+            mock_search_products,
+            database,
+            queryset,
+            product,
+            catalogue,
         ):
+            # create the mock products response
+            with open(os.path.join("tests", "fixtures", "gportal_products.json")) as fp:
+                mock_products_geojson = json.load(fp)
+            mock_products = [gportal.product.Product(geojson=p) for p in mock_products_geojson]
 
-        # create the mock products response
-        with open(os.path.join("tests", "fixtures", "gportal_products.json")) as fp:
-            mock_products_geojson = json.load(fp)
-        mock_products = [gportal.product.Product(geojson=p) for p in mock_products_geojson]
+            # test dry run behaviour
+            mock_search_matched.return_value = len(mock_products)
 
-        # test dry run behaviour
-        mock_search_matched.return_value = Mock()
-        mock_search_matched.return_value = len(mock_products)
+            results = catalogue.download_footprints(product=product, queryset=queryset, database=None, dry_run=True)
+            assert results.params["datasetId"] == product.name
+            assert results.matched() == len(mock_products)
 
-        results = catalogue.download_footprints(product=product, queryset=queryset, database=None, dry_run=True)
-        assert results.params["datasetId"] == product.name
-        assert results.matched() == len(mock_products)
+            # test no products behaviour
+            mock_search_products.side_effect = None
+            mock_search_products.return_value = None
+            results = catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
+            assert results is None
 
-        # test no products behaviour
-        mock_search_products.return_value = Mock()
-        mock_search_products.return_value = None
-        results = catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
-        assert results is None
+            # test with mocked products
+            def mock_products_generator():
+                yield from mock_products
 
-        # test with mocked products
-        def mock_products_generator():
-            yield from mock_products
-        mock_search_products.return_value = Mock()
-        mock_search_products.side_effect = mock_products_generator
+            mock_search_products.side_effect = mock_products_generator
 
-        results = catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
+            results = catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
 
-        metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+            metadata = sqlalchemy.MetaData()
+            table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
 
-        with Session(database.engine) as session:
-            statement = sqlalchemy.select(table)
-            rows = session.execute(statement).all()
-            assert len(rows) == len(mock_products)
+            with Session(database.engine) as session:
+                statement = sqlalchemy.select(table)
+                rows = session.execute(statement).all()
+                assert len(rows) == len(mock_products)
 
     @pytest.mark.skip(reason="Performs requests against the live catalogue, skipped for automated testing, preserved for occasional manual testing.")
     def test_live_gportal(
