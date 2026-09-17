@@ -20,17 +20,19 @@ from sqlalchemy import (
 # optional dependencies
 try:
     import gportal
-except:
+except ImportError:
     gportal = None
 
 try:
     import ee
-except:
+except ImportError:
     ee = None
 
 try:
     import google.auth
-except:
+    import google.auth.exceptions
+    from google.api_core.exceptions import GoogleAPICallError
+except ImportError:
     pass
 
 from .databases import Database
@@ -316,19 +318,47 @@ class EarthEngine(Catalogue):
 
     def initialise_earth_engine(self, project_id: str, service_account: bool = False):
 
-        try:
-            if service_account:
-                credentials, _ = google.auth.default(
-                    scopes=["https://googleapis.com", "https://googleapis.com"],
-                    quota_project_id=project_id,
-                )
+        if service_account:
+            credentials, _ = google.auth.default(
+                scopes=["https://googleapis.com", "https://googleapis.com"],
+                quota_project_id=project_id,
+            )
+            try:
                 ee.Initialize(credentials, project=project_id)
-            else:
+                log.error("Earth Engine initialized successfully.")
+            except google.auth.exceptions.DefaultCredentialsError as e:
+                log.error(
+                    f"Credentials not found. Please run ee.Authenticate() first: {e}"
+                )
+            except ee.EEException as e:
+                log.error(
+                    f"EE Initialization failed (check project ID/permissions): {e}"
+                )
+            except GoogleAPICallError as e:
+                log.error(f"Google Cloud API error during initialization: {e}")
+        else:
+            try:
                 ee.Authenticate()
+            except google.auth.exceptions.RefreshError as e:
+                log.error(f"Token refresh failed. Re-authentication required: {e}")
+            except google.auth.exceptions.OAuthError as e:
+                log.error(f"OAuth flow failed: {e}")
+            except ee.EEException as e:
+                log.error(f"Earth Engine auth error: {e}")
+
+            try:
                 ee.Initialize(project=project_id)
-        except Exception as e:
-            log.error("Earth Engine authentication failed.")
-            raise Exception(e)
+                log.error("Earth Engine initialized successfully.")
+            except google.auth.exceptions.DefaultCredentialsError as e:
+                log.error(
+                    f"Credentials not found. Please run ee.Authenticate() first: {e}"
+                )
+            except ee.EEException as e:
+                log.error(
+                    f"EE Initialization failed (check project ID/permissions): {e}"
+                )
+            except GoogleAPICallError as e:
+                log.error(f"Google Cloud API error during initialization: {e}")
 
     def download_footprints(
         self, product, queryset, database, primary_key="id", dry_run: bool = False
@@ -372,9 +402,24 @@ class EarthEngine(Catalogue):
             try:
                 data = metadata_features.getInfo()
                 return day_string, data.get("features", [])
-            except Exception as e:
-                print(f"Error processing date {day_string}: {e}")
-                return day_string, []
+            except ee.EEException as e:
+                # Catches EE specific processing issues (e.g. "User memory limit exceeded", "Computation timed out")
+                log.error(f"Earth Engine server-side computation failed: {e}")
+
+            except (
+                google.api_core.exceptions.DeadlineExceeded,
+                google.api_core.exceptions.ServiceUnavailable,
+            ) as e:
+                # Catches backend timeouts or server unavailability
+                log.error(f"Earth Engine backend temporary failure or timeout: {e}")
+
+            except google.api_core.exceptions.Forbidden as e:
+                # Catches permission issues or quota exceeded
+                log.error(f"Access denied or quota exceeded: {e}")
+
+            except google.auth.exceptions.TransportError as e:
+                # Catches local network drops or connection errors
+                log.error(f"Network transport error: {e}")
 
         if not dry_run:
             log.info(f"Connecting to database at {database}.")
