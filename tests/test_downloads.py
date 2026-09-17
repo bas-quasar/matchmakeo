@@ -117,7 +117,7 @@ class TestNasaCmr:
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
-            rows = session.execute(statement).all()
+            session.execute(statement).all()
 
 
 class TestEarthEngine:
@@ -231,7 +231,7 @@ class TestEarthEngine:
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
-            rows = session.execute(statement).all()
+            session.execute(statement).all()
 
 
 class TestJaxaGportal:

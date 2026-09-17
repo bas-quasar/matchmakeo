@@ -11,9 +11,9 @@ def test_queryset_type_warning(postgres_service: PostgresService):
     """Test that using the wrong queryset type for the catalogue results in a warning."""
 
     queryset = Queryset(start_date="2025-01-01", end_date="2025-01-02")
-    product = Product(name="test", table="test_table")
+    Product(name="test", table="test_table")
     catalogue = NasaCMR()
-    database = PostGISDatabase(
+    PostGISDatabase(
         username=postgres_service.user,
         password=postgres_service.password,
         host=postgres_service.host,

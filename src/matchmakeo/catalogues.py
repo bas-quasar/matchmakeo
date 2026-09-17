@@ -125,7 +125,7 @@ class NasaCMR(Catalogue):
 
     def __init__(
         self,
-        client_id: str = None,
+        client_id: str | None = None,
         url: str = "https://cmr.sit.earthdata.nasa.gov/search/granules.json",  # "https://cmr.earthdata.nasa.gov/search/granules.json",
         queryset_type: Queryset = NasaCMRQueryset,
     ):
@@ -286,7 +286,7 @@ class EarthEngine(Catalogue):
 
     def __init__(
         self,
-        project_id: str = None,
+        project_id: str | None = None,
         service_account: bool = False,
         queryset_type: Queryset = EarthEngineQueryset,
     ):

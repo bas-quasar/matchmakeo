@@ -23,9 +23,9 @@ class Database(ABC):
         password: str,
         host: str = "localhost",
         port: int = 5432,
-        dialect: str = None,
-        driver: str = None,
-        db_url: str = None,
+        dialect: str | None = None,
+        driver: str | None = None,
+        db_url: str | None = None,
     ):
         self.database = database
         self.username = username
@@ -128,7 +128,7 @@ class PostGISDatabase(Database):
         # get the existing table and its columns
         metadata = MetaData()
         table = Table(table_name, metadata, autoload_with=self.engine)
-        existing_column_names = set([c.name for c in table.columns])
+        existing_column_names = {c.name for c in table.columns}
 
         gdf = GeoDataFrame(props)
         properties = gdf.iloc[0].to_dict()
@@ -173,8 +173,8 @@ class PostGISDatabase(Database):
 class SpatialiteDatabase(Database):
     def __init__(
         self,
-        filename: str | Path = None,
-        db_url: str = None,
+        filename: str | Path | None = None,
+        db_url: str | None = None,
         dialect: str = "sqlite",
     ):
 
@@ -227,7 +227,7 @@ class SpatialiteDatabase(Database):
         # get the existing table and its columns
         metadata = MetaData()
         table = Table(table_name, metadata, autoload_with=self.engine)
-        existing_column_names = set([c.name for c in table.columns])
+        existing_column_names = {c.name for c in table.columns}
 
         gdf = GeoDataFrame(props)
         properties = gdf.iloc[0].to_dict()
