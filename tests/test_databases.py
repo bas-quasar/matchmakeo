@@ -1,5 +1,6 @@
 from matchmakeo.databases import PostGISDatabase, SpatialiteDatabase
 
+
 def test_postgis_url():
     db_name = "test_db"
     username = "test"

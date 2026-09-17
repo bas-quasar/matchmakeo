@@ -1,4 +1,3 @@
-import unittest
 
 import pytest
 from pytest_databases.docker.postgres import PostgresService
@@ -7,6 +6,7 @@ from matchmakeo.catalogues import NasaCMR
 from matchmakeo.databases import PostGISDatabase
 from matchmakeo.product import Product
 from matchmakeo.queryset import Queryset
+
 
 def test_queryset_type_warning(postgres_service: PostgresService):
     """Test that using the wrong queryset type for the catalogue results in a warning."""

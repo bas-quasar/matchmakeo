@@ -1,19 +1,21 @@
-from abc import ABC, abstractmethod
-from concurrent.futures import ThreadPoolExecutor
-from datetime import date, datetime, timedelta
-import itertools
-import json
 import logging
-from pathlib import Path
 import os
-from tempfile import TemporaryFile
 import warnings
+from abc import ABC
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timedelta
 
-from geoalchemy2 import Geometry
 import requests
-from shapely import Polygon
-from sqlalchemy import create_engine, Table, Column, Integer, String, MetaData, DateTime, Float, Connection
-from tqdm import tqdm
+from geoalchemy2 import Geometry
+from sqlalchemy import (
+    Column,
+    Connection,
+    DateTime,
+    Integer,
+    MetaData,
+    String,
+    Table,
+)
 
 # optional dependencies
 try:
@@ -34,17 +36,25 @@ except:
 from .databases import Database
 from .field import Field
 from .product import Product
-from .queryset import Queryset, NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
-from .utils import coords_to_polygon, setUpLogging, geojon_to_polygon, get_optimal_workers
-
+from .queryset import (
+    EarthEngineQueryset,
+    JaxaGportalQueryset,
+    NasaCMRQueryset,
+    Queryset,
+)
+from .utils import (
+    coords_to_polygon,
+    geojon_to_polygon,
+    get_optimal_workers,
+)
 
 log = logging.getLogger(__name__)
 
 
 __all__ = [
     "Catalogue",
-    "NasaCMR",
     "EarthEngine",
+    "NasaCMR",
 ]
 
 
@@ -146,7 +156,7 @@ class NasaCMR(Catalogue):
             try:
                 connection = database.connect()
             except ConnectionError:
-                raise ConnectionError(f"Database connection failed. Aborting.")
+                raise ConnectionError("Database connection failed. Aborting.")
 
             table = self._create_table(connection, product)
 
@@ -442,7 +452,7 @@ class JaxaGportal(Catalogue):
             try:
                 connection = database.connect()
             except ConnectionError:
-                raise ConnectionError(f"Database connection failed. Aborting.")
+                raise ConnectionError("Database connection failed. Aborting.")
 
             table = self._create_table(connection, product)
 

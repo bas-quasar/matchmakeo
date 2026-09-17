@@ -2,6 +2,7 @@ import pytest
 
 from matchmakeo.product import Product
 
+
 def test_product():
 
     p = Product(name="MOD021KM", table="MOD021KM")

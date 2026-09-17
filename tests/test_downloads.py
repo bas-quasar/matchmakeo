@@ -3,22 +3,24 @@
 
 import json
 import os
-from pathlib import Path
-import unittest
-from unittest.mock import patch, Mock, MagicMock
+from unittest.mock import MagicMock, patch
 
 import gportal.product
-from gportal.search import Search
 import pytest
-from pytest_databases.docker.postgres import PostgresService
 import requests_mock
 import sqlalchemy
+from gportal.search import Search
 from sqlalchemy.orm import Session
 
-from matchmakeo.queryset import NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
-from matchmakeo.product import Product
-from matchmakeo.catalogues import NasaCMR, Field, EarthEngine, JaxaGportal
+from matchmakeo.catalogues import EarthEngine, JaxaGportal, NasaCMR
 from matchmakeo.databases import PostGISDatabase, SpatialiteDatabase
+from matchmakeo.product import Product
+from matchmakeo.queryset import (
+    EarthEngineQueryset,
+    JaxaGportalQueryset,
+    NasaCMRQueryset,
+)
+
 
 @pytest.fixture(scope="module", params=["postgis", "spatialite"])
 def database(request):

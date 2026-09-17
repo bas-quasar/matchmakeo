@@ -1,6 +1,4 @@
 from dataclasses import dataclass, field
-from pathlib import Path
-from tempfile import TemporaryDirectory
 
 __all__ = [
     "Product"

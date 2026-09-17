@@ -1,6 +1,7 @@
-from datetime import date, datetime
+from datetime import date
 
 from matchmakeo.utils import daterange
+
 
 def test_daterange():
 

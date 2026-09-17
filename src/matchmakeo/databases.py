@@ -1,13 +1,10 @@
-from abc import ABC
-from dataclasses import dataclass
-from pathlib import Path
 import os
+from abc import ABC
+from pathlib import Path
 
-from geoalchemy2 import Geometry
 from geopandas import GeoDataFrame
-from sqlalchemy import create_engine, Engine, Connection, Table, MetaData
+from sqlalchemy import Connection, Engine, MetaData, Table, create_engine
 
-from .field import Field
 from .utils import infer_sql_type, setUpLogging
 
 log = setUpLogging(__name__)
@@ -68,7 +65,7 @@ class Database(ABC):
             try:
                 self.connection = self.engine.connect()
             except ConnectionError:
-                raise ConnectionError(f"Database connection failed. Aborting.")
+                raise ConnectionError("Database connection failed. Aborting.")
             
             return self.connection
         

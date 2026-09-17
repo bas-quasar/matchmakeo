@@ -1,7 +1,8 @@
 import uuid
+
 import pytest
-from sqlalchemy import create_engine, text
 from pytest_databases.docker.postgres import PostgresService
+from sqlalchemy import create_engine, text
 
 try:
     import sqlite3
