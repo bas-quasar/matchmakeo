@@ -271,7 +271,7 @@ class TestJaxaGportal:
             results = catalogue.download_footprints(product=product, queryset=queryset, database=database, dry_run=False)
 
             metadata = sqlalchemy.MetaData()
-            table = sqlalchemy.Table(product.table, metadata, autoload_with=database.engine)
+            table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
 
             with Session(database.engine) as session:
                 statement = sqlalchemy.select(table)
