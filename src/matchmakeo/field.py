@@ -1,3 +1,5 @@
+import warnings
+
 from sqlalchemy import Column
 from sqlalchemy.sql.type_api import TypeEngine
 
