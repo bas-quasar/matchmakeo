@@ -1,2 +1,2 @@
-from .product import Product
-from .query import Query
+from .product import Product as Product
+from .query import Query as Query

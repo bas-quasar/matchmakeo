@@ -1,5 +1,4 @@
 import sqlalchemy
-from sqlalchemy.exc import NoSuchTableError
 
 from .databases import Database
 from .utils import setUpLogging
@@ -8,6 +7,7 @@ __all__ = ["Product"]
 
 
 log = setUpLogging(__name__)
+
 
 class Product:
     """
@@ -21,12 +21,14 @@ class Product:
     """
 
     def __init__(
-            self,
-            name: str,
-            table_name: str = None,
-            extra_fields: list = [],
-            version: int = None,
-            ):
+        self,
+        name: str,
+        table_name: str | None = None,
+        extra_fields: list | None = None,
+        version: int | None = None,
+    ):
+        if extra_fields is None:
+            extra_fields = []
         self.name = name
         self.table_name = table_name
         self.extra_fields = extra_fields
@@ -34,7 +36,9 @@ class Product:
         self._table = None
 
         if not table_name:
-            log.warning(f"No table_name specified, setting table_name to name {self.name}")
+            log.warning(
+                f"No table_name specified, setting table_name to name {self.name}"
+            )
             self.table_name = self.name
 
     def get_table(self, database: Database):
@@ -43,10 +47,14 @@ class Product:
         metadata = database.metadata
         if self._table is None:
             inspector = sqlalchemy.inspect(database.create_engine())
-            
+
             # Check if the table exists in the database first
             if not inspector.has_table(self.table_name):
-                raise ValueError(f"Table '{self.table_name}' does not exist in the database.")
-            
-            self._table = sqlalchemy.Table(self.table_name, metadata, autoload_with=database.engine)
+                raise ValueError(
+                    f"Table '{self.table_name}' does not exist in the database."
+                )
+
+            self._table = sqlalchemy.Table(
+                self.table_name, metadata, autoload_with=database.engine
+            )
         return self._table

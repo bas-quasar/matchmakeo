@@ -11,9 +11,13 @@ import sqlalchemy
 from gportal.search import Search
 from sqlalchemy.orm import Session
 
-from matchmakeo.queryset import NasaCMRQueryset, EarthEngineQueryset, JaxaGportalQueryset
+from matchmakeo.catalogues import EarthEngine, JaxaGportal, NasaCMR
 from matchmakeo.product import Product
-from matchmakeo.catalogues import NasaCMR, Field, EarthEngine, JaxaGportal
+from matchmakeo.queryset import (
+    EarthEngineQueryset,
+    JaxaGportalQueryset,
+    NasaCMRQueryset,
+)
 
 
 class TestNasaCmr:
@@ -61,7 +65,9 @@ class TestNasaCmr:
             )
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(
+            product.table_name, metadata, autoload_with=database.engine
+        )
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -85,7 +91,9 @@ class TestNasaCmr:
         )
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(
+            product.table_name, metadata, autoload_with=database.engine
+        )
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -116,13 +124,8 @@ class TestEarthEngine:
     @pytest.fixture
     def product(self):
         yield Product(
-<<<<<<< HEAD
-            name='COPERNICUS/S2_HARMONIZED',
-            table_name="s2",
-=======
             name="COPERNICUS/S2_HARMONIZED",
-            table="s2",
->>>>>>> main
+            table_name="s2",
         )
 
     @pytest.fixture
@@ -173,7 +176,9 @@ class TestEarthEngine:
         mock_ee.ImageCollection.assert_called_with(product.name)
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(
+            product.table_name, metadata, autoload_with=database.engine
+        )
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -204,7 +209,9 @@ class TestEarthEngine:
         )
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(
+            product.table_name, metadata, autoload_with=database.engine
+        )
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
@@ -284,13 +291,9 @@ class TestJaxaGportal:
             )
 
             metadata = sqlalchemy.MetaData()
-<<<<<<< HEAD
-            table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
-=======
             table = sqlalchemy.Table(
-                product.table, metadata, autoload_with=database.engine
+                product.table_name, metadata, autoload_with=database.engine
             )
->>>>>>> main
 
             with Session(database.engine) as session:
                 statement = sqlalchemy.select(table)
@@ -320,7 +323,9 @@ class TestJaxaGportal:
         )
 
         metadata = sqlalchemy.MetaData()
-        table = sqlalchemy.Table(product.table_name, metadata, autoload_with=database.engine)
+        table = sqlalchemy.Table(
+            product.table_name, metadata, autoload_with=database.engine
+        )
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)

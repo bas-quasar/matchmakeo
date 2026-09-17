@@ -245,12 +245,13 @@ class NasaCMR(Catalogue):
         log.info(f"{len(granules)} footprints found for {params['temporal']}")
 
         if not dry_run:
-            database.create_columns_from_footprint_props(table_name=product.table_name,
-                                                        catalogue_fields=self.fields,
-                                                        product_fields = product.extra_fields,
-                                                        props=[g[1] for g in granules],
-                                                        )
-            
+            database.create_columns_from_footprint_props(
+                table_name=product.table_name,
+                catalogue_fields=self.fields,
+                product_fields=product.extra_fields,
+                props=[g[1] for g in granules],
+            )
+
             metadata = MetaData()
             table = Table(product.table_name, metadata, autoload_with=connection.engine)
 
@@ -463,14 +464,17 @@ class EarthEngine(Catalogue):
                         )
                         props.append(p)
 
-                    database.create_columns_from_footprint_props(table_name=product.table_name,
-                                                                catalogue_fields=self.fields,
-                                                                product_fields = product.extra_fields,
-                                                                props=props,
-                                                                )
-                    
+                    database.create_columns_from_footprint_props(
+                        table_name=product.table_name,
+                        catalogue_fields=self.fields,
+                        product_fields=product.extra_fields,
+                        props=props,
+                    )
+
                     metadata = MetaData()
-                    table = Table(product.table_name, metadata, autoload_with=connection.engine)
+                    table = Table(
+                        product.table_name, metadata, autoload_with=connection.engine
+                    )
 
                     for granule in granules:
                         insertion = table.insert().values(
@@ -581,12 +585,13 @@ class JaxaGportal(Catalogue):
             return None
 
         if not dry_run:
-            database.create_columns_from_footprint_props(table_name=product.table_name,
-                                                        catalogue_fields=self.fields,
-                                                        product_fields = product.extra_fields,
-                                                        props=[p.properties for p in search_results.products()],
-                                                        )
-            
+            database.create_columns_from_footprint_props(
+                table_name=product.table_name,
+                catalogue_fields=self.fields,
+                product_fields=product.extra_fields,
+                props=[p.properties for p in search_results.products()],
+            )
+
             metadata = MetaData()
             table = Table(product.table_name, metadata, autoload_with=connection.engine)
 

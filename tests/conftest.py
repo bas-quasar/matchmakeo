@@ -15,6 +15,7 @@ pytest_plugins = [
     "pytest_databases.docker.postgres",
 ]
 
+
 @pytest.fixture(scope="module", params=["postgis", "spatialite"])
 def database(request):
 
@@ -27,7 +28,7 @@ def database(request):
             username=postgres_service.user,
             password=postgres_service.password,
             host=postgres_service.host,
-            port=postgres_service.port
+            port=postgres_service.port,
         )
     elif backend == "spatialite":
         spatialite_url = request.getfixturevalue("spatialite_url")
@@ -36,6 +37,7 @@ def database(request):
         )
     else:
         raise ValueError(f"Backend type {backend} not supported.")
+
 
 @pytest.fixture(scope="session")
 def postgres_image() -> str:
