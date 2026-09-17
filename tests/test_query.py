@@ -88,7 +88,7 @@ def product_b(database, filepath=None):
 
 
 class TestQuery:
-    def test_query(self, database, product_a, product_b):
+    def test_query_in_time_range(self, database, product_a, product_b):
 
         # initialisation with no products should raise an error
         with pytest.raises(ValueError):
@@ -108,3 +108,19 @@ class TestQuery:
             .execute()
         )
         assert len(in_time_range) == 5
+
+    def test_query_within_bbox(self, database, product_a):
+
+        in_bbox = (
+            Query(database, product_a)
+            .within_bbox(
+                min_x=0.077591,
+                min_y=52.169931,
+                max_x=0.190887,
+                max_y=52.233477,
+                product=product_a,
+                srid=4326,
+            )
+            .execute()
+        )
+        assert len(in_bbox) == 1

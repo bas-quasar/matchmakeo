@@ -1,7 +1,10 @@
+from geoalchemy2.functions import ST_MakeEnvelope
 from sqlalchemy import and_, func
+from sqlalchemy.ext.compiler import compiles
 from sqlalchemy.orm import Session
 
 from .databases import Database
+from .product import Product
 
 
 class Query:
@@ -52,7 +55,7 @@ class Query:
     # ==========================================
 
     def in_time_range(
-        self, start_date, end_date, product=None, attr_name: str = "timestamp"
+        self, start_date, end_date, product: Product, attr_name: str = "timestamp"
     ):
         """Filters a single product's records within a absolute time range."""
         table = self._get_table_obj(product)
@@ -60,12 +63,20 @@ class Query:
         self._query = self._query.filter(time_col.between(start_date, end_date))
         return self
 
-    def within_bbox(self, min_x, min_y, max_x, max_y, product=None):
+    def within_bbox(
+        self, min_x, min_y, max_x, max_y, product: Product, srid: int = 4326
+    ):
         """Filters a single product's records within a bounding box spatial envelope."""
         table = self._get_table_obj(product)
-        bbox = func.ST_MakeEnvelope(min_x, min_y, max_x, max_y, 4326)
-        self._query = self._query.filter(table.c.geom.ST_Intersects(bbox))
+        bbox = func.ST_MakeEnvelope(min_x, min_y, max_x, max_y, srid)
+        self._query = self._query.filter(table.c.geometry.ST_Intersects(bbox))
         return self
+
+    def within_polygon(self):
+        raise NotImplementedError
+
+    def intersects_path(self):
+        raise NotImplementedError
 
     # ==========================================
     # PAIRWISE CROSS-TABLE JOIN FILTERS
@@ -135,3 +146,19 @@ class Query:
         finally:
             self._session.close()
             self._connection.close()
+
+
+### Spatial function mapping from PostGIS to Spatialite
+
+
+# Map directly to GeoAlchemy2's built-in ST_MakeEnvelope class
+@compiles(ST_MakeEnvelope, "sqlite")
+def compile_makeenvelope_sqlite(element, compiler, **kw):
+    args = list(element.clauses)
+
+    if len(args) == 5:
+        return f"SetSRID(BuildMbr({compiler.process(args[0], **kw)}, {compiler.process(args[1], **kw)}, {compiler.process(args[2], **kw)}, {compiler.process(args[3], **kw)}), {compiler.process(args[4], **kw)})"
+    elif len(args) == 4:
+        return f"BuildMbr({compiler.process(args[0], **kw)}, {compiler.process(args[1], **kw)}, {compiler.process(args[2], **kw)}, {compiler.process(args[3], **kw)})"
+    else:
+        raise ValueError("ST_MakeEnvelope requires 4 or 5 arguments.")
