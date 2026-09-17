@@ -505,13 +505,19 @@ class JaxaGportal(Catalogue):
     def __init__(
         self,
         queryset_type: Queryset = JaxaGportalQueryset,
-        username=os.getenv("GPORTAL_USERNAME", None),
-        password=os.getenv("GPORTAL_PASSWORD", None),
+        username: str | None = None,
+        password: str | None = None,
     ):
         if not gportal:
             raise ImportError(
                 "JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."
             )
+
+        if username is None:
+            username = os.getenv("GPORTAL_USERNAME", None)
+
+        if password is None:
+            password = os.getenv("GPORTAL_PASSWORD", None)
 
         super().__init__(queryset_type)
 
