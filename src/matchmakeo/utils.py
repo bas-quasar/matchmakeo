@@ -54,7 +54,7 @@ def infer_sql_type(val) -> str:
         return "BIGINT"
     elif isinstance(val, str):
         return "TEXT"
-    elif isinstance(val, dict) or isinstance(val, list):
+    elif isinstance(val, (dict, list)):
         return "JSON"
     elif isinstance(val, Timestamp):
         return "TIMESTAMP"
