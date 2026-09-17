@@ -9,11 +9,7 @@ def test_postgis_url():
     port = 5432
 
     db = PostGISDatabase(
-        database=db_name,
-        username=username,
-        password=password,
-        host=host,
-        port=port
+        database=db_name, username=username, password=password, host=host, port=port
     )
 
     dialect = "postgresql"
@@ -23,12 +19,11 @@ def test_postgis_url():
 
     assert db.url == expected_str
 
+
 def test_spatialite_url():
 
-    filename="test_spatialite_db.sqlite"
-    db = SpatialiteDatabase(
-        filename=filename
-    )
+    filename = "test_spatialite_db.sqlite"
+    db = SpatialiteDatabase(filename=filename)
 
     dialect = "sqlite"
 
