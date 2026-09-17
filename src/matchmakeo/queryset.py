@@ -1,6 +1,6 @@
 import datetime
 from dataclasses import dataclass, field
-from datetime import date
+from datetime import date, timezone
 
 __all__ = [
     "EarthEngineQueryset",
@@ -26,16 +26,16 @@ class Queryset:
 
         date_fields = ["start_date", "end_date"]
 
-        for field in date_fields:
-            current_value = getattr(self, field)
+        for date_field in date_fields:
+            current_value = getattr(self, date_field)
 
             if isinstance(current_value, str):
                 parsed_date = (
                     datetime.datetime.strptime(current_value, self.date_format)
-                    .replace(tzinfo=datetime.timezone.utc)
+                    .astimezone(timezone.utc)
                     .date()
                 )
-                setattr(self, field, parsed_date)
+                setattr(self, date_field, parsed_date)
 
 
 @dataclass(kw_only=True)
