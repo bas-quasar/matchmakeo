@@ -1,13 +1,14 @@
-from dataclasses import dataclass, field
 import datetime
-from datetime import date
+from dataclasses import dataclass, field
+from datetime import date, timezone
 
 __all__ = [
-    "Queryset",
-    "NasaCMRQueryset",
     "EarthEngineQueryset",
     "JaxaGportalQueryset",
+    "NasaCMRQueryset",
+    "Queryset",
 ]
+
 
 @dataclass(kw_only=True)
 class Queryset:
@@ -24,23 +25,30 @@ class Queryset:
     def __post_init__(self):
 
         date_fields = ["start_date", "end_date"]
-        
-        for field in date_fields:
-            current_value = getattr(self, field)
-            
+
+        for date_field in date_fields:
+            current_value = getattr(self, date_field)
+
             if isinstance(current_value, str):
-                parsed_date = datetime.datetime.strptime(current_value, self.date_format).date()
-                setattr(self, field, parsed_date)
+                parsed_date = (
+                    datetime.datetime.strptime(current_value, self.date_format)
+                    .astimezone(timezone.utc)
+                    .date()
+                )
+                setattr(self, date_field, parsed_date)
+
 
 @dataclass(kw_only=True)
 class NasaCMRQueryset(Queryset):
     "Extends the base Queryset with parameters specific to NASA CMR queries."
-    
+
     page_size: int = 200
+
 
 @dataclass(kw_only=True)
 class EarthEngineQueryset(Queryset):
     "Extends the base Queryset with parameters specific to Google Earth Engine queries."
+
 
 @dataclass(kw_only=True)
 class JaxaGportalQueryset(Queryset):
@@ -56,4 +64,4 @@ class JaxaGportalQueryset(Queryset):
     }
     """
 
-    params:dict = field(default_factory=dict)
+    params: dict = field(default_factory=dict)

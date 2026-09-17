@@ -4,9 +4,8 @@ from sqlalchemy.exc import NoSuchTableError
 from .databases import Database
 from .utils import setUpLogging
 
-__all__ = [
-    "Product"
-]
+__all__ = ["Product"]
+
 
 log = setUpLogging(__name__)
 

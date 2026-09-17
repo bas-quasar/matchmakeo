@@ -1,7 +1,8 @@
 import uuid
+
 import pytest
-from sqlalchemy import create_engine, text
 from pytest_databases.docker.postgres import PostgresService
+from sqlalchemy import create_engine, text
 
 from matchmakeo.databases import PostGISDatabase, SpatialiteDatabase
 
@@ -40,6 +41,7 @@ def database(request):
 def postgres_image() -> str:
     return "postgis/postgis:16-3.5"
 
+
 @pytest.fixture(scope="session", autouse=True)
 def init_test_database(postgres_service: PostgresService):
     # Construct the connection URL
@@ -47,14 +49,15 @@ def init_test_database(postgres_service: PostgresService):
         f"postgresql+psycopg://{postgres_service.user}:{postgres_service.password}@"
         f"{postgres_service.host}:{postgres_service.port}/{postgres_service.database}"
     )
-    
+
     # Create a temporary engine just to activate PostGIS
     engine = create_engine(db_url)
-    
+
     with engine.begin() as conn:
         conn.execute(text("CREATE EXTENSION IF NOT EXISTS postgis;"))
-    
+
     engine.dispose()
+
 
 def find_spatialite_extension():
     """
@@ -67,7 +70,7 @@ def find_spatialite_extension():
         "mod_spatialite.so",
         "/usr/lib/x86_64-linux-gnu/mod_spatialite.so",
         "/opt/homebrew/lib/mod_spatialite.dylib",
-        "/usr/local/lib/mod_spatialite.dylib"
+        "/usr/local/lib/mod_spatialite.dylib",
     ]
     for path in paths:
         try:
@@ -80,6 +83,7 @@ def find_spatialite_extension():
             continue
     raise RuntimeError("SpatiaLite extension not found.")
 
+
 @pytest.fixture(scope="session")
 def spatialite_url():
     """
@@ -91,22 +95,22 @@ def spatialite_url():
 
     # Generate a unique memory space name for this test
     db_name = f"test_geo_{uuid.uuid4().hex}"
-    
+
     # This URL string forces a persistent in-memory instance shared across connections
     url = f"sqlite:///file:{db_name}?mode=memory&cache=shared&uri=true"
-    
+
     # Open a persistent low-level connection to boot up the DB and load SpatiaLite
     raw_url = f"file:{db_name}?mode=memory&cache=shared"
     keep_alive_conn = sqlite3.connect(raw_url, uri=True)
     keep_alive_conn.enable_load_extension(True)
     keep_alive_conn.load_extension(find_spatialite_extension())
-    
+
     # Initialize the required OGC metadata tables once
     keep_alive_conn.execute("SELECT InitSpatialMetaData(1);")
     keep_alive_conn.commit()
-    
+
     # Return the url for testing
     yield url
-    
+
     # Closing this connection destroys the in-memory database after the test
     keep_alive_conn.close()
