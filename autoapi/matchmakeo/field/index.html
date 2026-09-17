@@ -1166,9 +1166,7 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/field.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
 <span class="normal"> 8</span>
 <span class="normal"> 9</span>
 <span class="normal">10</span>
@@ -1179,17 +1177,25 @@
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Field</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Field</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Fields to be created in database."""</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalogue_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">column_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">column_type</span><span class="p">:</span><span class="n">TypeEngine</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">catalogue_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">column_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">column_type</span><span class="p">:</span> <span class="n">TypeEngine</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">catalogue_name</span> <span class="o">=</span> <span class="n">catalogue_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">column_name</span> <span class="o">=</span> <span class="n">column_name</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">column_type</span><span class="p">,</span> <span class="n">TypeEngine</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">column_type</span><span class="p">,</span> <span class="n">TypeEngine</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">column_type</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Custom field types must be SQL Alchemy types. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">column_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">column_name</span><span class="si">}</span><span class="s2">.</span><span class="se">\n\</span>
-<span class="s2">                          Unexpected behaviour may occur."</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Custom field types must be SQL Alchemy types. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">column_type</span><span class="p">)</span><span class="si">}</span><span class="s2"> for </span><span class="si">{</span><span class="n">column_name</span><span class="si">}</span><span class="s2">.</span><span class="se">\n\</span>
+<span class="s2">                          Unexpected behaviour may occur."</span>
+            <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_as_column</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">Column</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">column_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>

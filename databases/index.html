@@ -1380,11 +1380,11 @@ postgis.sif
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
 
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
-    <span class="n">username</span><span class="o">=</span><span class="s2">"my_user"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span> <span class="c1"># the default database name</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
-    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span> <span class="c1"># the port in the above step</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">"my_user"</span><span class="p">,</span>  <span class="c1"># as defined earlier</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="p">,</span>  <span class="c1"># as defined earlier</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span>  <span class="c1"># the default database name</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span>  <span class="c1"># if running on the same host/node as the database</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>  <span class="c1"># the port in the above step</span>
 <span class="p">)</span>
 </code></pre></div>
 <div class="admonition note">
@@ -1392,6 +1392,7 @@ postgis.sif
 <p>If running interactively or inside a Slurm script, get the node name with the <code>hostname</code> command.</p>
 <p>Or in your python script</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">gethostname</span><span class="p">())</span>
 </code></pre></div>
 </div>
@@ -1414,11 +1415,11 @@ postgis.sif
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
 
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
-    <span class="n">username</span><span class="o">=</span><span class="s2">"my_user"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">password</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="p">,</span> <span class="c1"># as defined earlier</span>
-    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span> <span class="c1"># the default database name</span>
-    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="c1"># if running on the same host/node as the database</span>
-    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span> <span class="c1"># the port in the above step</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">"my_user"</span><span class="p">,</span>  <span class="c1"># as defined earlier</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="p">,</span>  <span class="c1"># as defined earlier</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span>  <span class="c1"># the default database name</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span>  <span class="c1"># if running on the same host/node as the database</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>  <span class="c1"># the port in the above step</span>
 <span class="p">)</span>
 </code></pre></div>
 <h2 id="spatialite">SpatiaLite</h2>

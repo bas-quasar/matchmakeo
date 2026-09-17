@@ -1301,19 +1301,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 51</span>
-<span class="normal"> 52</span>
-<span class="normal"> 53</span>
-<span class="normal"> 54</span>
-<span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 63</span>
 <span class="normal"> 64</span>
 <span class="normal"> 65</span>
 <span class="normal"> 66</span>
@@ -1350,7 +1338,27 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal"> 97</span>
 <span class="normal"> 98</span>
 <span class="normal"> 99</span>
-<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Catalogue</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Catalogue</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract Base Class for defining catalogue interfaces.</span>
 <span class="sd">    Do not call this class directly. Subclass it and define methods.</span>
 <span class="sd">    """</span>
@@ -1362,35 +1370,43 @@ Do not call this class directly. Subclass it and define methods.</p>
         <span class="k">if</span> <span class="n">queryset_type</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span> <span class="o">=</span> <span class="n">queryset_type</span>
 
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-                <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
-                <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
-                <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                <span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
+        <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
+        <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Abstract method"""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_queryset_type</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_database_dryrun</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_check_queryset_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span><span class="n">Queryset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_queryset_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Raise UserWarning if queryset type does not match catalogue type."""</span>
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Queryset of type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="si">}</span><span class="s2"> is advised. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead. Some features may not work as intended."</span><span class="p">,</span>
-                          <span class="ne">UserWarning</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Queryset of type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="si">}</span><span class="s2"> is advised. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead. Some features may not work as intended."</span><span class="p">,</span>
+                <span class="ne">UserWarning</span><span class="p">,</span>
+            <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_check_database_dryrun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span><span class="n">Database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_database_dryrun</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Raise UserWarning if not dry_run and no database specified"""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">Database</span><span class="p">:</span>
-            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Got dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2"> and database: </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">. Database needed unless dry_run=True."</span><span class="p">)</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Got dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2"> and database: </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">. Database needed unless dry_run=True."</span>
+            <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span><span class="n">Connection</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span><span class="n">Product</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">'pk'</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_table</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Connection</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"pk"</span>
+    <span class="p">):</span>
 
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating table </span><span class="si">{</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-        <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+            <span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+            <span class="n">metadata</span><span class="p">,</span>
             <span class="n">Column</span><span class="p">(</span><span class="n">primary_key</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="o">*</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">_as_column</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">],</span>
             <span class="o">*</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">_as_column</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">],</span>
@@ -1432,22 +1448,24 @@ Do not call this class directly. Subclass it and define methods.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-            <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-            <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
-            <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-            <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
-            <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
+    <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+    <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
+    <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract method"""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_check_queryset_type</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_check_database_dryrun</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
@@ -1494,41 +1512,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">250</span>
-<span class="normal">251</span>
-<span class="normal">252</span>
-<span class="normal">253</span>
-<span class="normal">254</span>
-<span class="normal">255</span>
-<span class="normal">256</span>
-<span class="normal">257</span>
-<span class="normal">258</span>
-<span class="normal">259</span>
-<span class="normal">260</span>
-<span class="normal">261</span>
-<span class="normal">262</span>
-<span class="normal">263</span>
-<span class="normal">264</span>
-<span class="normal">265</span>
-<span class="normal">266</span>
-<span class="normal">267</span>
-<span class="normal">268</span>
-<span class="normal">269</span>
-<span class="normal">270</span>
-<span class="normal">271</span>
-<span class="normal">272</span>
-<span class="normal">273</span>
-<span class="normal">274</span>
-<span class="normal">275</span>
-<span class="normal">276</span>
-<span class="normal">277</span>
-<span class="normal">278</span>
-<span class="normal">279</span>
-<span class="normal">280</span>
-<span class="normal">281</span>
-<span class="normal">282</span>
-<span class="normal">283</span>
-<span class="normal">284</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">284</span>
 <span class="normal">285</span>
 <span class="normal">286</span>
 <span class="normal">287</span>
@@ -1643,213 +1627,10 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal">396</span>
 <span class="normal">397</span>
 <span class="normal">398</span>
-<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EarthEngine</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Interface for downloading footprints from Google Earth Engine.</span>
-
-<span class="sd">    Requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.</span>
-
-<span class="sd">    """</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="bp">self</span><span class="p">,</span>
-            <span class="n">project_id</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">service_account</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-            <span class="n">queryset_type</span><span class="p">:</span><span class="n">Queryset</span> <span class="o">=</span> <span class="n">EarthEngineQueryset</span><span class="p">,</span>
-            <span class="p">):</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">ee</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`."</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">project_id</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Earth Engine requires a project name. Got </span><span class="si">{</span><span class="n">project_id</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">initialise_earth_engine</span><span class="p">(</span><span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span><span class="n">service_account</span><span class="o">=</span><span class="n">service_account</span><span class="p">)</span>
-
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="p">)</span>
-
-        <span class="c1"># add fields specific to this catalogue</span>
-        <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-        <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
-
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">initialise_earth_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">service_account</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-
-        <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">service_account</span><span class="p">:</span>
-                <span class="n">credentials</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">default</span><span class="p">(</span><span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s1">'https://googleapis.com'</span><span class="p">,</span> <span class="s1">'https://googleapis.com'</span><span class="p">],</span> <span class="n">quota_project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
-                <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
-                <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Earth Engine authentication failed."</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
-
-        <span class="n">bbox</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
-            <span class="n">west</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
-            <span class="n">south</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
-            <span class="n">east</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
-            <span class="n">north</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
-            <span class="p">)</span>
-
-
-        <span class="k">def</span><span class="w"> </span><span class="nf">fetch_day_metadata</span><span class="p">(</span><span class="n">day_string</span><span class="p">):</span>
-<span class="w">            </span><span class="sd">"""</span>
-<span class="sd">            Worker function executed in parallel. </span>
-<span class="sd">            Retrieves image asset metadata and geometries for a single day.</span>
-<span class="sd">            """</span>
-            <span class="n">current_date</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">day_string</span><span class="p">)</span>
-            <span class="n">next_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">'day'</span><span class="p">)</span>
-
-            <span class="c1"># Filter the raw collection by Date and Spatial Bounds</span>
-            <span class="n">day_collection</span> <span class="o">=</span> <span class="p">(</span><span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                            <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">current_date</span><span class="p">,</span> <span class="n">next_date</span><span class="p">)</span>
-                            <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">bbox</span><span class="p">))</span>
-
-            <span class="c1"># Convert the ImageCollection into a FeatureCollection.</span>
-            <span class="c1"># converts each image's spatial footprint into a feature geometry</span>
-            <span class="c1"># while keeping all of the image's metadata.</span>
-            <span class="n">metadata_features</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">day_collection</span><span class="p">)</span>
-
-            <span class="c1"># Filter properties to keep the payload small</span>
-            <span class="c1"># metadata_features = metadata_features.select(</span>
-            <span class="c1">#     propertySelectors=['system:index', 'system:time_start', 'CLOUDY_PIXEL_PERCENTAGE'], </span>
-            <span class="c1">#     retainGeometry=True # Keeps the polygon boundary layout of the scene</span>
-            <span class="c1"># )</span>
-
-            <span class="c1"># Fetch data</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">metadata_features</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
-                <span class="k">return</span> <span class="n">day_string</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'features'</span><span class="p">,</span> <span class="p">[])</span>
-            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Error processing date </span><span class="si">{</span><span class="n">day_string</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-                <span class="k">return</span> <span class="n">day_string</span><span class="p">,</span> <span class="p">[]</span>
-
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connecting to database at </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connection to </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2"> failed. Aborting."</span><span class="p">)</span>
-
-            <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
-
-        <span class="n">delta</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
-
-        <span class="n">daily_strings</span> <span class="o">=</span> <span class="p">[(</span><span class="n">start</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">days</span><span class="p">)]</span>
-
-        <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">get_optimal_workers</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
-            <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fetch_day_metadata</span><span class="p">,</span> <span class="n">daily_strings</span><span class="p">)</span>
-
-            <span class="k">for</span> <span class="n">date_str</span><span class="p">,</span> <span class="n">granules</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">granules</span><span class="p">:</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: No images intersected the bounds."</span><span class="p">)</span>
-                    <span class="k">continue</span>
-
-                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> images."</span><span class="p">)</span>
-
-                <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
-                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2">, skipping database insertion."</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-
-
-                    <span class="c1"># 'flatten' the properties</span>
-                    <span class="n">props</span> <span class="o">=</span> <span class="p">[]</span>
-                    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
-                        <span class="n">p</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">]</span>
-                        <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-                            <span class="s1">'id'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'id'</span><span class="p">),</span>
-                            <span class="s1">'version'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'version'</span><span class="p">),</span>
-                            <span class="s1">'type'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'type'</span><span class="p">),</span>
-                            <span class="s1">'bands'</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'bands'</span><span class="p">),</span>
-                        <span class="p">})</span>
-                        <span class="n">props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-
-                    <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
-                                                                <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
-                                                                <span class="n">product_fields</span> <span class="o">=</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
-                                                                <span class="n">props</span><span class="o">=</span><span class="n">props</span><span class="p">,</span>
-                                                                <span class="p">)</span>
-
-                    <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-                    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
-
-                    <span class="k">for</span> <span class="n">granule</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
-                        <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
-                            <span class="c1"># id=granule['id'],</span>
-                            <span class="n">geometry</span><span class="o">=</span><span class="n">coords_to_polygon</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="s1">'properties'</span><span class="p">][</span><span class="s1">'system:footprint'</span><span class="p">][</span><span class="s1">'coordinates'</span><span class="p">]),</span>
-                            <span class="c1"># type=granule.get('type'),</span>
-                            <span class="c1"># version=granule.get('version'),</span>
-                            <span class="c1"># bands=granule.get('bands'),</span>
-                            <span class="o">**</span><span class="n">granule</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'properties'</span><span class="p">),</span>
-                            <span class="p">)</span>
-                        <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
-                        <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</code></pre></div></td></tr></table></div>
-              </details>
-
-
-
-<div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="matchmakeo.catalogues.JaxaGportal" class="doc doc-heading">
-            <code>JaxaGportal</code>
-
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="Catalogue (matchmakeo.catalogues.Catalogue)" href="#matchmakeo.catalogues.Catalogue">Catalogue</a></code></p>
-
-
-
-        <p>Interface for downloading footprints from JAXA G-Portal.</p>
-<p>Requires the gportal-python package install with <code>pip install matchmakeo[gportal]</code> or <code>pip install gportal</code>.</p>
-<p>Product name should be a value in gportal.datasets(),
-e.g. gportal.datasetts()["GCOM-W/AMSR2"]["LEVEL1"]["L1R-Brightness temperature(TB)"]
-or "11001002"</p>
-
-
-
-
-
-
-
-
-              <details class="mkdocstrings-source">
-                <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">402</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
 <span class="normal">403</span>
 <span class="normal">404</span>
 <span class="normal">405</span>
@@ -1933,7 +1714,404 @@ or "11001002"</p>
 <span class="normal">483</span>
 <span class="normal">484</span>
 <span class="normal">485</span>
-<span class="normal">486</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportal</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EarthEngine</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Interface for downloading footprints from Google Earth Engine.</span>
+
+<span class="sd">    Requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.</span>
+
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">service_account</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">EarthEngineQueryset</span><span class="p">,</span>
+    <span class="p">):</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ee</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                <span class="s2">"Earth Engine Catalogue interface requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`."</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">project_id</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Earth Engine requires a project name. Got </span><span class="si">{</span><span class="n">project_id</span><span class="si">=}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialise_earth_engine</span><span class="p">(</span>
+            <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span> <span class="n">service_account</span><span class="o">=</span><span class="n">service_account</span>
+        <span class="p">)</span>
+
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="p">)</span>
+
+        <span class="c1"># add fields specific to this catalogue</span>
+        <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialise_earth_engine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">service_account</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">service_account</span><span class="p">:</span>
+            <span class="n">credentials</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">default</span><span class="p">(</span>
+                <span class="n">scopes</span><span class="o">=</span><span class="p">[</span><span class="s2">"https://googleapis.com"</span><span class="p">,</span> <span class="s2">"https://googleapis.com"</span><span class="p">],</span>
+                <span class="n">quota_project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">credentials</span><span class="p">,</span> <span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Earth Engine initialized successfully."</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">DefaultCredentialsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Credentials not found. Please run ee.Authenticate() first: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="n">ee</span><span class="o">.</span><span class="n">EEException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"EE Initialization failed (check project ID/permissions): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="n">GoogleAPICallError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Google Cloud API error during initialization: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ee</span><span class="o">.</span><span class="n">Authenticate</span><span class="p">()</span>
+            <span class="k">except</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RefreshError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Token refresh failed. Re-authentication required: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">OAuthError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"OAuth flow failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ee</span><span class="o">.</span><span class="n">EEException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Earth Engine auth error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ee</span><span class="o">.</span><span class="n">Initialize</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="n">project_id</span><span class="p">)</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Earth Engine initialized successfully."</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">DefaultCredentialsError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"Credentials not found. Please run ee.Authenticate() first: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="n">ee</span><span class="o">.</span><span class="n">EEException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">"EE Initialization failed (check project ID/permissions): </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="n">GoogleAPICallError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Google Cloud API error during initialization: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
+
+        <span class="n">bbox</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
+            <span class="n">west</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
+            <span class="n">south</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
+            <span class="n">east</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
+            <span class="n">north</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">fetch_day_metadata</span><span class="p">(</span><span class="n">day_string</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">"""</span>
+<span class="sd">            Worker function executed in parallel.</span>
+<span class="sd">            Retrieves image asset metadata and geometries for a single day.</span>
+<span class="sd">            """</span>
+            <span class="n">current_date</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Date</span><span class="p">(</span><span class="n">day_string</span><span class="p">)</span>
+            <span class="n">next_date</span> <span class="o">=</span> <span class="n">current_date</span><span class="o">.</span><span class="n">advance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"day"</span><span class="p">)</span>
+
+            <span class="c1"># Filter the raw collection by Date and Spatial Bounds</span>
+            <span class="n">day_collection</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">ee</span><span class="o">.</span><span class="n">ImageCollection</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">filterDate</span><span class="p">(</span><span class="n">current_date</span><span class="p">,</span> <span class="n">next_date</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">filterBounds</span><span class="p">(</span><span class="n">bbox</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Convert the ImageCollection into a FeatureCollection.</span>
+            <span class="c1"># converts each image's spatial footprint into a feature geometry</span>
+            <span class="c1"># while keeping all of the image's metadata.</span>
+            <span class="n">metadata_features</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">FeatureCollection</span><span class="p">(</span><span class="n">day_collection</span><span class="p">)</span>
+
+            <span class="c1"># Filter properties to keep the payload small</span>
+            <span class="c1"># metadata_features = metadata_features.select(</span>
+            <span class="c1">#     propertySelectors=['system:index', 'system:time_start', 'CLOUDY_PIXEL_PERCENTAGE'],</span>
+            <span class="c1">#     retainGeometry=True # Keeps the polygon boundary layout of the scene</span>
+            <span class="c1"># )</span>
+
+            <span class="c1"># Fetch data</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">metadata_features</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">day_string</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"features"</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">except</span> <span class="n">ee</span><span class="o">.</span><span class="n">EEException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Catches EE specific processing issues (e.g. "User memory limit exceeded", "Computation timed out")</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Earth Engine server-side computation failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="p">(</span>
+                <span class="n">google</span><span class="o">.</span><span class="n">api_core</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">DeadlineExceeded</span><span class="p">,</span>
+                <span class="n">google</span><span class="o">.</span><span class="n">api_core</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ServiceUnavailable</span><span class="p">,</span>
+            <span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Catches backend timeouts or server unavailability</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Earth Engine backend temporary failure or timeout: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">google</span><span class="o">.</span><span class="n">api_core</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">Forbidden</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Catches permission issues or quota exceeded</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Access denied or quota exceeded: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">TransportError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># Catches local network drops or connection errors</span>
+                <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Network transport error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connecting to database at </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Connection to </span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2"> failed. Aborting."</span><span class="p">)</span>
+
+            <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
+
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
+
+        <span class="n">daily_strings</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">days</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="k">with</span> <span class="n">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">get_optimal_workers</span><span class="p">())</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">fetch_day_metadata</span><span class="p">,</span> <span class="n">daily_strings</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">date_str</span><span class="p">,</span> <span class="n">granules</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">granules</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: No images intersected the bounds."</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s2">: Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> images."</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
+                    <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"dry_run: </span><span class="si">{</span><span class="n">dry_run</span><span class="si">}</span><span class="s2">, skipping database insertion."</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># 'flatten' the properties</span>
+                    <span class="n">props</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
+                        <span class="n">p</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">]</span>
+                        <span class="n">p</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                            <span class="p">{</span>
+                                <span class="s2">"id"</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"id"</span><span class="p">),</span>
+                                <span class="s2">"version"</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"version"</span><span class="p">),</span>
+                                <span class="s2">"type"</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"type"</span><span class="p">),</span>
+                                <span class="s2">"bands"</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"bands"</span><span class="p">),</span>
+                            <span class="p">}</span>
+                        <span class="p">)</span>
+                        <span class="n">props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+                    <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span>
+                        <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                        <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
+                        <span class="n">product_fields</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
+                        <span class="n">props</span><span class="o">=</span><span class="n">props</span><span class="p">,</span>
+                    <span class="p">)</span>
+
+                    <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+                    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+                        <span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span>
+                    <span class="p">)</span>
+
+                    <span class="k">for</span> <span class="n">granule</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
+                        <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+                            <span class="c1"># id=granule['id'],</span>
+                            <span class="n">geometry</span><span class="o">=</span><span class="n">coords_to_polygon</span><span class="p">(</span>
+                                <span class="n">granule</span><span class="p">[</span><span class="s2">"properties"</span><span class="p">][</span><span class="s2">"system:footprint"</span><span class="p">][</span><span class="s2">"coordinates"</span><span class="p">]</span>
+                            <span class="p">),</span>
+                            <span class="c1"># type=granule.get('type'),</span>
+                            <span class="c1"># version=granule.get('version'),</span>
+                            <span class="c1"># bands=granule.get('bands'),</span>
+                            <span class="o">**</span><span class="n">granule</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"properties"</span><span class="p">),</span>
+                        <span class="p">)</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="matchmakeo.catalogues.JaxaGportal" class="doc doc-heading">
+            <code>JaxaGportal</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="Catalogue (matchmakeo.catalogues.Catalogue)" href="#matchmakeo.catalogues.Catalogue">Catalogue</a></code></p>
+
+
+
+        <p>Interface for downloading footprints from JAXA G-Portal.</p>
+<p>Requires the gportal-python package install with <code>pip install matchmakeo[gportal]</code> or <code>pip install gportal</code>.</p>
+<p>Product name should be a value in gportal.datasets(),
+e.g. gportal.datasetts()["GCOM-W/AMSR2"]["LEVEL1"]["L1R-Brightness temperature(TB)"]
+or "11001002"</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span>
+<span class="normal">530</span>
+<span class="normal">531</span>
+<span class="normal">532</span>
+<span class="normal">533</span>
+<span class="normal">534</span>
+<span class="normal">535</span>
+<span class="normal">536</span>
+<span class="normal">537</span>
+<span class="normal">538</span>
+<span class="normal">539</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span>
+<span class="normal">545</span>
+<span class="normal">546</span>
+<span class="normal">547</span>
+<span class="normal">548</span>
+<span class="normal">549</span>
+<span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span>
+<span class="normal">568</span>
+<span class="normal">569</span>
+<span class="normal">570</span>
+<span class="normal">571</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span>
+<span class="normal">580</span>
+<span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span>
+<span class="normal">593</span>
+<span class="normal">594</span>
+<span class="normal">595</span>
+<span class="normal">596</span>
+<span class="normal">597</span>
+<span class="normal">598</span>
+<span class="normal">599</span>
+<span class="normal">600</span>
+<span class="normal">601</span>
+<span class="normal">602</span>
+<span class="normal">603</span>
+<span class="normal">604</span>
+<span class="normal">605</span>
+<span class="normal">606</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span>
+<span class="normal">610</span>
+<span class="normal">611</span>
+<span class="normal">612</span>
+<span class="normal">613</span>
+<span class="normal">614</span>
+<span class="normal">615</span>
+<span class="normal">616</span>
+<span class="normal">617</span>
+<span class="normal">618</span>
+<span class="normal">619</span>
+<span class="normal">620</span>
+<span class="normal">621</span>
+<span class="normal">622</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportal</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Interface for downloading footprints from JAXA G-Portal.</span>
 
 <span class="sd">    Requires the gportal-python package install with `pip install matchmakeo[gportal]` or `pip install gportal`.</span>
@@ -1944,31 +2122,54 @@ or "11001002"</p>
 
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset_type</span><span class="p">:</span><span class="n">Queryset</span> <span class="o">=</span> <span class="n">JaxaGportalQueryset</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_USERNAME"</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">password</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_PASSWORD"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">JaxaGportalQueryset</span><span class="p">,</span>
+        <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">gportal</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                <span class="s2">"JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">username</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_USERNAME"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_PASSWORD"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"Got None for either username or password, these must be passed as arguments or set via the environment variables GPORTAL_USERNAME and GPORTAL_PASSWORD."</span><span class="p">)</span>
-
+            <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="s2">"Got None for either username or password, these must be passed as arguments or set via the environment variables GPORTAL_USERNAME and GPORTAL_PASSWORD."</span>
+            <span class="p">)</span>
 
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'identifier'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'beginPosition'</span><span class="p">,</span> <span class="s1">'datetime_start'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'endPosition'</span><span class="p">,</span> <span class="s1">'datetime_end'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"identifier"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"beginPosition"</span><span class="p">,</span> <span class="s2">"datetime_start"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"endPosition"</span><span class="p">,</span> <span class="s2">"datetime_end"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span><span class="n">Product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span><span class="n">Queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span><span class="n">Database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
+        <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
+        <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">gportal</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
+                <span class="s2">"JAXA G-Portal Catalogue interface requires the gportal package, install with `pip install matchmakeo[gportal]` or `pip install gportal`."</span>
+            <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"dry_run enabled, skipping database operations"</span><span class="p">)</span>
@@ -1976,15 +2177,22 @@ or "11001002"</p>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database connection failed. Aborting."</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">"Database connection failed. Aborting."</span><span class="p">)</span>
 
             <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
 
         <span class="n">search_results</span> <span class="o">=</span> <span class="n">gportal</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-            <span class="n">dataset_ids</span><span class="o">=</span><span class="p">[</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">dataset_ids</span><span class="o">=</span><span class="p">[</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+            <span class="k">else</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
             <span class="n">start_time</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span>
             <span class="n">end_time</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="p">,</span>
-            <span class="n">bbox</span><span class="o">=</span><span class="p">[</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span> <span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span> <span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span> <span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">],</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="p">[</span>
+                <span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
+                <span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
+                <span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
+                <span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
+            <span class="p">],</span>
             <span class="n">params</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -1997,11 +2205,12 @@ or "11001002"</p>
             <span class="k">return</span> <span class="kc">None</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
-            <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
-                                                        <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
-                                                        <span class="n">product_fields</span> <span class="o">=</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
-                                                        <span class="n">props</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">properties</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">search_results</span><span class="o">.</span><span class="n">products</span><span class="p">()],</span>
-                                                        <span class="p">)</span>
+            <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span>
+                <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
+                <span class="n">product_fields</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
+                <span class="n">props</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">properties</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">search_results</span><span class="o">.</span><span class="n">products</span><span class="p">()],</span>
+            <span class="p">)</span>
 
             <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
             <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
@@ -2012,10 +2221,23 @@ or "11001002"</p>
                 <span class="c1"># {'identifier': 'GW1AM2_202001010047_189D_L1SGRTBR_2220220', 'acquisitionType': 'NOMINAL', 'processingDate': '2020-01-01T02:53:36.000Z', 'processingLevel': 'AMSR2-L1R', 'processorVersion': '220,220', 'status': 'ARCHIVED', 'beginPosition': '2020-01-01T00:47:00.855Z', 'endPosition': '2020-01-01T01:36:21.574Z', 'platformShortName': 'GCOM-W1', 'instrumentShortName': 'AMSR2', 'wrsLongitudeGrid': 189, 'lastOrbitNumber': 40552, 'ascendingNodeDate': '2020-01-01T01:13:46.699Z', 'ascendingNodeLongitude': 3.81, 'multiExtentOf': '-176.886 84.355 139.298 86.437 103.605 83.761 102.901 79.831 110.928 76.268 121.735 73.532 117.055 73.948 112.168 74.257 107.127 74.455 101.996 74.534 96.852 74.498 91.769 74.341 63.323 70.726 46.055 64.290 35.785 56.614 26.568 44.128 20.757 31.106 16.562 17.820 10.550 -8.590 8.050 -22.133 5.735 -35.670 3.482 -49.183 1.934 -58.166 0.220 -67.125 -2.200 -76.059 -2.673 -77.399 -3.219 -78.739 -3.867 -80.077 -4.647 -81.415 -5.677 -82.750 -7.109 -84.082 -48.629 -86.429 -87.348 -83.868 -88.771 -79.846 -80.939 -76.150 -70.123 -73.278 -65.770 -72.766 -61.722 -72.153 -57.943 -71.464 -54.422 -70.709 -51.166 -69.892 -48.161 -69.020 -33.274 -62.206 -24.171 -54.387 -18.077 -46.085 -11.827 -33.164 -7.387 -19.934 -3.911 -6.531 1.498 19.964 3.900 33.510 6.240 47.039 8.732 60.543 10.701 69.522 13.831 78.490 29.726 87.356 47.611 88.561 113.749 89.120 162.142 88.237 174.920 86.989 -179.790 85.681 -176.886 84.355', 'product': {'fileName': 'https://gportal.jaxa.jp/download/standard/GCOM-W/GCOM-W.AMSR2/L1R/2/2020/01/GW1AM2_202001010047_189D_L1SGRTBR_2220220.h5', 'size': 51065652, 'version': 2}, 'browse': [{...}, {...}], 'gpp': {'datasetId': 11001002, 'totalQualityCode': 'Good', 'physicalQuantity': 'Brightness Temperature', 'parameterVersion': 220, 'algorithmVersion': 220, 'numberMissingData': 0, 'startPathNumber': 189, 'endPathNumber': 189, 'mapProjection': None, 'orbitDirection': 'Descending', 'pseq': 'EQ', 'topicCategory': '-', 'organizationName': 'JAXA', 'hasProduct': True}}</span>
                 <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
                     <span class="n">geometry</span><span class="o">=</span><span class="n">geojon_to_polygon</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">geometry</span><span class="p">),</span>
-                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">'beginPosition'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span> <span class="c1"># using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11</span>
-                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">'endPosition'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span>
-                    <span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">catalogue_name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">+</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">]}</span>
-                    <span class="p">)</span>
+                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span>
+                        <span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">"beginPosition"</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span>
+                        <span class="n">timezone</span><span class="o">.</span><span class="n">utc</span>
+                    <span class="p">),</span>  <span class="c1"># using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11</span>
+                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span>
+                        <span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">"endPosition"</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">),</span>
+                    <span class="o">**</span><span class="p">{</span>
+                        <span class="n">k</span><span class="p">:</span> <span class="n">v</span>
+                        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">prod</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="n">k</span>
+                        <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span>
+                            <span class="n">f</span><span class="o">.</span><span class="n">catalogue_name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">+</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span>
+                        <span class="p">]</span>
+                    <span class="p">},</span>
+                <span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
@@ -2071,27 +2293,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
@@ -2216,16 +2418,50 @@ Note: User accounts and hence access to restricted data are not currently suppor
 <span class="normal">245</span>
 <span class="normal">246</span>
 <span class="normal">247</span>
-<span class="normal">248</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NasaCMR</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NasaCMR</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Interface to download from the NASA Common Metadata Repository (CMR) (&lt;https://cmr.earthdata.nasa.gov/&gt;) for all Earth Observing System Data and Information System (EOSDIS) metadata including MODIS footprints."</span>
 <span class="sd">    Note: User accounts and hence access to restricted data are not currently supported.</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                 <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-                 <span class="n">url</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span> <span class="c1">#"https://cmr.earthdata.nasa.gov/search/granules.json",</span>
-                 <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
-                 <span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span>  <span class="c1"># "https://cmr.earthdata.nasa.gov/search/granules.json",</span>
+        <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
+    <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""_summary_</span>
 <span class="sd">        Params:</span>
 <span class="sd">            client_id(str): Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group.</span>
@@ -2236,25 +2472,34 @@ Note: User accounts and hence access to restricted data are not currently suppor
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="o">=</span><span class="n">queryset_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example."</span><span class="p">)</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">"No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example."</span>
+            <span class="p">)</span>
 
         <span class="c1"># add fields specific to this catalogue</span>
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_start'</span><span class="p">,</span> <span class="s1">'datetime_start'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_end'</span><span class="p">,</span> <span class="s1">'datetime_end'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_start"</span><span class="p">,</span> <span class="s2">"datetime_start"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+            <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_end"</span><span class="p">,</span> <span class="s2">"datetime_end"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-                <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-                <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
-                <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span>
-                <span class="n">primary_key</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
-                <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-                <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="n">primary_key</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
+        <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span>
+        <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
+        <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span>
+            <span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span>
+            <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span>
+            <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
+            <span class="n">dry_run</span><span class="o">=</span><span class="n">dry_run</span><span class="p">,</span>
+            <span class="n">primary_key</span><span class="o">=</span><span class="n">primary_key</span><span class="p">,</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"dry_run enabled, skipping database operations"</span><span class="p">)</span>
@@ -2262,7 +2507,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">connection</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">ConnectionError</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Database connection failed. Aborting."</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ConnectionError</span><span class="p">(</span><span class="s2">"Database connection failed. Aborting."</span><span class="p">)</span>
 
             <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
 
@@ -2277,7 +2522,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">"short_name"</span><span class="p">:</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
                 <span class="s2">"page_size"</span><span class="p">:</span> <span class="n">queryset</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
-                <span class="s1">'temporal'</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z,</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z"</span><span class="p">,</span>
+                <span class="s2">"temporal"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z,</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z"</span><span class="p">,</span>
                 <span class="s2">"bounding_box"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounding_box</span><span class="p">(</span><span class="n">queryset</span><span class="p">),</span>
             <span class="p">}</span>
 
@@ -2290,13 +2535,14 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="c1"># if there is a previous response, check for additional available pages</span>
             <span class="c1"># as recommended by CMR https://wiki.earthdata.nasa.gov/display/CMR/CMR+Harvesting+Best+Practices</span>
             <span class="k">if</span> <span class="n">response</span><span class="p">:</span>
-
                 <span class="c1"># if previous response has CMR-Search-After header, add details to request headers</span>
                 <span class="n">search_after</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"CMR-Search-After"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">search_after</span><span class="p">:</span>
-                    <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-                        <span class="s2">"CMR-Search-After"</span><span class="p">:</span> <span class="n">search_after</span><span class="p">,</span>
-                    <span class="p">})</span>
+                    <span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                        <span class="p">{</span>
+                            <span class="s2">"CMR-Search-After"</span><span class="p">:</span> <span class="n">search_after</span><span class="p">,</span>
+                        <span class="p">}</span>
+                    <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># if there is a previous response and does not have CMR-Search-After header, there is no more data</span>
                     <span class="k">break</span>
@@ -2312,13 +2558,11 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
             <span class="n">log</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
-
             <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">results</span><span class="p">[</span><span class="s2">"feed"</span><span class="p">][</span><span class="s2">"entry"</span><span class="p">]:</span>
-
                 <span class="n">coords</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="k">for</span> <span class="n">poly</span> <span class="ow">in</span> <span class="n">item</span><span class="p">[</span><span class="s2">"polygons"</span><span class="p">][</span><span class="mi">0</span><span class="p">]:</span>
-                    <span class="n">vals</span>   <span class="o">=</span>  <span class="nb">list</span> <span class="p">(</span> <span class="nb">map</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">poly</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="p">)</span> <span class="p">)</span>
-                    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span> <span class="p">(</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span> <span class="n">vals</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span> <span class="p">)</span> <span class="p">)]</span>
+                    <span class="n">vals</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">poly</span><span class="o">.</span><span class="n">split</span><span class="p">()))</span>
+                    <span class="n">coords</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">],</span> <span class="n">vals</span><span class="p">[::</span><span class="mi">2</span><span class="p">]))]</span>
 
                 <span class="n">props</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -2329,16 +2573,15 @@ Note: User accounts and hence access to restricted data are not currently suppor
                 <span class="c1"># TODO use a dictionary at least to store each footprint</span>
                 <span class="n">granules</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coords</span><span class="p">,</span> <span class="n">props</span><span class="p">))</span>
 
-
-
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">granules</span><span class="p">)</span><span class="si">}</span><span class="s2"> footprints found for </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">'temporal'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
-            <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span><span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
-                                                        <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
-                                                        <span class="n">product_fields</span> <span class="o">=</span> <span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
-                                                        <span class="n">props</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">],</span>
-                                                        <span class="p">)</span>
+            <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span>
+                <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
+                <span class="n">product_fields</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
+                <span class="n">props</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">],</span>
+            <span class="p">)</span>
 
             <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
             <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
@@ -2347,13 +2590,18 @@ Note: User accounts and hence access to restricted data are not currently suppor
                 <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
                     <span class="c1"># id=granule[1]['id'],</span>
                     <span class="n">geometry</span><span class="o">=</span><span class="n">coords_to_polygon</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
-                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'time_start'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span> <span class="c1"># using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11</span>
-                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'time_end'</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span><span class="p">),</span>
+                    <span class="n">datetime_start</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span>
+                        <span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"time_start"</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span>
+                        <span class="n">timezone</span><span class="o">.</span><span class="n">utc</span>
+                    <span class="p">),</span>  <span class="c1"># using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11</span>
+                    <span class="n">datetime_end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span>
+                        <span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">"time_end"</span><span class="p">],</span> <span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">T%H:%M:%S.</span><span class="si">%f</span><span class="s2">Z"</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">),</span>
                     <span class="o">**</span><span class="n">granule</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                    <span class="p">)</span>
+                <span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-
 
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_bounding_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="s2">"Returns bounding box string for NASA CMR spatial query, using queryset lat and lon."</span>
@@ -2396,35 +2644,39 @@ Params:
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span>
-<span class="normal">128</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
-<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
-             <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-             <span class="n">url</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span> <span class="c1">#"https://cmr.earthdata.nasa.gov/search/granules.json",</span>
-             <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
-             <span class="p">):</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span>  <span class="c1"># "https://cmr.earthdata.nasa.gov/search/granules.json",</span>
+    <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">"""_summary_</span>
 <span class="sd">    Params:</span>
 <span class="sd">        client_id(str): Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group.</span>
@@ -2435,14 +2687,16 @@ Params:
     <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="o">=</span><span class="n">queryset_type</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example."</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">"No client_id set. Client ids are strongly encouraged by NASA CMR, we suggest using your name or research group's name, for example."</span>
+        <span class="p">)</span>
 
     <span class="c1"># add fields specific to this catalogue</span>
     <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">'id'</span><span class="p">,</span> <span class="s1">'id'</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">'geometry'</span><span class="p">,</span> <span class="s1">'geometry'</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s1">'POLYGON'</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_start'</span><span class="p">,</span> <span class="s1">'datetime_start'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s1">'datetime_end'</span><span class="p">,</span> <span class="s1">'datetime_end'</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_start"</span><span class="p">,</span> <span class="s2">"datetime_start"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
+        <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_end"</span><span class="p">,</span> <span class="s2">"datetime_end"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
     <span class="p">]</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
