@@ -19,7 +19,7 @@ database = PostGISDatabase(
 
 # make an instance of the catalogue object corresponding to which catalogue you want to download from
 catalogue = NasaCMR(
-    client_id="my_name", #NasaCMR takes a client_id as recommended by CMR
+    client_id="my_name",  # NasaCMR takes a client_id as recommended by CMR
 )
 
 # define a queryset obect to filter the temporal and spatial bounds of your download
