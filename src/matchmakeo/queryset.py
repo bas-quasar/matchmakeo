@@ -30,9 +30,11 @@ class Queryset:
             current_value = getattr(self, field)
 
             if isinstance(current_value, str):
-                parsed_date = datetime.datetime.strptime(
-                    current_value, self.date_format
-                ).date()
+                parsed_date = (
+                    datetime.datetime.strptime(current_value, self.date_format)
+                    .replace(tzinfo=datetime.timezone.utc)
+                    .date()
+                )
                 setattr(self, field, parsed_date)
 
 

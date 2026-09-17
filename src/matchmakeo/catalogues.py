@@ -259,10 +259,12 @@ class NasaCMR(Catalogue):
                     geometry=coords_to_polygon(granule[0][0]),
                     datetime_start=datetime.strptime(
                         granule[1]["time_start"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                    ).replace(
+                        tzinfo=datetime.timezone.utc
                     ),  # using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11
                     datetime_end=datetime.strptime(
                         granule[1]["time_end"], "%Y-%m-%dT%H:%M:%S.%fZ"
-                    ),
+                    ).replace(tzinfo=datetime.timezone.utc),
                     **granule[1],
                 )
                 connection.execute(insertion)
@@ -550,10 +552,12 @@ class JaxaGportal(Catalogue):
                     geometry=geojon_to_polygon(prod.geometry),
                     datetime_start=datetime.strptime(
                         prod.properties["beginPosition"], "%Y-%m-%dT%H:%M:%S.%fZ"
+                    ).replace(
+                        tzinfo=datetime.timezone.utc
                     ),  # using datetime.strptime instead of datetime.fromisoformat for back compatibility pre-python 3.11
                     datetime_end=datetime.strptime(
                         prod.properties["endPosition"], "%Y-%m-%dT%H:%M:%S.%fZ"
-                    ),
+                    ).replace(tzinfo=datetime.timezone.utc),
                     **{
                         k: v
                         for k, v in prod.properties.items()
