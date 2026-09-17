@@ -91,11 +91,11 @@ You should consult with your HPC administrators and/or documentation before usin
     from matchmakeo.databases import PostGISDatabase
 
     database = PostGISDatabase(
-        username="my_user", # as defined earlier
-        password="my_secure_password", # as defined earlier
-        database="my_spatial_db", # the default database name
-        host="localhost", # if running on the same host/node as the database
-        port=5432, # the port in the above step
+        username="my_user",  # as defined earlier
+        password="my_secure_password",  # as defined earlier
+        database="my_spatial_db",  # the default database name
+        host="localhost",  # if running on the same host/node as the database
+        port=5432,  # the port in the above step
     )
     ```
 
@@ -106,6 +106,7 @@ You should consult with your HPC administrators and/or documentation before usin
 
         ```python
         import socket
+
         print(socket.gethostname())
         ```
 
@@ -129,11 +130,11 @@ For example, in your python script:
 from matchmakeo.databases import PostGISDatabase
 
 database = PostGISDatabase(
-    username="my_user", # as defined earlier
-    password="my_secure_password", # as defined earlier
-    database="my_spatial_db", # the default database name
-    host="localhost", # if running on the same host/node as the database
-    port=5432, # the port in the above step
+    username="my_user",  # as defined earlier
+    password="my_secure_password",  # as defined earlier
+    database="my_spatial_db",  # the default database name
+    host="localhost",  # if running on the same host/node as the database
+    port=5432,  # the port in the above step
 )
 ```
 

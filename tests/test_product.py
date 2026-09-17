@@ -2,6 +2,7 @@ import pytest
 
 from matchmakeo.product import Product
 
+
 def test_product():
 
     p = Product(name="MOD021KM", table="MOD021KM")
@@ -10,7 +11,7 @@ def test_product():
 
     # mainly because I don't trust dataclasses
     with pytest.raises(TypeError):
-        p = Product(name="MOD021KM")
+        Product(name="MOD021KM")
 
     with pytest.raises(TypeError):
-        p = Product(table="MOD021KM")
+        Product(table="MOD021KM")

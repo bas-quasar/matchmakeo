@@ -1,6 +1,7 @@
-from datetime import date, datetime
+from datetime import date
 
 from matchmakeo.utils import daterange
+
 
 def test_daterange():
 
@@ -11,9 +12,7 @@ def test_daterange():
     dr = daterange(start_date, end_date)
     assert next(dr) == start_date
 
-    dates = []
-    for d in daterange(start_date, end_date):
-        dates.append(d)
+    dates = list(daterange(start_date, end_date))
 
     assert dates[0] == start_date
     assert dates[-1] == end_date
