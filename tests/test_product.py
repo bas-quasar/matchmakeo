@@ -40,3 +40,21 @@ def test_product_table(database):
     table = product.get_table(database)
     assert isinstance(table, sqlalchemy.Table)
     assert table.name == product.table_name
+
+
+def test_product_geometry_column():
+    prod_name = "test_prod_name"
+
+    # using default behaviour
+    product = Product(name=prod_name, table_name=prod_name)
+    assert product.geometry_column == "geometry"
+
+    # setting custom value after initialisation
+    product.geometry_column = "granule"
+    assert product.geometry_column == "granule"
+
+    prod_name = "test_prod_name_2"
+    product_2 = Product(
+        name=prod_name, table_name=prod_name, geometry_column="footprint"
+    )
+    assert product_2.geometry_column == "footprint"

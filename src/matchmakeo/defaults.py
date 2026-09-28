@@ -1,0 +1,1 @@
+DEFAULT_GEOMETRY_COLUMN_NAME = "geometry"

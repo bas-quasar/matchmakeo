@@ -1,6 +1,7 @@
 import sqlalchemy
 
 from .databases import Database
+from .defaults import DEFAULT_GEOMETRY_COLUMN_NAME
 from .utils import setUpLogging
 
 __all__ = ["Product"]
@@ -26,6 +27,7 @@ class Product:
         table_name: str | None = None,
         extra_fields: list | None = None,
         version: int | None = None,
+        geometry_column: str | None = None,
     ):
         if extra_fields is None:
             extra_fields = []
@@ -34,6 +36,7 @@ class Product:
         self.extra_fields = extra_fields
         self.version = version
         self._table = None
+        self._geometry_column = geometry_column
 
         if not table_name:
             log.warning(
@@ -58,3 +61,18 @@ class Product:
                 self.table_name, metadata, autoload_with=database.engine
             )
         return self._table
+
+    # geometry column setters/getters
+    # getter
+    @property
+    def geometry_column(self):
+        if self._geometry_column is None:
+            # TODO automatically find any geometry type columns
+            return DEFAULT_GEOMETRY_COLUMN_NAME
+        else:
+            return self._geometry_column
+
+    # setter
+    @geometry_column.setter
+    def geometry_column(self, value: str):
+        self._geometry_column = value

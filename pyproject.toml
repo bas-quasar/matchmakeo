@@ -50,6 +50,7 @@ docs = [
     "properdocs-theme-readthedocs",
 ]
 test = [
+    "matplotlib>=3.10.9",
     "pytest",
     "pytest-cov",
     "pytest-databases[postgres]",

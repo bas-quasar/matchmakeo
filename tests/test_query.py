@@ -87,7 +87,7 @@ def product_b(database, filepath=None):
     metadata.drop_all(database.engine)
 
 
-class TestQuery:
+class TestSingleProductQuery:
     def test_query_in_time_range(self, database, product_a, product_b):
 
         # initialisation with no products should raise an error
@@ -124,3 +124,58 @@ class TestQuery:
             .execute()
         )
         assert len(in_bbox) == 1
+
+
+class TestMultiProductQuery:
+    def test_intersect_query(self, database, product_a, product_b):
+        intersection = (
+            Query(database, product_a, product_b)
+            .where_spatial_overlap(
+                product_a,
+                product_b,
+                min_overlap_fraction=0.1,
+                relative_to=product_a,
+            )
+            .execute()
+        )
+
+        # plot for debugging
+        # from .utils import visualise_matched_pairs
+        # import matplotlib
+        # matplotlib.use("Agg")
+        # visualise_matched_pairs(
+        #             results,
+        #             id_attrs=("id", "id"),
+        #             time_attrs=("timestamp", "timestamp")
+        #         )
+
+        assert len(intersection) == 2
+
+    def test_spatiotemporal_intersect_query(self, database, product_a, product_b):
+        results = (
+            Query(database, product_a, product_b)
+            .where_spatiotemporal_match(
+                product_a,
+                product_b,
+                relative_to=product_a,
+                min_overlap_fraction=0.1,
+                max_time_delta=datetime.timedelta(days=2),
+            )
+            .execute()
+        )
+
+        # plot for debugging
+        # from .utils import visualise_matched_pairs
+        # import matplotlib
+        # matplotlib.use("Agg")
+        # visualise_matched_pairs(
+        #     results,
+        #     id_attrs=("id", "id"),
+        #     time_attrs=("timestamp", "timestamp")
+        # )
+
+        assert len(results) == 2
+
+
+class TestChainedQuery:
+    pass

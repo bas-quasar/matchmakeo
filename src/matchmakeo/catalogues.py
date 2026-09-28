@@ -36,6 +36,7 @@ except ImportError:
     pass
 
 from .databases import Database
+from .defaults import DEFAULT_GEOMETRY_COLUMN_NAME
 from .field import Field
 from .product import Product
 from .queryset import (
@@ -148,7 +149,9 @@ class NasaCMR(Catalogue):
         # add fields specific to this catalogue
         additional_fields = [
             Field("id", "id", String),
-            Field("geometry", "geometry", Geometry("POLYGON", srid=4326)),
+            Field(
+                "geometry", DEFAULT_GEOMETRY_COLUMN_NAME, Geometry("POLYGON", srid=4326)
+            ),
             Field("datetime_start", "datetime_start", DateTime),
             Field("datetime_end", "datetime_end", DateTime),
         ]
@@ -312,7 +315,9 @@ class EarthEngine(Catalogue):
         # add fields specific to this catalogue
         additional_fields = [
             Field("id", "id", String),
-            Field("geometry", "geometry", Geometry("POLYGON", srid=4326)),
+            Field(
+                "geometry", DEFAULT_GEOMETRY_COLUMN_NAME, Geometry("POLYGON", srid=4326)
+            ),
         ]
         self.fields.extend(additional_fields)
 
@@ -528,7 +533,9 @@ class JaxaGportal(Catalogue):
 
         additional_fields = [
             Field("identifier", "id", String),
-            Field("geometry", "geometry", Geometry("POLYGON", srid=4326)),
+            Field(
+                "geometry", DEFAULT_GEOMETRY_COLUMN_NAME, Geometry("POLYGON", srid=4326)
+            ),
             Field("beginPosition", "datetime_start", DateTime),
             Field("endPosition", "datetime_end", DateTime),
         ]
