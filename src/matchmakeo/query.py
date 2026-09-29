@@ -170,12 +170,17 @@ class Query:
         self,
         product_x: Product,
         product_y: Product,
-        min_overlap_fraction: float,
         relative_to: Product,
+        min_overlap_fraction: float,
     ):
-        """Filters pairs of records based on how much their polygons overlap."""
-        # TODO support more than 2 products
+        """
+        Filters pairs of records between two products where spatial overlap fraction exceeds min_overlap_fraction (0.0 to 1.0).
 
+        :param product_x: First Product instance.
+        :param product_y: Second Product instance.
+        :param min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
+        :param relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
+        """
         if not isinstance(product_x, Product):
             raise TypeError(
                 f"product_x must be of type matchmakeo.Product, got {type(product_x)}"
@@ -185,9 +190,14 @@ class Query:
                 f"product_x must be of type matchmakeo.Product, got {type(product_y)}"
             )
 
+        if not (0.0 <= min_overlap_fraction <= 1.0):
+            raise ValueError("min_overlap_fraction must be between 0.0 and 1.0")
+
         table_x = self._get_table_obj(product_x)
         table_y = self._get_table_obj(product_y)
 
+        area_x = func.ST_Area(table_x.c[product_x.geometry_column])
+        area_y = func.ST_Area(table_y.c[product_y.geometry_column])
         intersection_area = func.ST_Area(
             func.ST_Intersection(
                 table_x.c[product_x.geometry_column],
@@ -196,16 +206,24 @@ class Query:
         )
 
         if relative_to == product_x:
-            base_area = func.ST_Area(table_x.c[product_x.geometry_column])
+            base_area = area_x
         elif relative_to == product_y:
-            base_area = func.ST_Area(table_y.c[product_y.geometry_column])
+            base_area = area_y
         # elif relative_to == "union":
-        #     base_area = func.ST_Area(func.ST_Union(table_x.c.geometry, table_y.c.geometry))
+        #     base_area = func.ST_Area(func.ST_Union(table_x.c.geom, table_y.c.geom))
+        # elif relative_to == "min":
+        #     # Normalizes against whichever polygon is smaller
+        #     base_area = ScalarMin(area_x, area_y)
         else:
             raise ValueError("relative_to must be one of product_x or product_y")
 
-        percentage_calculation = intersection_area / func.nullif(base_area, 0)
-        self._query = self._query.filter(percentage_calculation >= min_overlap_fraction)
+        overlap_fraction = intersection_area / func.nullif(base_area, 0)
+
+        # apply filter to query
+        self._query = self._query.filter(
+            overlap_fraction >= min_overlap_fraction,
+        )
+
         return self
 
     # def where_time_within(
