@@ -85,3 +85,16 @@ results.get_ids()
 # but .to_dicts() returns a list of dicts containing dictionaries each representing a single metadata product
 results.to_dicts()
 ```
+
+## Chaining queries
+
+Each query method can be chained with others, with the first being the first to be evaluated, for example:
+
+```py
+results = (
+    Query(database, product_a, product_b)
+    .within_bbox(...)
+    .where_spatiotemporal_match(...)
+    .execute()
+)
+```
