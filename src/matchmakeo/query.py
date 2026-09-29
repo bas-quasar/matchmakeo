@@ -168,26 +168,30 @@ class Query:
 
     def where_spatial_overlap(
         self,
-        product_x: Product,
-        product_y: Product,
         relative_to: Product,
         min_overlap_fraction: float,
+        product_y: Product | None = None,
+        product_x: Product | None = None,
     ):
         """
         Filters pairs of records between two products where spatial overlap fraction exceeds min_overlap_fraction (0.0 to 1.0).
 
-        :param product_x: First Product instance.
-        :param product_y: Second Product instance.
+        :param product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
+        :param product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
         :param min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
         :param relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
         """
-        if not isinstance(product_x, Product):
-            raise TypeError(
-                f"product_x must be of type matchmakeo.Product, got {type(product_x)}"
-            )
-        if not isinstance(product_y, Product):
-            raise TypeError(
-                f"product_x must be of type matchmakeo.Product, got {type(product_y)}"
+        # Infer products when Query has exactly 2 products
+        if product_x is None and product_y is None:
+            if len(self.products) == 2:
+                product_x, product_y = self.products[0], self.products[1]
+            else:
+                raise ValueError(
+                    "You must specify product_x and product_y when Query contains more than 2 products."
+                )
+        elif product_x is None or product_y is None:
+            raise ValueError(
+                "Both product_x and product_y must be provided if specifying one."
             )
 
         if not (0.0 <= min_overlap_fraction <= 1.0):
@@ -226,36 +230,63 @@ class Query:
 
         return self
 
-    # def where_time_within(
-    #     self,
-    #     product_x,
-    #     product_y,
-    #     start_attr: str = "timestamp",
-    #     end_attr: str | None = None,
-    # ):
-    #     """Filters pairs of records where their timestamps or time windows intersect."""
-    #     table_x = self._get_table_obj(product_x)
-    #     table_y = self._get_table_obj(product_y)
+    def where_time_within(
+        self,
+        max_time_delta: float | timedelta,
+        product_x: Product | None = None,
+        product_y: Product | None = None,
+        time_attr_x: str = "timestamp",
+        time_attr_y: str = "timestamp",
+    ):
+        """
+        Filters paired records to those occurring within `max_time_delta` of each other.
 
-    #     x_start = getattr(table_x.c, start_attr)
-    #     y_start = getattr(table_y.c, start_attr)
+        :param max_time_delta: Maximum time difference in seconds (float/int) or a timedelta object.
+        :param product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
+        :param product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
+        :param time_attr_x: Timestamp column name for product_x.
+        :param time_attr_y: Timestamp column name for product_y.
+        """
+        # Infer products when Query has exactly 2 products
+        if product_x is None and product_y is None:
+            if len(self.products) == 2:
+                product_x, product_y = self.products[0], self.products[1]
+            else:
+                raise ValueError(
+                    "You must specify product_x and product_y when Query contains more than 2 products."
+                )
+        elif product_x is None or product_y is None:
+            raise ValueError(
+                "Both product_x and product_y must be provided if specifying one."
+            )
 
-    #     if end_attr:
-    #         x_end = getattr(table_x.c, end_attr)
-    #         y_end = getattr(table_y.c, end_attr)
-    #         self._query = self._query.filter(and_(x_start <= y_end, x_end >= y_start))
-    #     else:
-    #         self._query = self._query.filter(x_start == y_start)
+        # Extract aliased table objects and timestamp columns
+        table_x = self._get_table_obj(product_x)
+        table_y = self._get_table_obj(product_y)
 
-    #     return self
+        time_x = table_x.c[time_attr_x]
+        time_y = table_y.c[time_attr_y]
+
+        # Standardize max_time_delta to seconds
+        if isinstance(max_time_delta, timedelta):
+            delta_seconds = max_time_delta.total_seconds()
+        else:
+            delta_seconds = float(max_time_delta)
+
+        # Apply cross-dialect temporal filter
+        self._query = self._query.filter(
+            TimeDiffSeconds(time_x, time_y) <= delta_seconds
+        )
+
+        return self
 
     def where_spatiotemporal_match(
         self,
-        product_x: Product,
-        product_y: Product,
         relative_to: Product,
         min_overlap_fraction: float,
         max_time_delta: timedelta | float,
+        product_x: Product | None = None,
+        product_y: Product | None = None,
         time_column_x: str = "timestamp",
         time_column_y: str = "timestamp",
     ):
@@ -264,21 +295,25 @@ class Query:
         1. Spatial overlap fraction exceeds min_overlap_fraction (0.0 to 1.0).
         2. Absolute difference between specified timestamp columns is within max_time_delta.
 
-        :param product_x: First Product instance.
-        :param product_y: Second Product instance.
+        :param product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
+        :param product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
         :param min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
         :param max_time_delta: Max time difference as a datetime.timedelta or number of seconds.
         :param time_attr_x: Name of timestamp column on product_x.
         :param time_attr_y: Name of timestamp column on product_y.
         :param relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
         """
-        if not isinstance(product_x, Product):
-            raise TypeError(
-                f"product_x must be of type matchmakeo.Product, got {type(product_x)}"
-            )
-        if not isinstance(product_y, Product):
-            raise TypeError(
-                f"product_x must be of type matchmakeo.Product, got {type(product_y)}"
+        # Infer products when Query has exactly 2 products
+        if product_x is None and product_y is None:
+            if len(self.products) == 2:
+                product_x, product_y = self.products[0], self.products[1]
+            else:
+                raise ValueError(
+                    "You must specify product_x and product_y when Query contains more than 2 products."
+                )
+        elif product_x is None or product_y is None:
+            raise ValueError(
+                "Both product_x and product_y must be provided if specifying one."
             )
 
         if not (0.0 <= min_overlap_fraction <= 1.0):

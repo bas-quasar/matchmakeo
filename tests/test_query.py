@@ -133,8 +133,6 @@ class TestMultiProductQuery:
         results = (
             Query(database, product_a, product_b)
             .where_spatial_overlap(
-                product_a,
-                product_b,
                 min_overlap_fraction=0.1,
                 relative_to=product_a,
             )
@@ -162,12 +160,23 @@ class TestMultiProductQuery:
             for values in element.values():
                 assert isinstance(values, dict)
 
+    def test_time_within_query(self, database, product_a, product_b):
+        results = (
+            Query(database, product_a, product_b)
+            .where_time_within(
+                max_time_delta=datetime.timedelta(days=2),
+                product_x=product_a,
+                product_y=product_b,
+            )
+            .execute()
+        )
+        assert isinstance(results, MatchResultSet)
+        assert len(results) == 3
+
     def test_spatiotemporal_intersect_query(self, database, product_a, product_b):
         results = (
             Query(database, product_a, product_b)
             .where_spatiotemporal_match(
-                product_a,
-                product_b,
                 relative_to=product_a,
                 min_overlap_fraction=0.1,
                 max_time_delta=datetime.timedelta(days=2),
@@ -189,4 +198,32 @@ class TestMultiProductQuery:
 
 
 class TestChainedQuery:
-    pass
+    def test_chained_spatiotemporal_intersect_query(
+        self, database, product_a, product_b
+    ):
+        single_query_results = (
+            Query(database, product_a, product_b)
+            .where_spatiotemporal_match(
+                relative_to=product_a,
+                min_overlap_fraction=0.1,
+                max_time_delta=datetime.timedelta(days=2),
+            )
+            .execute()
+        )
+
+        chained_query_results = (
+            Query(database, product_a, product_b)
+            .where_time_within(
+                max_time_delta=datetime.timedelta(days=2),
+                product_x=product_a,
+                product_y=product_b,
+            )
+            .where_spatial_overlap(
+                min_overlap_fraction=0.1,
+                relative_to=product_a,
+            )
+            .execute()
+        )
+
+        assert len(single_query_results) == len(chained_query_results)
+        assert single_query_results.to_dicts() == chained_query_results.to_dicts()
