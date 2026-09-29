@@ -76,28 +76,84 @@ class Query:
 
         return self._product_to_alias[product]
 
+    def _resolve_products(self, product=None):
+        """
+        Normalizes the target product input into a list of Product instances.
+        Defaults to all registered products if product is None.
+        """
+        if product is None:
+            return list(self.products)
+        if isinstance(product, (list, tuple, set)):
+            return list(product)
+        return [product]
+
     # ==========================================
     # SINGLE & MULTI-PRODUCT FILTERS
     # ==========================================
 
     def in_time_range(
-        self, start_date, end_date, product: Product, attr_name: str = "timestamp"
+        self, start_time=None, end_time=None, product=None, time_attr="timestamp"
     ):
-        """Filters a single product's records within a absolute time range."""
-        table = self._get_table_obj(product)
-        time_col = getattr(table.c, attr_name)
-        self._query = self._query.filter(time_col.between(start_date, end_date))
+        """
+        Filters records occurring within [start_time, end_time].
+
+        :param start_time: Start datetime (inclusive), or None.
+        :param end_time: End datetime (inclusive), or None.
+        :param product: Product, list of Products, or None (defaults to all products).
+        :param time_attr: Column name string, or dict mapping {product: "col_name"}.
+        """
+        target_products = self._resolve_products(product)
+        conditions = []
+
+        for p in target_products:
+            table = self._get_table_obj(p)
+
+            # Resolve column name if passed as a dictionary mapping
+            col_name = (
+                time_attr.get(p, "timestamp")
+                if isinstance(time_attr, dict)
+                else time_attr
+            )
+            time_col = getattr(table.c, col_name)
+
+            if start_time is not None:
+                conditions.append(time_col >= start_time)
+            if end_time is not None:
+                conditions.append(time_col <= end_time)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
         return self
 
     def within_bbox(
-        self, min_x, min_y, max_x, max_y, product: Product, srid: int = 4326
+        self,
+        xmin: float,
+        ymin: float,
+        xmax: float,
+        ymax: float,
+        srid: int = 4326,
+        product=None,
     ):
-        """Filters a single product's records within a bounding box spatial envelope."""
-        table = self._get_table_obj(product)
-        bbox = func.ST_MakeEnvelope(min_x, min_y, max_x, max_y, srid)
-        self._query = self._query.filter(
-            table.c[product.geometry_column].ST_Intersects(bbox)
-        )
+        """
+        Filters records whose geometry intersects the bounding envelope [xmin, ymin, xmax, ymax].
+
+        :param xmin, ymin, xmax, ymax: Bounding box spatial coordinates.
+        :param srid: Spatial Reference System Identifier (default 4326).
+        :param product: Product, list of Products, or None (defaults to all products).
+        """
+        target_products = self._resolve_products(product)
+        envelope = func.ST_MakeEnvelope(xmin, ymin, xmax, ymax, srid)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            geom_col = table.c[p.geometry_column]
+            conditions.append(geom_col.ST_Intersects(envelope, use_spatial_index=False))
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
         return self
 
     def within_polygon(self):

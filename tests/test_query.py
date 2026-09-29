@@ -93,8 +93,8 @@ class TestSingleProductQuery:
         results = (
             Query(database, product_a)
             .in_time_range(
-                start_date=datetime.datetime.fromisoformat("2026-07-14T11:00:00"),
-                end_date=datetime.datetime.fromisoformat("2026-07-14T12:00:00"),
+                start_time=datetime.datetime.fromisoformat("2026-07-14T11:00:00"),
+                end_time=datetime.datetime.fromisoformat("2026-07-14T12:00:00"),
                 product=product_a,
             )
             .execute()
@@ -108,10 +108,10 @@ class TestSingleProductQuery:
         results = (
             Query(database, product_a)
             .within_bbox(
-                min_x=0.077591,
-                min_y=52.169931,
-                max_x=0.190887,
-                max_y=52.233477,
+                xmin=0.077591,
+                ymin=52.169931,
+                xmax=0.190887,
+                ymax=52.233477,
                 product=product_a,
                 srid=4326,
             )

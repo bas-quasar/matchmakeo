@@ -6,7 +6,7 @@ It provides hopefully intuitive and concise interfaces with metadata catalogues 
 
 ## Concepts
 
-Much of the terminology is heterogeneous across different data sources and we need to represent those concepts within `matchmakeo`'s interface, here we attempt to clarify.
+Much of the terminology is heterogeneous across different data sources and we need to represent those concepts within `matchmakeo`'s interface, here we attempt to clarify the terminology used here.
 
 ### Metadata
 
@@ -48,10 +48,11 @@ For help setting up a database, see the [databases page](databases.md).
 
 ### Querying
 
-_In progress..._
+Using `matchmakeo` to request results from the database that match a set of criteria such as: within a bounding box; or intersecting with one another, for results from different products.
 
 ## Workflow
 
+This diagram aims to visualise the steps and structures used in a `matchmakeo` workflow.
 
 ```mermaid
 flowchart TB
@@ -72,3 +73,16 @@ flowchart TB
     G -.-> H
     style H stroke-dasharray: 5 5
 ```
+
+For each data product:
+
+1. We start by defining the information needed to get metadata from a Catalogue:
+   - A `DownloadParams` object defining the parameters that are supported for querying by a particular metadata catalogue for our download,
+   - Definition of the data product, in a `Product` object.
+2. These are passed to the `Catalogue` object, corresponding to the data catalogue needed.
+3. Run a download to bring the metadata into your database.
+
+Once all the metadata you want are in your database:
+
+4. Construct and execute a `Query` to find the images of interest,
+5. From the query results, output a list of images to be downloaded and processed by your preferred tools.
