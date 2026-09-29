@@ -6,15 +6,7 @@ import pytest
 from geoalchemy2 import Geometry
 from sqlalchemy import Column, DateTime, Integer, MetaData, Table
 
-from matchmakeo import Product, Query
-
-#
-# Landsat ID	Wildfire ID	Time Difference	Expected Overlap %	Scenario
-# 1	101	5 mins	80%	Near-instant match, high spatial overlap.
-# 2	102	3.5 hours	30%	Multi-hour match, partial spatial overlap.
-# 3	103	1.5 mins	5%	Instantaneous match, but very tiny edge clipping.
-# 4	104	2 mins	0%	Fast temporal alignment, but absolutely no spatial match.
-# 5	105	27 hours	100%
+from matchmakeo import MatchResultSet, Product, Query, ResultSet
 
 
 def _build_mock_product(db, fixtures_file, table_name, date_fields):
@@ -98,7 +90,7 @@ class TestSingleProductQuery:
         Query(database, product_a, product_b)
 
         # perform simple query
-        in_time_range = (
+        results = (
             Query(database, product_a)
             .in_time_range(
                 start_date=datetime.datetime.fromisoformat("2026-07-14T11:00:00"),
@@ -107,11 +99,13 @@ class TestSingleProductQuery:
             )
             .execute()
         )
-        assert len(in_time_range) == 5
+        assert isinstance(results, ResultSet)
+        assert len(results) == 5
+        assert results.get_ids() == [1, 2, 3, 4, 5]
 
     def test_query_within_bbox(self, database, product_a):
 
-        in_bbox = (
+        results = (
             Query(database, product_a)
             .within_bbox(
                 min_x=0.077591,
@@ -123,12 +117,20 @@ class TestSingleProductQuery:
             )
             .execute()
         )
-        assert len(in_bbox) == 1
+        assert isinstance(results, ResultSet)
+        assert len(results) == 1
+
+        # tests for ResultSet
+        results_list = results.to_dicts()
+        assert results.get_ids() == [1]
+        assert isinstance(results_list, list)
+        for element in results_list:
+            assert isinstance(element, dict)
 
 
 class TestMultiProductQuery:
     def test_intersect_query(self, database, product_a, product_b):
-        intersection = (
+        results = (
             Query(database, product_a, product_b)
             .where_spatial_overlap(
                 product_a,
@@ -149,7 +151,16 @@ class TestMultiProductQuery:
         #             time_attrs=("timestamp", "timestamp")
         #         )
 
-        assert len(intersection) == 2
+        assert isinstance(results, MatchResultSet)
+        assert len(results) == 2
+
+        # tests for MatchResultSet
+        results_list = results.to_dicts()
+        assert isinstance(results_list, list)
+        for element in results_list:
+            assert isinstance(element, dict)
+            for values in element.values():
+                assert isinstance(values, dict)
 
     def test_spatiotemporal_intersect_query(self, database, product_a, product_b):
         results = (
@@ -173,7 +184,7 @@ class TestMultiProductQuery:
         #     id_attrs=("id", "id"),
         #     time_attrs=("timestamp", "timestamp")
         # )
-
+        assert isinstance(results, MatchResultSet)
         assert len(results) == 2
 
 

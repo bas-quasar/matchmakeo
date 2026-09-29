@@ -362,10 +362,10 @@ class ResultSet:
         return len(self.raw_results)
 
     def get_ids(self, id_col="id"):
-        return [getattr(row, id_col) for row in self.raw_results]
+        return [getattr(row[0]._mapping, id_col) for row in self.raw_results]
 
     def to_dicts(self):
-        return [row._mapping for row in self.raw_results]
+        return [dict(row[0]._mapping) for row in self.raw_results]
 
 
 class MatchResultSet:
@@ -394,25 +394,26 @@ class MatchResultSet:
             getattr(row_group[product_index], id_col) for row_group in self.raw_results
         ]
 
-    def to_dicts(self, prefixes=None):
+    def to_dicts(self, prefixes: str | None = None):
         """
         Flattens the N-tuple records into single dictionaries.
-        Auto-generates prefixes (t0_, t1_, etc.) if none are provided.
+        Auto-generates key name prefixes from product names by default, optionally provide prefixes.
         """
         if prefixes is None:
-            prefixes = [f"t{i}_" for i in range(len(self.products))]
+            prefixes = [str(product.name) for product in self.products]
 
         if len(prefixes) != len(self.products):
             raise ValueError(
                 f"Expected {len(self.products)} prefixes, got {len(prefixes)}"
             )
 
+        # produce a list of dicts (products) of dicts(fields)
         flattened = []
         for row_group in self.raw_results:
             merged_dict = {}
             for idx, row in enumerate(row_group):
                 prefix = prefixes[idx]
-                merged_dict.update({f"{prefix}{k}": v for k, v in row._mapping.items()})
+                merged_dict.update({prefix: dict(row._mapping)})
             flattened.append(merged_dict)
 
         return flattened
@@ -426,7 +427,7 @@ class MatchResultSet:
 
         new_columns = []
 
-        # 1. Clone column definitions from all Products dynamically
+        # Clone column definitions from all Products dynamically
         for idx, product in enumerate(self.products):
             table = product.get_table(db)
             prefix = prefixes[idx]
@@ -434,13 +435,13 @@ class MatchResultSet:
             for col in table.c:
                 new_columns.append(Column(f"{prefix}{col.name}", type_=col.type))
 
-        # 2. Define and create the new table
+        # Define and create the new table
         combined_table = Table(
             table_name, db.metadata, *new_columns, extend_existing=True
         )
         combined_table.create(db.engine, checkfirst=True)
 
-        # 3. Bulk insert the flattened records
+        # Bulk insert the flattened records
         records = self.to_dicts(prefixes)
         if records:
             with db.engine.begin() as conn:
