@@ -12,18 +12,18 @@ from gportal.search import Search
 from sqlalchemy.orm import Session
 
 from matchmakeo.catalogues import EarthEngine, JaxaGportal, NasaCMR
-from matchmakeo.product import Product
-from matchmakeo.queryset import (
-    EarthEngineQueryset,
-    JaxaGportalQueryset,
-    NasaCMRQueryset,
+from matchmakeo.download_params import (
+    EarthEngineDownloadParams,
+    JaxaGportalDownloadParams,
+    NasaCMRDownloadParams,
 )
+from matchmakeo.product import Product
 
 
 class TestNasaCmr:
     @pytest.fixture
-    def queryset(self):
-        yield NasaCMRQueryset(
+    def download_params(self):
+        yield NasaCMRDownloadParams(
             start_date="2020-01-01",
             end_date="2020-01-31",
             lat_max=-70,
@@ -52,7 +52,7 @@ class TestNasaCmr:
     def test_mock_cmr(
         self,
         database,
-        queryset,
+        download_params,
         product,
         catalogue,
         mock_cmr_products,
@@ -61,7 +61,10 @@ class TestNasaCmr:
         with requests_mock.Mocker() as m:
             m.get(catalogue.url, status_code=200, json=mock_cmr_products)
             catalogue.download_footprints(
-                product=product, queryset=queryset, database=database, dry_run=False
+                product=product,
+                download_params=download_params,
+                database=database,
+                dry_run=False,
             )
 
         metadata = sqlalchemy.MetaData()
@@ -80,14 +83,17 @@ class TestNasaCmr:
     def test_live_cmr(
         self,
         database,
-        queryset,
+        download_params,
         product,
         catalogue,
         mock_cmr_products,
     ):
 
         catalogue.download_footprints(
-            product=product, queryset=queryset, database=database, dry_run=False
+            product=product,
+            download_params=download_params,
+            database=database,
+            dry_run=False,
         )
 
         metadata = sqlalchemy.MetaData()
@@ -111,8 +117,8 @@ class TestEarthEngine:
         )
 
     @pytest.fixture
-    def queryset(self):
-        yield EarthEngineQueryset(
+    def download_params(self):
+        yield EarthEngineDownloadParams(
             start_date="2020-01-01",
             end_date="2020-01-02",
             lat_max=-70,
@@ -140,7 +146,7 @@ class TestEarthEngine:
         mock_google_auth,
         mock_num_workers,
         database,
-        queryset,
+        download_params,
         product,
     ):
 
@@ -168,7 +174,7 @@ class TestEarthEngine:
 
         catalogue.download_footprints(
             product=product,
-            queryset=queryset,
+            download_params=download_params,
             database=database,
             dry_run=False,
         )
@@ -192,7 +198,7 @@ class TestEarthEngine:
         self,
         mock_num_workers,
         database,
-        queryset,
+        download_params,
         product,
     ):
 
@@ -203,7 +209,7 @@ class TestEarthEngine:
 
         catalogue.download_footprints(
             product=product,
-            queryset=queryset,
+            download_params=download_params,
             database=database,
             dry_run=False,
         )
@@ -220,8 +226,8 @@ class TestEarthEngine:
 
 class TestJaxaGportal:
     @pytest.fixture
-    def queryset(self):
-        yield JaxaGportalQueryset(
+    def download_params(self):
+        yield JaxaGportalDownloadParams(
             start_date="2020-01-01",
             end_date="2020-01-31",
             lat_max=-70,
@@ -252,7 +258,7 @@ class TestJaxaGportal:
             mock_search_matched,
             mock_search_products,
             database,
-            queryset,
+            download_params,
             product,
             catalogue,
         ):
@@ -267,7 +273,10 @@ class TestJaxaGportal:
             mock_search_matched.return_value = len(mock_products)
 
             results = catalogue.download_footprints(
-                product=product, queryset=queryset, database=None, dry_run=True
+                product=product,
+                download_params=download_params,
+                database=None,
+                dry_run=True,
             )
             assert results.params["datasetId"] == product.name
             assert results.matched() == len(mock_products)
@@ -276,7 +285,10 @@ class TestJaxaGportal:
             mock_search_products.side_effect = None
             mock_search_products.return_value = None
             results = catalogue.download_footprints(
-                product=product, queryset=queryset, database=database, dry_run=False
+                product=product,
+                download_params=download_params,
+                database=database,
+                dry_run=False,
             )
             assert results is None
 
@@ -287,7 +299,10 @@ class TestJaxaGportal:
             mock_search_products.side_effect = mock_products_generator
 
             results = catalogue.download_footprints(
-                product=product, queryset=queryset, database=database, dry_run=False
+                product=product,
+                download_params=download_params,
+                database=database,
+                dry_run=False,
             )
 
             metadata = sqlalchemy.MetaData()
@@ -306,20 +321,26 @@ class TestJaxaGportal:
     def test_live_gportal(
         self,
         database,
-        queryset,
+        download_params,
         product,
         catalogue,
     ):
 
         results = catalogue.download_footprints(
-            product=product, queryset=queryset, database=None, dry_run=True
+            product=product,
+            download_params=download_params,
+            database=None,
+            dry_run=True,
         )
         assert results.params["datasetId"] == product.name
         num_results = results.matched()
         assert num_results > 0
 
         results = catalogue.download_footprints(
-            product=product, queryset=queryset, database=database, dry_run=False
+            product=product,
+            download_params=download_params,
+            database=database,
+            dry_run=False,
         )
 
         metadata = sqlalchemy.MetaData()

@@ -50,7 +50,7 @@ For example, for MODIS:
 ```python
 from matchmakeo.catalogues import NasaCMR
 from matchmakeo.databases import PostGISDatabase
-from matchmakeo.queryset import NasaCMRQueryset
+from matchmakeo.download_params import NasaCMRDownloadParams
 from matchmakeo import Product
 
 # define your database object with the connection details
@@ -67,9 +67,9 @@ catalogue = NasaCMR(
     client_id="my_name",  # NasaCMR takes a client_id as recommended by CMR
 )
 
-# define a queryset obect to filter the temporal and spatial bounds of your download
-# some catalogues have a corresponding queryset type, others just use the base Queryset
-queryset = NasaCMRQueryset(
+# define a download_params obect to filter the temporal and spatial bounds of your download
+# some catalogues have a corresponding download_params type, others just use the base DownloadParams
+download_params = NasaCMRDownloadParams(
     start_date="2020-01-01",
     end_date="2020-01-31",
     page_size=200,
@@ -87,10 +87,10 @@ product = Product(
     table_name="modis_aqua",  # table name to insert these into in your database
 )
 
-# run the download, passing in the product, queryset and database objects as arguments
+# run the download, passing in the product, download_params and database objects as arguments
 catalogue.download_footprints(
     product=product,
-    queryset=queryset,
+    download_params=download_params,
     database=database,
     # optionally set dry run to be True, each catalogue behaves differently but nothing will be inserted into the database if so
     # when dry_run=True database can be None, so you can run without a database set up

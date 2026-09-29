@@ -57,7 +57,7 @@ _In progress..._
 flowchart TB
     A[(Data Catalogue)]
     B(<code>Catalogue</code>)
-    C(Queryset)
+    C(DownloadParams)
     D(Product)
     E[(Database)]
     F(Query)

@@ -12,7 +12,7 @@ Some of the same satellite data products are available through different catalog
 
 The catalogues are each represented by a class in the `matchmakeo.catalogues` module, e.g. `NasaCMR`, `EarthEngine` or `JaxaGportal`.
 
-Some of the catalogues have a corresponding queryset class, e.g. `NasaCMRqueryset` which handle parameters which are specific to downloading from that catalogue, such as `page_size` (the number of records to download in one request).
+Some of the catalogues have a corresponding download_params class, e.g. `NasaCMRDownloadParams` which handle parameters which are specific to downloading from that catalogue, such as `page_size` (the number of records to download in one request).
 
 ## NASA Common Metadata Repository (CMR) {#nasacmr}
 Home: <https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr>
