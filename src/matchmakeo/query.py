@@ -1,3 +1,4 @@
+from abc import ABC
 from datetime import timedelta
 
 from geoalchemy2.functions import ST_MakeEnvelope
@@ -457,18 +458,20 @@ def _scalar_min_sqlite(element, compiler, **kw):
     return f"MIN({compiler.process(arg1)}, {compiler.process(arg2)})"
 
 
-class ResultSet:
-    """Wraps the results of a single-product query."""
-
-    def __init__(self, raw_results, product):
-        self.raw_results = raw_results
-        self.product = product
-
+class ResultBase(ABC):
     def __iter__(self):
         return iter(self.raw_results)
 
     def __len__(self):
         return len(self.raw_results)
+
+
+class ResultSet(ResultBase):
+    """Wraps the results of a single-product query."""
+
+    def __init__(self, raw_results, product):
+        self.raw_results = raw_results
+        self.product = product
 
     def get_ids(self, id_col="id"):
         return [getattr(row[0]._mapping, id_col) for row in self.raw_results]
@@ -477,18 +480,12 @@ class ResultSet:
         return [dict(row[0]._mapping) for row in self.raw_results]
 
 
-class MatchResultSet:
+class MatchResultSet(ResultBase):
     """Wraps the paired/grouped results of an N-product Query."""
 
     def __init__(self, raw_results, *products):
         self.raw_results = raw_results
         self.products = products
-
-    def __iter__(self):
-        return iter(self.raw_results)
-
-    def __len__(self):
-        return len(self.raw_results)
 
     def get_ids(self, product_index: int, id_col="id"):
         """
