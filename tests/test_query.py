@@ -103,6 +103,46 @@ class TestSingleProductQuery:
         assert len(results) == 5
         assert results.get_ids() == [1, 2, 3, 4, 5]
 
+    def test_query_param_equals(self, database, product_a):
+        results = (
+            Query(database, product_a).with_param_equal(params={"id": 1}).execute()
+        )
+        assert isinstance(results, ResultSet)
+        assert len(results) == 1
+        assert results.get_ids() == [1]
+
+    def test_query_param_lt(self, database, product_a):
+        results = Query(database, product_a).with_param_lt(params={"id": 3}).execute()
+        assert isinstance(results, ResultSet)
+        assert len(results) == 2
+        assert results.get_ids() == [1, 2]
+
+    def test_query_param_le(self, database, product_a):
+        results = (
+            Query(database, product_a)
+            .with_param_le(
+                params={
+                    "id": 3,
+                }
+            )
+            .execute()
+        )
+        assert isinstance(results, ResultSet)
+        assert len(results) == 3
+        assert results.get_ids() == [1, 2, 3]
+
+    def test_query_param_ge(self, database, product_a):
+        results = Query(database, product_a).with_param_ge(params={"id": 3}).execute()
+        assert isinstance(results, ResultSet)
+        assert len(results) == 3
+        assert results.get_ids() == [3, 4, 5]
+
+    def test_query_param_gt(self, database, product_a):
+        results = Query(database, product_a).with_param_gt(params={"id": 3}).execute()
+        assert isinstance(results, ResultSet)
+        assert len(results) == 2
+        assert results.get_ids() == [4, 5]
+
     def test_query_within_bbox(self, database, product_a):
 
         results = (

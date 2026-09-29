@@ -1,5 +1,5 @@
 from abc import ABC
-from datetime import timedelta
+from datetime import datetime, timedelta
 
 from geoalchemy2.functions import ST_MakeEnvelope
 from sqlalchemy import Column, Table, func
@@ -13,6 +13,11 @@ from .product import Product
 
 
 class Query:
+    """Constructor for all database product queries.
+    Queries can be chained together on the query object, e.g. Query().within_bbox().with_parameter_equal()
+    and must be executed with .execute, e.g. Query().within_bbox().with_parameter_equal().execute()
+    """
+
     def __init__(self, database: Database, *products):
         """
         Initializes the query/match engine using one or more Product instances.
@@ -93,15 +98,20 @@ class Query:
     # ==========================================
 
     def in_time_range(
-        self, start_time=None, end_time=None, product=None, time_attr="timestamp"
+        self,
+        start_time: datetime | None = None,
+        end_time: datetime | None = None,
+        product: Product | None = None,
+        time_attr="timestamp",
     ):
         """
         Filters records occurring within [start_time, end_time].
 
-        :param start_time: Start datetime (inclusive), or None.
-        :param end_time: End datetime (inclusive), or None.
-        :param product: Product, list of Products, or None (defaults to all products).
-        :param time_attr: Column name string, or dict mapping {product: "col_name"}.
+        Args:
+            start_time: Start datetime (inclusive), or None.
+            end_time: End datetime (inclusive), or None.
+            product: Product, list of Products, or None (defaults to all products).
+            time_attr: Column name string, or dict mapping {product: "col_name"}.
         """
         target_products = self._resolve_products(product)
         conditions = []
@@ -134,14 +144,15 @@ class Query:
         xmax: float,
         ymax: float,
         srid: int = 4326,
-        product=None,
+        product: Product | None = None,
     ):
         """
         Filters records whose geometry intersects the bounding envelope [xmin, ymin, xmax, ymax].
 
-        :param xmin, ymin, xmax, ymax: Bounding box spatial coordinates.
-        :param srid: Spatial Reference System Identifier (default 4326).
-        :param product: Product, list of Products, or None (defaults to all products).
+        Args:
+            xmin, ymin, xmax, ymax (float): Bounding box spatial coordinates.
+            srid (int): Spatial Reference System Identifier (default 4326).
+            product (Product|list|None): Product, list of Products, or None (defaults to all products).
         """
         target_products = self._resolve_products(product)
         envelope = func.ST_MakeEnvelope(xmin, ymin, xmax, ymax, srid)
@@ -151,6 +162,118 @@ class Query:
             table = self._get_table_obj(p)
             geom_col = table.c[p.geometry_column]
             conditions.append(geom_col.ST_Intersects(envelope, use_spatial_index=False))
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_equal(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value equal to the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col == v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_gt(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value greater than (>) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col > v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_ge(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value greater than or equal to (>=) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col >= v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_lt(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value less than (<) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col < v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_le(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value less than or equal to (<=) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col <= v)
 
         if conditions:
             self._query = self._query.filter(*conditions)
@@ -177,10 +300,11 @@ class Query:
         """
         Filters pairs of records between two products where spatial overlap fraction exceeds min_overlap_fraction (0.0 to 1.0).
 
-        :param product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
-        :param product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
-        :param min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
-        :param relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
+        Args:
+            product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
+            product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
+            min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
+            relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
         """
         # Infer products when Query has exactly 2 products
         if product_x is None and product_y is None:
@@ -242,11 +366,12 @@ class Query:
         """
         Filters paired records to those occurring within `max_time_delta` of each other.
 
-        :param max_time_delta: Maximum time difference in seconds (float/int) or a timedelta object.
-        :param product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
-        :param product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
-        :param time_attr_x: Timestamp column name for product_x.
-        :param time_attr_y: Timestamp column name for product_y.
+        Args:
+            max_time_delta: Maximum time difference in seconds (float/int) or a timedelta object.
+            product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
+            product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
+            time_attr_x: Timestamp column name for product_x.
+            time_attr_y: Timestamp column name for product_y.
         """
         # Infer products when Query has exactly 2 products
         if product_x is None and product_y is None:
@@ -296,13 +421,14 @@ class Query:
         1. Spatial overlap fraction exceeds min_overlap_fraction (0.0 to 1.0).
         2. Absolute difference between specified timestamp columns is within max_time_delta.
 
-        :param product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
-        :param product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
-        :param min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
-        :param max_time_delta: Max time difference as a datetime.timedelta or number of seconds.
-        :param time_attr_x: Name of timestamp column on product_x.
-        :param time_attr_y: Name of timestamp column on product_y.
-        :param relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
+        Args:
+            relative_to: must be one of the products in self.products
+            min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
+            max_time_delta: Max time difference as a datetime.timedelta or number of seconds.
+            product_x: First Product instance (defaults to self.products[0] if Query has 2 products).
+            product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
+            time_column_x: Name of timestamp column on product_x.
+            time_column_y: Name of timestamp column on product_y.
         """
         # Infer products when Query has exactly 2 products
         if product_x is None and product_y is None:
@@ -373,16 +499,6 @@ class Query:
         )
 
         return self
-
-    # def where_property_match(self, product_x, attr_x: str, product_y, attr_y: str):
-    #     """Filters pairs where metadata properties match across tables."""
-    #     table_x = self._get_table_obj(product_x)
-    #     table_y = self._get_table_obj(product_y)
-
-    #     self._query = self._query.filter(
-    #         getattr(table_x.c, attr_x) == getattr(table_y.c, attr_y)
-    #     )
-    #     return self
 
     # ==========================================
     # Query execution
