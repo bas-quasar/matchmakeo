@@ -35,6 +35,10 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+exclude_docs: |
+  overrides/
+  partials/
+
 nav:
   - Home: index.md
   - Installation: installation.md
