@@ -1137,6 +1137,15 @@
 
 
 <h1 id="downloading-footprints">Downloading footprints</h1>
+<p>The <code>matchmakeo</code> workflow is to download some metadata from a catalogue into our database. This allows us to then do some more sophisticaated comparisons and analysis using a geospatial database.</p>
+<p>Catalogues allow us to filter our downloads by a few criteria, usually by some time bounds and simple bounding box (others are available, depending on the catalogue, and we're working on supporting more in <code>matchmakeo</code>)</p>
+<p>In order to perform a download, we need to know a few things:</p>
+<ul>
+<li>Which metadata catalogue do we want to use (see <a href="../catalogues/">catalogues</a>)</li>
+<li>Which data product do we want metadata for? (see <a href="../catalogues/">catalogues</a> again)</li>
+<li>The date bounds and lat/lon bounds for our download (more to be supported for some catalogues in the future)</li>
+</ul>
+<p>These are each defined by <code>Catalogue</code>, <code>DownloadParams</code> and <code>Product</code> objects (as well as our <code>Database</code> object), which are then passed to the <code>Catalogue.download_footprints</code> method.</p>
 <h2 id="example-script">Example script</h2>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.catalogues</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMR</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
@@ -1162,7 +1171,6 @@
 <span class="n">download_params</span> <span class="o">=</span> <span class="n">NasaCMRDownloadParams</span><span class="p">(</span>
     <span class="n">start_date</span><span class="o">=</span><span class="s2">"2020-01-01"</span><span class="p">,</span>
     <span class="n">end_date</span><span class="o">=</span><span class="s2">"2020-01-31"</span><span class="p">,</span>
-    <span class="n">page_size</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
     <span class="n">lat_max</span><span class="o">=-</span><span class="mi">70</span><span class="p">,</span>
     <span class="n">lat_min</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span>
     <span class="n">lon_max</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span>
