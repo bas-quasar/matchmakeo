@@ -117,6 +117,9 @@ class Query:
             end_time: End datetime (inclusive), or None.
             product: Product, list of Products, or None (defaults to all products).
             time_attr: Column name string, or dict mapping {product: "col_name"}.
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
         """
         target_products = self._resolve_products(product)
         conditions = []
@@ -158,6 +161,10 @@ class Query:
             xmin, ymin, xmax, ymax (float): Bounding box spatial coordinates.
             srid (int): Spatial Reference System Identifier (default 4326).
             product (Product|list|None): Product, list of Products, or None (defaults to all products).
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
+
         """
         target_products = self._resolve_products(product)
         envelope = func.ST_MakeEnvelope(xmin, ymin, xmax, ymax, srid)
@@ -179,6 +186,9 @@ class Query:
         Args:
             params (dict): keys are column names, values the value to be filtered against.
             product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
 
         """
         target_products = self._resolve_products(product)
@@ -202,6 +212,11 @@ class Query:
             params (dict): keys are column names, values the value to be filtered against.
             product (Product | None, optional): list of Products, or None (defaults to all products).
 
+        Returns:
+            Query: The updated `Query` instance for method chaining.
+
+        Raises:
+            ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
         """
         target_products = self._resolve_products(product)
 
@@ -224,7 +239,8 @@ class Query:
             params (dict): keys are column names, values the value to be filtered against.
             product (Product | None, optional): list of Products, or None (defaults to all products).
 
-
+        Returns:
+            Query: The updated `Query` instance for method chaining.
         """
         target_products = self._resolve_products(product)
 
@@ -248,6 +264,8 @@ class Query:
             product (Product | None, optional): list of Products, or None (defaults to all products).
 
 
+        Returns:
+            Query: The updated `Query` instance for method chaining.
         """
         target_products = self._resolve_products(product)
 
@@ -270,6 +288,8 @@ class Query:
             params (dict): keys are column names, values the value to be filtered against.
             product (Product | None, optional): list of Products, or None (defaults to all products).
 
+        Returns:
+            Query: The updated `Query` instance for method chaining.
         """
         target_products = self._resolve_products(product)
 
@@ -382,6 +402,12 @@ class Query:
             product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
             min_overlap_fraction: Minimum spatial overlap ratio (e.g., 0.25 for 25%).
             relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
+
+        Raises:
+            ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
         """
         # Infer products when Query has exactly 2 products
         if product_x is None and product_y is None:
@@ -449,6 +475,13 @@ class Query:
             product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
             time_attr_x: Timestamp column name for product_x.
             time_attr_y: Timestamp column name for product_y.
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
+
+        Raises:
+            ValueError: If products not specified when Query contains more than 2 products; if only one product is specified.
+
         """
         # Infer products when Query has exactly 2 products
         if product_x is None and product_y is None:
@@ -506,6 +539,13 @@ class Query:
             product_y: Second Product instance (defaults to self.products[1] if Query has 2 products).
             time_column_x: Name of timestamp column on product_x.
             time_column_y: Name of timestamp column on product_y.
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
+
+        Raises:
+            ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
+
         """
         # Infer products when Query has exactly 2 products
         if product_x is None and product_y is None:
@@ -582,7 +622,11 @@ class Query:
     # ==========================================
 
     def execute(self):
-        """Executes the query and yields the resulting data rows."""
+        """Executes the query and yields the resulting data rows.
+
+        Returns:
+            ResultSet or MatchResultSet
+        """
         try:
             results = self._query.all()
 
