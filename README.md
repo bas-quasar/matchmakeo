@@ -1,6 +1,6 @@
 # `matchmakeo`
 
-<p align="center">
+<p style="text-align: center;">
     <img src="docs/images/logo_dark.png" alt="matchmakeo logo - outline of the antarctic continent with two superimposed overlapping squares"/>
 </p>
 
@@ -9,7 +9,7 @@
 [![Documentation](https://img.shields.io/badge/documentation-D53880)](https://bas-quasar.github.io/matchmakeo)
 ![MIT License](https://img.shields.io/github/license/bas-quasar/matchmakeo)
 [![Test Status](https://img.shields.io/github/actions/workflow/status/bas-quasar/matchmakeo/test.yml?branch=main&event=push&label=tests)](https://github.com/bas-quasar/matchmakeo/actions/workflows/test.yml)
-
+[![Docs A11y](https://img.shields.io/github/actions/workflow/status/bas-quasar/matchmakeo/docs.yml?branch=main&event=push&label=docs%2Fa11y)](https://github.com/bas-quasar/matchmakeo/actions/workflows/docs.yml)
 
 **Alpha** - this project is in the early stages of development and should be considered unstable.
 
