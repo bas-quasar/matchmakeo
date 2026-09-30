@@ -623,7 +623,7 @@ class Query:
         """Executes the query and yields the resulting data rows.
 
         Returns:
-            ResultSet or MatchResultSet
+            (ResultSet | MatchResultSet)
         """
         try:
             results = self._query.all()
@@ -782,7 +782,9 @@ class MatchResultSet(ResultBase):
 
         return flattened
 
-    def create_combined_table(self, database: Database, table_name: str, prefixes=None):
+    def create_combined_table(
+        self, database: Database, table_name: str, prefixes=None
+    ) -> Table:
         """
         Creates a new database table combining columns from all products in the results object.
 
