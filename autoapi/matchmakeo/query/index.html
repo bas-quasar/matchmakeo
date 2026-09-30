@@ -1812,7 +1812,9 @@
 <span class="normal">819</span>
 <span class="normal">820</span>
 <span class="normal">821</span>
-<span class="normal">822</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MatchResultSet</span><span class="p">(</span><span class="n">ResultBase</span><span class="p">):</span>
+<span class="normal">822</span>
+<span class="normal">823</span>
+<span class="normal">824</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MatchResultSet</span><span class="p">(</span><span class="n">ResultBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Wraps the paired/grouped results of an N-product Query."""</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_results</span><span class="p">,</span> <span class="o">*</span><span class="n">products</span><span class="p">):</span>
@@ -1879,7 +1881,9 @@
 
         <span class="k">return</span> <span class="n">flattened</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_combined_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefixes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_combined_table</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefixes</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Table</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Creates a new database table combining columns from all products in the results object.</span>
 
@@ -1958,6 +1962,7 @@
       <tbody>
           <tr class="doc-section-item">
             <td>
+                  <code><span title="sqlalchemy.Table">Table</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2008,7 +2013,11 @@
 <span class="normal">819</span>
 <span class="normal">820</span>
 <span class="normal">821</span>
-<span class="normal">822</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_combined_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefixes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="normal">822</span>
+<span class="normal">823</span>
+<span class="normal">824</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_combined_table</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span> <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">prefixes</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Table</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Creates a new database table combining columns from all products in the results object.</span>
 
@@ -3492,7 +3501,7 @@ and must be executed with .execute, e.g. <code>Query().intersects_bbox().with_pa
 <span class="w">        </span><span class="sd">"""Executes the query and yields the resulting data rows.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            ResultSet or MatchResultSet</span>
+<span class="sd">            (ResultSet | MatchResultSet)</span>
 <span class="sd">        """</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
@@ -3654,7 +3663,7 @@ and must be executed with .execute, e.g. <code>Query().intersects_bbox().with_pa
             </td>
             <td>
               <div class="doc-md-description">
-                <p>ResultSet or MatchResultSet</p>
+                <p>(ResultSet | MatchResultSet)</p>
               </div>
             </td>
           </tr>
@@ -3684,7 +3693,7 @@ and must be executed with .execute, e.g. <code>Query().intersects_bbox().with_pa
 <span class="w">    </span><span class="sd">"""Executes the query and yields the resulting data rows.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        ResultSet or MatchResultSet</span>
+<span class="sd">        (ResultSet | MatchResultSet)</span>
 <span class="sd">    """</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
