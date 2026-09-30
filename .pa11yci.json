@@ -4,5 +4,8 @@
       "executablePath": "/usr/bin/google-chrome",
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
     }
-  }
+  },
+  "sitemap": "http://localhost:8080/sitemap.xml",
+  "sitemapFind": "https://bas-quasar.github.io/matchmakeo",
+  "sitemapReplace": "http://localhost:8080"
 }
