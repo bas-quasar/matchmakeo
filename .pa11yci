@@ -13,8 +13,9 @@
   "sitemapFind": "https://bas-quasar.github.io/matchmakeo/",
   "sitemapReplace": "http://localhost:8080/",
   "exclude": [
+    "*overrides*",
+    "*partials*",
     "**/overrides/**",
-    "**/partials/**",
-    "**/assets/**"
+    "**/partials/**"
   ]
 }
