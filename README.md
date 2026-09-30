@@ -8,6 +8,8 @@
 
 `matchmakeo` (*match-make-EE-OH*, [*mæʧ meɪk ee əʊ*]) is a python package to help with finding related earth observation data from two or more different sources. For example, if you wanted to find images from Sentinel-1 and MODIS of overlapping locations that were taken within 1 hour of each other.
 
+The package provides a high-level interface to a number of technologies that enable sophisticated and efficient analysis of earth observation image metadata, namely: API queries to public metadata catalogues; and geospatial databases for performing queries across multiple data products from different sources.
+
 ## Get started
 
 ## Install `matchmakeo`
@@ -51,7 +53,7 @@ For example, for MODIS:
 from matchmakeo.catalogues import NasaCMR
 from matchmakeo.databases import PostGISDatabase
 from matchmakeo.download_params import NasaCMRDownloadParams
-from matchmakeo import Product
+from matchmakeo import Product, Query
 
 # define your database object with the connection details
 database = PostGISDatabase(
@@ -96,4 +98,14 @@ catalogue.download_footprints(
     # when dry_run=True database can be None, so you can run without a database set up
     # dry_run=True,
 )
+
+# run a basic query against this single product (for more sophisticated queries, see the docs!)
+results = (
+    Query(database, product_a)
+    .within_bbox(xmin=0.0, ymin=52.1, xmax=0.2, ymax=52.2, product=product_a, srid=4326)
+    .execute()
+)
+
+# show the ids of the images that match the query
+print(results.get_ids())
 ```
