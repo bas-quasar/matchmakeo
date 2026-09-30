@@ -55,7 +55,7 @@ Home: <https://gportal.jaxa.jp/gpr/>
 ### Dependencies {#gportal-deps}
 Requires the `gportal` package. Install either with the `[gportal]` dependencies option when installing matchmakeo, i.e. `pip install git+https://github.com/bas-quasar/matchmakeo.git[gportal]` or on its own with `pip install gportal`.
 
-### Authentication {#grportal-auth}
+### Authentication {#gportal-auth}
 1. Register for an account at <https://gportal.jaxa.jp/gpr/user/regist1>
 2. Set your username and password in one of two ways:
     - Set the `GPORTAL_USERNAME` and `GPORTAL_PASSWORD` environment variables,
