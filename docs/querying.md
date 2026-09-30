@@ -98,3 +98,28 @@ results = (
     .execute()
 )
 ```
+
+## Available queries
+
+::: matchmakeo.Query
+    handler: python
+    options:
+      members:
+        - in_time_range
+        - intersects_bbox
+        - intersects_polygon
+        - with_param_equal
+        - with_param_lt
+        - with_param_gt
+        - with_param_le
+        - with_param_ge
+        - where_spatial_overlap
+        - where_time_within
+        - where_spatiotemporal_match
+      show_root_heading: true
+      show_root_toc_entry: false
+      show_symbol_type_heading: true
+      show_symbol_type_heading: true
+      docstring_section_style: table
+      show_source: false
+      heading_level: 3

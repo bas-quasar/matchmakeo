@@ -19,8 +19,8 @@ log = setUpLogging(__name__)
 
 class Query:
     """Constructor for all database product queries.
-    Queries can be chained together on the query object, e.g. Query().intersects_bbox().with_parameter_equal()
-    and must be executed with .execute, e.g. Query().intersects_bbox().with_parameter_equal().execute()
+    Queries can be chained together on the query object, e.g. `Query().intersects_bbox().with_parameter_equal()`
+    and must be executed with .execute, e.g. `Query().intersects_bbox().with_parameter_equal().execute()`
     """
 
     def __init__(self, database: Database, *products):
@@ -107,10 +107,10 @@ class Query:
         start_time: datetime | None = None,
         end_time: datetime | None = None,
         product: Product | None = None,
-        time_attr="timestamp",
+        time_attr: str = "timestamp",
     ):
         """
-        Filters records occurring within [start_time, end_time].
+        Filters records occurring within `[start_time, end_time]`.
 
         Args:
             start_time: Start datetime (inclusive), or None.
@@ -119,7 +119,7 @@ class Query:
             time_attr: Column name string, or dict mapping {product: "col_name"}.
 
         Returns:
-            Query: The updated `Query` instance for method chaining.
+            Query (Query): The updated `Query` instance for method chaining.
         """
         target_products = self._resolve_products(product)
         conditions = []
@@ -155,7 +155,7 @@ class Query:
         product: Product | None = None,
     ):
         """
-        Filters records whose geometry intersects the bounding envelope [xmin, ymin, xmax, ymax].
+        Filters records whose geometry intersects the bounding envelope `[xmin, ymin, xmax, ymax]`.
 
         Args:
             xmin, ymin, xmax, ymax (float): Bounding box spatial coordinates.
@@ -163,7 +163,7 @@ class Query:
             product (Product|list|None): Product, list of Products, or None (defaults to all products).
 
         Returns:
-            Query: The updated `Query` instance for method chaining.
+            Query (Query): The updated `Query` instance for method chaining.
 
         """
         target_products = self._resolve_products(product)
@@ -180,131 +180,6 @@ class Query:
 
         return self
 
-    def with_param_equal(self, params: dict, product: Product | None = None):
-        """Filters products with a parameter value equal to the value specified.
-
-        Args:
-            params (dict): keys are column names, values the value to be filtered against.
-            product (Product | None, optional): list of Products, or None (defaults to all products).
-
-        Returns:
-            Query: The updated `Query` instance for method chaining.
-
-        """
-        target_products = self._resolve_products(product)
-
-        conditions = []
-        for p in target_products:
-            table = self._get_table_obj(p)
-            for k, v in params.items():
-                col = table.c[k]
-                conditions.append(col == v)
-
-        if conditions:
-            self._query = self._query.filter(*conditions)
-
-        return self
-
-    def with_param_gt(self, params: dict, product: Product | None = None):
-        """Filters products with a parameter value greater than (>) the value specified.
-
-        Args:
-            params (dict): keys are column names, values the value to be filtered against.
-            product (Product | None, optional): list of Products, or None (defaults to all products).
-
-        Returns:
-            Query: The updated `Query` instance for method chaining.
-
-        Raises:
-            ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
-        """
-        target_products = self._resolve_products(product)
-
-        conditions = []
-        for p in target_products:
-            table = self._get_table_obj(p)
-            for k, v in params.items():
-                col = table.c[k]
-                conditions.append(col > v)
-
-        if conditions:
-            self._query = self._query.filter(*conditions)
-
-        return self
-
-    def with_param_ge(self, params: dict, product: Product | None = None):
-        """Filters products with a parameter value greater than or equal to (>=) the value specified.
-
-        Args:
-            params (dict): keys are column names, values the value to be filtered against.
-            product (Product | None, optional): list of Products, or None (defaults to all products).
-
-        Returns:
-            Query: The updated `Query` instance for method chaining.
-        """
-        target_products = self._resolve_products(product)
-
-        conditions = []
-        for p in target_products:
-            table = self._get_table_obj(p)
-            for k, v in params.items():
-                col = table.c[k]
-                conditions.append(col >= v)
-
-        if conditions:
-            self._query = self._query.filter(*conditions)
-
-        return self
-
-    def with_param_lt(self, params: dict, product: Product | None = None):
-        """Filters products with a parameter value less than (<) the value specified.
-
-        Args:
-            params (dict): keys are column names, values the value to be filtered against.
-            product (Product | None, optional): list of Products, or None (defaults to all products).
-
-
-        Returns:
-            Query: The updated `Query` instance for method chaining.
-        """
-        target_products = self._resolve_products(product)
-
-        conditions = []
-        for p in target_products:
-            table = self._get_table_obj(p)
-            for k, v in params.items():
-                col = table.c[k]
-                conditions.append(col < v)
-
-        if conditions:
-            self._query = self._query.filter(*conditions)
-
-        return self
-
-    def with_param_le(self, params: dict, product: Product | None = None):
-        """Filters products with a parameter value less than or equal to (<=) the value specified.
-
-        Args:
-            params (dict): keys are column names, values the value to be filtered against.
-            product (Product | None, optional): list of Products, or None (defaults to all products).
-
-        Returns:
-            Query: The updated `Query` instance for method chaining.
-        """
-        target_products = self._resolve_products(product)
-
-        conditions = []
-        for p in target_products:
-            table = self._get_table_obj(p)
-            for k, v in params.items():
-                col = table.c[k]
-                conditions.append(col <= v)
-
-        if conditions:
-            self._query = self._query.filter(*conditions)
-
-        return self
-
     def intersects_polygon(
         self,
         polygon: shapely.Polygon | str,
@@ -314,9 +189,7 @@ class Query:
         """
         Filters query records to those whose geometry intersects a given polygon.
 
-        Accepts either a Shapely `Polygon` instance or a WKT string. Handles
-        SRID resolution across inputs and wraps the geometry into a dialect-aware
-        GeoAlchemy2 element to maintain cross-database compatibility (PostGIS and SpatiaLite).
+        Accepts either a Shapely `Polygon` instance or a WKT string.
 
         Args:
             polygon: A Shapely `Polygon` object or a WKT string representing
@@ -328,7 +201,7 @@ class Query:
                 `polygon` is a raw WKT string or lacks an embedded SRID. Defaults to `None`.
 
         Returns:
-            Query: The updated `Query` instance for method chaining.
+            Query (Query): The updated `Query` instance for method chaining.
 
         Raises:
             TypeError: If `polygon` is neither a `shapely.Polygon` nor a `str`.
@@ -380,6 +253,131 @@ class Query:
 
         return self
 
+    def with_param_equal(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value equal to the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        Returns:
+            Query (Query): The updated `Query` instance for method chaining.
+
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col == v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_gt(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value greater than (>) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        Returns:
+            Query (Query): The updated `Query` instance for method chaining.
+
+        Raises:
+            ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col > v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_ge(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value greater than or equal to (>=) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        Returns:
+            Query (Query): The updated `Query` instance for method chaining.
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col >= v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_lt(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value less than (<) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+
+        Returns:
+            Query (Query): The updated `Query` instance for method chaining.
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col < v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
+    def with_param_le(self, params: dict, product: Product | None = None):
+        """Filters products with a parameter value less than or equal to (<=) the value specified.
+
+        Args:
+            params (dict): keys are column names, values the value to be filtered against.
+            product (Product | None, optional): list of Products, or None (defaults to all products).
+
+        Returns:
+            Query (Query): The updated `Query` instance for method chaining.
+        """
+        target_products = self._resolve_products(product)
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            for k, v in params.items():
+                col = table.c[k]
+                conditions.append(col <= v)
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
+
     def intersects_path(self):
         raise NotImplementedError
 
@@ -404,7 +402,7 @@ class Query:
             relative_to: Area denominator: 'first', 'second', 'union', or 'min'.
 
         Returns:
-            Query: The updated `Query` instance for method chaining.
+            Query (Query): The updated `Query` instance for method chaining.
 
         Raises:
             ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
@@ -477,7 +475,7 @@ class Query:
             time_attr_y: Timestamp column name for product_y.
 
         Returns:
-            Query: The updated `Query` instance for method chaining.
+            Query (Query): The updated `Query` instance for method chaining.
 
         Raises:
             ValueError: If products not specified when Query contains more than 2 products; if only one product is specified.
@@ -541,7 +539,7 @@ class Query:
             time_column_y: Name of timestamp column on product_y.
 
         Returns:
-            Query: The updated `Query` instance for method chaining.
+            Query (Query): The updated `Query` instance for method chaining.
 
         Raises:
             ValueError: If products not specified when Query contains more than 2 products; if only one product is specified; if min_overlap_fraction is not between 0 & 1.
