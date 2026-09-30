@@ -39,7 +39,7 @@ jobs:
       - name: Run Pa11y CI 
         run: |
           npm install -g pa11y-ci
-          npx pa11y-ci "site/**/*.html"
+          npx pa11y-ci --config .pa11yci "site/**/*.html"
       - name: Deploy docs 🚀
         if: ${{ github.event_name == 'push' }}
         uses: JamesIves/github-pages-deploy-action@v4
