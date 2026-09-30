@@ -4,6 +4,7 @@ from pathlib import Path
 
 from geopandas import GeoDataFrame
 from sqlalchemy import Connection, Engine, MetaData, Table, create_engine
+from sqlalchemy.pool import NullPool
 
 from .utils import infer_sql_type, setUpLogging
 
@@ -69,13 +70,21 @@ class Database(ABC):
                 self.connection = self.engine.connect()
             except ConnectionError:
                 raise ConnectionError("Database connection failed. Aborting.")
-
             return self.connection
-
         else:
             log.info(f"No connection available yet. Trying to connect to {self.url}")
             self.create_engine()
             return self.connect()
+
+    def close(self):
+        """Closes active connections and disposes of the SQLAlchemy engine."""
+        if self.connection and not self.connection.closed:
+            self.connection.close()
+            self.connection = None
+
+        if self.engine:
+            self.engine.dispose()
+            self.engine = None
 
     def write_gdf(self, gdf: GeoDataFrame, table: str): ...
 
@@ -178,7 +187,6 @@ class SpatialiteDatabase(Database):
         db_url: str | None = None,
         dialect: str = "sqlite",
     ):
-
         if bool(db_url) == bool(filename):
             raise ValueError(
                 f"Got {db_url=} and {filename=}, you must set *one* of db_url *or* filename"
@@ -207,6 +215,25 @@ class SpatialiteDatabase(Database):
             return self.db_url
         elif self.filename:
             return f"sqlite:///{self.filename}"
+
+    def create_engine(self) -> Engine:
+        # Use NullPool for in-memory DBs or testing URIs to prevent leaks
+        # Default to standard pooling (QueuePool) for real on-disk files
+        is_in_memory = self.url and (
+            "mode=memory" in self.url or ":memory:" in self.url
+        )
+
+        kwargs = {
+            "echo": False,
+            "plugins": ["geoalchemy2"],
+        }
+
+        if is_in_memory:
+            kwargs["poolclass"] = NullPool
+            kwargs["connect_args"] = {"check_same_thread": False}
+
+        self.engine = create_engine(self.url, **kwargs)
+        return self.engine
 
     def connect(self):
         log.info(
