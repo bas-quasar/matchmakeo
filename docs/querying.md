@@ -29,7 +29,7 @@ product = Product(
 # construct and execute a simple bounding box query
 results = (  # use brackets to separate a long query across multiple lines
     Query(database, product)
-    .within_bbox(
+    .intersects_bbox(
         min_x=0.077591,
         min_y=52.169931,
         max_x=0.190887,
@@ -55,7 +55,7 @@ The single product queries can also be used with queries composed of multiple pr
 ```py
 # imagine we have a product_a and a product_b
 
-results = Query(database, product_a, product_b).within_bbox(...).execute()
+results = Query(database, product_a, product_b).intersects_bbox(...).execute()
 ```
 
 ### Join/intersection queries
@@ -93,7 +93,7 @@ Each query method can be chained with others, with the first being the first to 
 ```py
 results = (
     Query(database, product_a, product_b)
-    .within_bbox(...)
+    .intersects_bbox(...)
     .where_spatiotemporal_match(...)
     .execute()
 )

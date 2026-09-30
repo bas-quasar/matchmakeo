@@ -143,11 +143,11 @@ class TestSingleProductQuery:
         assert len(results) == 2
         assert results.get_ids() == [4, 5]
 
-    def test_query_within_bbox(self, database, product_a):
+    def test_query_intersects_bbox(self, database, product_a):
 
         results = (
             Query(database, product_a)
-            .within_bbox(
+            .intersects_bbox(
                 xmin=0.077591,
                 ymin=52.169931,
                 xmax=0.190887,

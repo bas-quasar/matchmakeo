@@ -1,6 +1,7 @@
 from abc import ABC
 from datetime import datetime, timedelta
 
+import shapely
 from geoalchemy2.functions import ST_MakeEnvelope
 from sqlalchemy import Column, Table, func
 from sqlalchemy.ext.compiler import compiles
@@ -10,12 +11,15 @@ from sqlalchemy.types import Float
 
 from .databases import Database
 from .product import Product
+from .utils import setUpLogging
+
+log = setUpLogging(__name__)
 
 
 class Query:
     """Constructor for all database product queries.
-    Queries can be chained together on the query object, e.g. Query().within_bbox().with_parameter_equal()
-    and must be executed with .execute, e.g. Query().within_bbox().with_parameter_equal().execute()
+    Queries can be chained together on the query object, e.g. Query().intersects_bbox().with_parameter_equal()
+    and must be executed with .execute, e.g. Query().intersects_bbox().with_parameter_equal().execute()
     """
 
     def __init__(self, database: Database, *products):
@@ -137,7 +141,7 @@ class Query:
 
         return self
 
-    def within_bbox(
+    def intersects_bbox(
         self,
         xmin: float,
         ymin: float,
@@ -280,8 +284,35 @@ class Query:
 
         return self
 
-    def within_polygon(self):
-        raise NotImplementedError
+    def intersects_polygon(
+        self, polygon: shapely.Polygon | str, product: Product | None = None
+    ):
+        target_products = self._resolve_products(product)
+
+        if isinstance(polygon, str):
+            log.info(
+                "got str type polygon, assuming WKT format and converting to shapely.Polygon"
+            )
+            polygon = shapely.from_wkt(polygon)
+        elif isinstance(polygon, shapely.Polygon):
+            pass
+        else:
+            raise TypeError(
+                f"Polygon of type str or shapely.Polygon are supported, got{type(polygon)}."
+            )
+
+        conditions = []
+        for p in target_products:
+            table = self._get_table_obj(p)
+            geom_col = table.c[p.geometry_column]
+            conditions.append(
+                geom_col.ST_Intersects(shapely.to_wkt(polygon), use_spatial_index=False)
+            )
+
+        if conditions:
+            self._query = self._query.filter(*conditions)
+
+        return self
 
     def intersects_path(self):
         raise NotImplementedError
