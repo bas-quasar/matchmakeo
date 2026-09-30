@@ -81,7 +81,6 @@ catalogue = NasaCMR(
 download_params = NasaCMRDownloadParams(
     start_date="2020-01-01",
     end_date="2020-01-31",
-    page_size=200,
     lat_max=-70,
     lat_min=-90,
     lon_max=180,

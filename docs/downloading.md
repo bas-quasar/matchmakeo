@@ -1,5 +1,17 @@
 # Downloading footprints
 
+The `matchmakeo` workflow is to download some metadata from a catalogue into our database. This allows us to then do some more sophisticaated comparisons and analysis using a geospatial database.
+
+Catalogues allow us to filter our downloads by a few criteria, usually by some time bounds and simple bounding box (others are available, depending on the catalogue, and we're working on supporting more in `matchmakeo`)
+
+In order to perform a download, we need to know a few things:
+
+* Which metadata catalogue do we want to use (see [catalogues](./catalogues.md))
+* Which data product do we want metadata for? (see [catalogues](./catalogues.md) again)
+* The date bounds and lat/lon bounds for our download (more to be supported for some catalogues in the future)
+
+These are each defined by `Catalogue`, `DownloadParams` and `Product` objects (as well as our `Database` object), which are then passed to the `Catalogue.download_footprints` method.
+
 ## Example script
 
 ```python
@@ -27,7 +39,6 @@ catalogue = NasaCMR(
 download_params = NasaCMRDownloadParams(
     start_date="2020-01-01",
     end_date="2020-01-31",
-    page_size=200,
     lat_max=-70,
     lat_min=-90,
     lon_max=180,
