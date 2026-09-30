@@ -1197,6 +1197,7 @@
 
 <p><strong>Alpha</strong> - this project is in the early stages of development and should be considered unstable.</p>
 <p><code>matchmakeo</code> (<em>match-make-EE-OH</em>, [<em>mæʧ meɪk ee əʊ</em>]) is a python package to help with finding related earth observation data from two or more different sources. For example, if you wanted to find images from Sentinel-1 and MODIS of overlapping locations that were taken within 1 hour of each other.</p>
+<p>The package provides a high-level interface to a number of technologies that enable sophisticated and efficient analysis of earth observation image metadata, namely: API queries to public metadata catalogues; and geospatial databases for performing queries across multiple data products from different sources.</p>
 <h2 id="get-started">Get started</h2>
 <h2 id="install-matchmakeo">Install <code>matchmakeo</code></h2>
 <p>To install directly from GitHub with <code>pip</code>:</p>
@@ -1223,7 +1224,7 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.catalogues</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMR</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.download_params</span><span class="w"> </span><span class="kn">import</span> <span class="n">NasaCMRDownloadParams</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Product</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Product</span><span class="p">,</span> <span class="n">Query</span>
 
 <span class="c1"># define your database object with the connection details</span>
 <span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
@@ -1268,6 +1269,16 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
     <span class="c1"># when dry_run=True database can be None, so you can run without a database set up</span>
     <span class="c1"># dry_run=True,</span>
 <span class="p">)</span>
+
+<span class="c1"># run a basic query against this single product (for more sophisticated queries, see the docs!)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Query</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">product_a</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">within_bbox</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mf">52.1</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mf">52.2</span><span class="p">,</span> <span class="n">product</span><span class="o">=</span><span class="n">product_a</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># show the ids of the images that match the query</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">get_ids</span><span class="p">())</span>
 </code></pre></div>
 
 
