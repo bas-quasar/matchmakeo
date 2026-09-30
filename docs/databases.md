@@ -138,6 +138,42 @@ database = PostGISDatabase(
 )
 ```
 
+#### Safely managing credentials
+That being said, you should avoid including your password (and perhaps other database credentials) into your code, particularly if using a version control system such as git.
+
+One solution is to set environment variables in your shell script or shell (e.g. `export DB_PASSWORD="my_secure_password"`) then evaluating those environment variables in your python code.
+
+Or even better, use a package such as [`python-dotenv`](https://pypi.org/project/python-dotenv/) to load them in from a `.env` file.
+
+1. Make a `.env` file in your working directory, with the contents:
+
+    ```ini
+    DB_USER=my_user
+    DB_PASSWORD=my_secure_password
+    DB_HOST=localhost
+    ```
+
+2. Add `.env` to your project's `.gitignore` file to avoid accidentally commiting it to version control.
+
+3. In your python script instead of including your credentials, load them from `.env` into environment variables, and pass those values to the database object:
+
+    ```python
+    import os
+    from dotenv import load_dotenv
+    from matchmakeo.databases import PostGISDatabase
+
+    # Load variables from a local .env file if present
+    load_dotenv()
+
+    database = PostGISDatabase(
+        username=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database="my_spatial_db",
+        host=os.getenv("DB_HOST"),
+        port=5432,
+    )
+    ```
+
 ## SpatiaLite
 
 !!! question "help!"
