@@ -177,10 +177,22 @@ class TestSingleProductQuery:
             ymax=52.233477,
         )
 
+        with pytest.raises(ValueError):
+            # pass a polygon with no srid and polygon with no srid
+            # should raise a value error
+            results = (
+                Query(database, product_a)
+                .intersects_polygon(
+                    polygon=polygon,
+                )
+                .execute()
+            )
+
         results = (
             Query(database, product_a)
             .intersects_polygon(
                 polygon=polygon,
+                srid=4326,
             )
             .execute()
         )

@@ -2,6 +2,7 @@ from abc import ABC
 from datetime import datetime, timedelta
 
 import shapely
+from geoalchemy2 import WKTElement
 from geoalchemy2.functions import ST_MakeEnvelope
 from sqlalchemy import Column, Table, func
 from sqlalchemy.ext.compiler import compiles
@@ -285,28 +286,73 @@ class Query:
         return self
 
     def intersects_polygon(
-        self, polygon: shapely.Polygon | str, product: Product | None = None
+        self,
+        polygon: shapely.Polygon | str,
+        product: Product | None = None,
+        srid: int | None = None,
     ):
+        """
+        Filters query records to those whose geometry intersects a given polygon.
+
+        Accepts either a Shapely `Polygon` instance or a WKT string. Handles
+        SRID resolution across inputs and wraps the geometry into a dialect-aware
+        GeoAlchemy2 element to maintain cross-database compatibility (PostGIS and SpatiaLite).
+
+        Args:
+            polygon: A Shapely `Polygon` object or a WKT string representing
+                the target spatial boundary.
+            product: Target `Product` instance, sequence of `Product`s, or `None`.
+                If `None`, the filter is applied across all products registered in
+                the query. Defaults to `None`.
+            srid: Spatial Reference System Identifier (e.g., 4326). Required if
+                `polygon` is a raw WKT string or lacks an embedded SRID. Defaults to `None`.
+
+        Returns:
+            Query: The updated `Query` instance for method chaining.
+
+        Raises:
+            TypeError: If `polygon` is neither a `shapely.Polygon` nor a `str`.
+            ValueError: If an SRID cannot be resolved from either `polygon` or the
+                `srid` parameter.
+        """
+
         target_products = self._resolve_products(product)
 
         if isinstance(polygon, str):
             log.info(
-                "got str type polygon, assuming WKT format and converting to shapely.Polygon"
+                "Got str type polygon, assuming WKT format and converting to shapely.Polygon"
             )
             polygon = shapely.from_wkt(polygon)
-        elif isinstance(polygon, shapely.Polygon):
-            pass
-        else:
+        elif not isinstance(polygon, shapely.Polygon):
             raise TypeError(
-                f"Polygon of type str or shapely.Polygon are supported, got{type(polygon)}."
+                f"Polygon of type str or shapely.Polygon are supported, got {type(polygon)}."
             )
 
+        # Resolve SRID cleanly
+        polygon_srid = int(shapely.get_srid(polygon))
+
+        if srid is None and polygon_srid == 0:
+            raise ValueError(
+                f"SRID must either be set on the supplied polygon or passed as an argument, got {srid=} and {polygon_srid=}"
+            )
+        elif srid is not None and polygon_srid != 0 and srid != polygon_srid:
+            log.warning(
+                f"Set SRID both as an argument ({srid}) and in the supplied polygon ({polygon_srid}). Using polygon SRID ({polygon_srid})."
+            )
+            effective_srid = polygon_srid
+        else:
+            effective_srid = polygon_srid if polygon_srid != 0 else srid
+
+        #  Wrap WKT in GeoAlchemy2's WKTElement with explicit SRID
+        wkt_element = WKTElement(shapely.to_wkt(polygon), srid=effective_srid)
+
+        # Construct spatial intersection filter
         conditions = []
         for p in target_products:
             table = self._get_table_obj(p)
             geom_col = table.c[p.geometry_column]
             conditions.append(
-                geom_col.ST_Intersects(shapely.to_wkt(polygon), use_spatial_index=False)
+                geom_col.ST_Intersects(wkt_element, use_spatial_index=False)
             )
 
         if conditions:
