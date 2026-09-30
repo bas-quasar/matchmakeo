@@ -3,6 +3,7 @@ import json
 import os
 
 import pytest
+import shapely
 from geoalchemy2 import Geometry
 from sqlalchemy import Column, DateTime, Integer, MetaData, Table
 
@@ -166,6 +167,25 @@ class TestSingleProductQuery:
         assert isinstance(results_list, list)
         for element in results_list:
             assert isinstance(element, dict)
+
+    def test_query_intersects_polygon(self, database, product_a):
+
+        polygon = shapely.box(
+            xmin=0.077591,
+            ymin=52.169931,
+            xmax=0.190887,
+            ymax=52.233477,
+        )
+
+        results = (
+            Query(database, product_a)
+            .intersects_polygon(
+                polygon=polygon,
+            )
+            .execute()
+        )
+        assert isinstance(results, ResultSet)
+        assert len(results) == 1
 
 
 class TestMultiProductQuery:
