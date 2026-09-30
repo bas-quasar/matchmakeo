@@ -478,6 +478,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Connection details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#safely-managing-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safely managing credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1241,6 +1258,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Connection details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#safely-managing-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safely managing credentials
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1478,6 +1512,40 @@ postgis.sif
     <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>  <span class="c1"># the port in the above step</span>
 <span class="p">)</span>
 </code></pre></div>
+<h4 id="safely-managing-credentials">Safely managing credentials</h4>
+<p>That being said, you should avoid including your password (and perhaps other database credentials) into your code, particularly if using a version control system such as git.</p>
+<p>One solution is to set environment variables in your shell script or shell (e.g. <code>export DB_PASSWORD="my_secure_password"</code>) then evaluating those environment variables in your python code.</p>
+<p>Or even better, use a package such as <a href="https://pypi.org/project/python-dotenv/"><code>python-dotenv</code></a> to load them in from a <code>.env</code> file.</p>
+<ol>
+<li>
+<p>Make a <code>.env</code> file in your working directory, with the contents:</p>
+<div class="highlight"><pre><span></span><code><span class="na">DB_USER</span><span class="o">=</span><span class="s">my_user</span>
+<span class="na">DB_PASSWORD</span><span class="o">=</span><span class="s">my_secure_password</span>
+<span class="na">DB_HOST</span><span class="o">=</span><span class="s">localhost</span>
+</code></pre></div>
+</li>
+<li>
+<p>Add <code>.env</code> to your project's <code>.gitignore</code> file to avoid accidentally commiting it to version control.</p>
+</li>
+<li>
+<p>In your python script instead of including your credentials, load them from <code>.env</code> into environment variables, and pass those values to the database object:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dotenv</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
+
+<span class="c1"># Load variables from a local .env file if present</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_USER"</span><span class="p">),</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_PASSWORD"</span><span class="p">),</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="p">,</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_HOST"</span><span class="p">),</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</li>
+</ol>
 <h2 id="spatialite">SpatiaLite</h2>
 <div class="admonition question">
 <p class="admonition-title">help!</p>
