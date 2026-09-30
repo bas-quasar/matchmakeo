@@ -36,14 +36,15 @@ except ImportError:
     pass
 
 from .databases import Database
+from .defaults import DEFAULT_GEOMETRY_COLUMN_NAME
+from .download_params import (
+    DownloadParams,
+    EarthEngineDownloadParams,
+    JaxaGportalDownloadParams,
+    NasaCMRDownloadParams,
+)
 from .field import Field
 from .product import Product
-from .queryset import (
-    EarthEngineQueryset,
-    JaxaGportalQueryset,
-    NasaCMRQueryset,
-    Queryset,
-)
 from .utils import (
     coords_to_polygon,
     geojon_to_polygon,
@@ -65,30 +66,30 @@ class Catalogue(ABC):
     Do not call this class directly. Subclass it and define methods.
     """
 
-    def __init__(self, queryset_type: Queryset = None):
+    def __init__(self, download_params_type: DownloadParams = None):
 
         self.fields = []
 
-        if queryset_type:
-            self.queryset_type = queryset_type
+        if download_params_type:
+            self.download_params_type = download_params_type
 
     def download_footprints(
         self,
         product: Product,
-        queryset: Queryset,
+        download_params: DownloadParams,
         database: Database = None,
         primary_key: str = "id",
         dry_run: bool = False,
     ):
         """Abstract method"""
-        self._check_queryset_type(queryset=queryset)
+        self._check_download_params_type(download_params=download_params)
         self._check_database_dryrun(database, dry_run)
 
-    def _check_queryset_type(self, queryset: Queryset):
-        """Raise UserWarning if queryset type does not match catalogue type."""
-        if type(queryset) is not self.queryset_type:
+    def _check_download_params_type(self, download_params: DownloadParams):
+        """Raise UserWarning if download_params type does not match catalogue type."""
+        if type(download_params) is not self.download_params_type:
             warnings.warn(
-                f"Queryset of type {self.queryset_type} is advised. Got {type(queryset)} instead. Some features may not work as intended.",
+                f"DownloadParams of type {self.download_params_type} is advised. Got {type(download_params)} instead. Some features may not work as intended.",
                 UserWarning,
             )
 
@@ -103,11 +104,11 @@ class Catalogue(ABC):
         self, connection: Connection, product: Product, primary_key: str = "pk"
     ):
 
-        log.info(f"Creating table {product.table}")
+        log.info(f"Creating table {product.table_name}")
 
         metadata = MetaData()
         table = Table(
-            product.table,
+            product.table_name,
             metadata,
             Column(primary_key, Integer, primary_key=True),
             *[f._as_column() for f in self.fields],
@@ -129,7 +130,7 @@ class NasaCMR(Catalogue):
         self,
         client_id: str | None = None,
         url: str = "https://cmr.sit.earthdata.nasa.gov/search/granules.json",  # "https://cmr.earthdata.nasa.gov/search/granules.json",
-        queryset_type: Queryset = NasaCMRQueryset,
+        download_params_type: DownloadParams = NasaCMRDownloadParams,
     ):
         """_summary_
         Params:
@@ -138,7 +139,7 @@ class NasaCMR(Catalogue):
 
         self.url = url
 
-        super().__init__(queryset_type=queryset_type)
+        super().__init__(download_params_type=download_params_type)
 
         if client_id is None:
             log.warning(
@@ -148,7 +149,9 @@ class NasaCMR(Catalogue):
         # add fields specific to this catalogue
         additional_fields = [
             Field("id", "id", String),
-            Field("geometry", "geometry", Geometry("POLYGON", srid=4326)),
+            Field(
+                "geometry", DEFAULT_GEOMETRY_COLUMN_NAME, Geometry("POLYGON", srid=4326)
+            ),
             Field("datetime_start", "datetime_start", DateTime),
             Field("datetime_end", "datetime_end", DateTime),
         ]
@@ -157,14 +160,14 @@ class NasaCMR(Catalogue):
     def download_footprints(
         self,
         product: Product,
-        queryset: Queryset,
+        download_params: DownloadParams,
         database: Database,
         primary_key: str = "id",
         dry_run: bool = False,
     ):
         super().download_footprints(
             product=product,
-            queryset=queryset,
+            download_params=download_params,
             database=database,
             dry_run=dry_run,
             primary_key=primary_key,
@@ -190,16 +193,16 @@ class NasaCMR(Catalogue):
             # Query parameters
             params = {
                 "short_name": product.name,
-                "page_size": queryset.page_size,
-                "temporal": f"{queryset.start_date.strftime('%Y-%m-%d')}T00:00:00Z,{queryset.end_date.strftime('%Y-%m-%d')}T00:00:00Z",
-                "bounding_box": self._get_bounding_box(queryset),
+                "page_size": download_params.page_size,
+                "temporal": f"{download_params.start_date.strftime('%Y-%m-%d')}T00:00:00Z,{download_params.end_date.strftime('%Y-%m-%d')}T00:00:00Z",
+                "bounding_box": self._get_bounding_box(download_params),
             }
 
             if product.version:
                 params.update({"version": self.product.version})
 
-            if getattr(queryset, "concept_id", None):
-                params.update(self.queryset.concept_id)
+            if getattr(download_params, "concept_id", None):
+                params.update(self.download_params.concept_id)
 
             # if there is a previous response, check for additional available pages
             # as recommended by CMR https://wiki.earthdata.nasa.gov/display/CMR/CMR+Harvesting+Best+Practices
@@ -246,14 +249,14 @@ class NasaCMR(Catalogue):
 
         if not dry_run:
             database.create_columns_from_footprint_props(
-                table_name=product.table,
+                table_name=product.table_name,
                 catalogue_fields=self.fields,
                 product_fields=product.extra_fields,
                 props=[g[1] for g in granules],
             )
 
             metadata = MetaData()
-            table = Table(product.table, metadata, autoload_with=connection.engine)
+            table = Table(product.table_name, metadata, autoload_with=connection.engine)
 
             for granule in granules:
                 insertion = table.insert().values(
@@ -272,13 +275,13 @@ class NasaCMR(Catalogue):
                 connection.execute(insertion)
                 connection.commit()
 
-    def _get_bounding_box(self, queryset: Queryset) -> str:
-        "Returns bounding box string for NASA CMR spatial query, using queryset lat and lon."
+    def _get_bounding_box(self, download_params: DownloadParams) -> str:
+        "Returns bounding box string for NASA CMR spatial query, using download_params lat and lon."
 
         # https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#g-bounding-box
         # 4 comma-separated numbers: lower left longitude, lower left latitude, upper right longitude, upper right latitude.
 
-        return f"{min((queryset.lon_min, queryset.lon_max))},{min((queryset.lat_min, queryset.lat_max))},{max((queryset.lon_min, queryset.lon_max))},{max((queryset.lat_min, queryset.lat_max))}"
+        return f"{min((download_params.lon_min, download_params.lon_max))},{min((download_params.lat_min, download_params.lat_max))},{max((download_params.lon_min, download_params.lon_max))},{max((download_params.lat_min, download_params.lat_max))}"
 
 
 class EarthEngine(Catalogue):
@@ -292,7 +295,7 @@ class EarthEngine(Catalogue):
         self,
         project_id: str | None = None,
         service_account: bool = False,
-        queryset_type: Queryset = EarthEngineQueryset,
+        download_params_type: DownloadParams = EarthEngineDownloadParams,
     ):
 
         if not ee:
@@ -307,12 +310,14 @@ class EarthEngine(Catalogue):
             project_id=project_id, service_account=service_account
         )
 
-        super().__init__(queryset_type)
+        super().__init__(download_params_type)
 
         # add fields specific to this catalogue
         additional_fields = [
             Field("id", "id", String),
-            Field("geometry", "geometry", Geometry("POLYGON", srid=4326)),
+            Field(
+                "geometry", DEFAULT_GEOMETRY_COLUMN_NAME, Geometry("POLYGON", srid=4326)
+            ),
         ]
         self.fields.extend(additional_fields)
 
@@ -361,15 +366,22 @@ class EarthEngine(Catalogue):
                 log.error(f"Google Cloud API error during initialization: {e}")
 
     def download_footprints(
-        self, product, queryset, database, primary_key="id", dry_run: bool = False
+        self,
+        product,
+        download_params,
+        database,
+        primary_key="id",
+        dry_run: bool = False,
     ):
-        super().download_footprints(product, queryset, database, dry_run, primary_key)
+        super().download_footprints(
+            product, download_params, database, dry_run, primary_key
+        )
 
         bbox = ee.Geometry.BBox(
-            west=queryset.lon_min,
-            south=queryset.lat_min,
-            east=queryset.lon_max,
-            north=queryset.lat_max,
+            west=download_params.lon_min,
+            south=download_params.lat_min,
+            east=download_params.lon_max,
+            north=download_params.lat_max,
         )
 
         def fetch_day_metadata(day_string):
@@ -430,8 +442,8 @@ class EarthEngine(Catalogue):
 
             table = self._create_table(connection, product)
 
-        delta = queryset.end_date - queryset.start_date
-        start = queryset.start_date
+        delta = download_params.end_date - download_params.start_date
+        start = download_params.start_date
 
         daily_strings = [
             (start + timedelta(days=i)).strftime("%Y-%m-%d") for i in range(delta.days)
@@ -465,7 +477,7 @@ class EarthEngine(Catalogue):
                         props.append(p)
 
                     database.create_columns_from_footprint_props(
-                        table_name=product.table,
+                        table_name=product.table_name,
                         catalogue_fields=self.fields,
                         product_fields=product.extra_fields,
                         props=props,
@@ -473,7 +485,7 @@ class EarthEngine(Catalogue):
 
                     metadata = MetaData()
                     table = Table(
-                        product.table, metadata, autoload_with=connection.engine
+                        product.table_name, metadata, autoload_with=connection.engine
                     )
 
                     for granule in granules:
@@ -504,7 +516,7 @@ class JaxaGportal(Catalogue):
 
     def __init__(
         self,
-        queryset_type: Queryset = JaxaGportalQueryset,
+        download_params_type: DownloadParams = JaxaGportalDownloadParams,
         username: str | None = None,
         password: str | None = None,
     ):
@@ -519,7 +531,7 @@ class JaxaGportal(Catalogue):
         if password is None:
             password = os.getenv("GPORTAL_PASSWORD", None)
 
-        super().__init__(queryset_type)
+        super().__init__(download_params_type)
 
         if username or password is None:
             log.error(
@@ -528,7 +540,9 @@ class JaxaGportal(Catalogue):
 
         additional_fields = [
             Field("identifier", "id", String),
-            Field("geometry", "geometry", Geometry("POLYGON", srid=4326)),
+            Field(
+                "geometry", DEFAULT_GEOMETRY_COLUMN_NAME, Geometry("POLYGON", srid=4326)
+            ),
             Field("beginPosition", "datetime_start", DateTime),
             Field("endPosition", "datetime_end", DateTime),
         ]
@@ -537,12 +551,14 @@ class JaxaGportal(Catalogue):
     def download_footprints(
         self,
         product: Product,
-        queryset: Queryset,
+        download_params: DownloadParams,
         database: Database = None,
         primary_key: str = "id",
         dry_run: bool = False,
     ):
-        super().download_footprints(product, queryset, database, primary_key, dry_run)
+        super().download_footprints(
+            product, download_params, database, primary_key, dry_run
+        )
 
         try:
             import gportal
@@ -565,15 +581,15 @@ class JaxaGportal(Catalogue):
             dataset_ids=[product.name]
             if isinstance(product.name, str)
             else product.name,
-            start_time=queryset.start_date,
-            end_time=queryset.end_date,
+            start_time=download_params.start_date,
+            end_time=download_params.end_date,
             bbox=[
-                queryset.lon_min,
-                queryset.lat_min,
-                queryset.lon_max,
-                queryset.lat_max,
+                download_params.lon_min,
+                download_params.lat_min,
+                download_params.lon_max,
+                download_params.lat_max,
             ],
-            params=queryset.params,
+            params=download_params.params,
         )
 
         log.info(f"Found {search_results.matched()}")
@@ -586,14 +602,14 @@ class JaxaGportal(Catalogue):
 
         if not dry_run:
             database.create_columns_from_footprint_props(
-                table_name=product.table,
+                table_name=product.table_name,
                 catalogue_fields=self.fields,
                 product_fields=product.extra_fields,
                 props=[p.properties for p in search_results.products()],
             )
 
             metadata = MetaData()
-            table = Table(product.table, metadata, autoload_with=connection.engine)
+            table = Table(product.table_name, metadata, autoload_with=connection.engine)
 
             for prod in search_results.products():
                 print(prod.to_dict())

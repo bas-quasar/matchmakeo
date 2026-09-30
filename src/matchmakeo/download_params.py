@@ -3,15 +3,15 @@ from dataclasses import dataclass, field
 from datetime import date, timezone
 
 __all__ = [
-    "EarthEngineQueryset",
-    "JaxaGportalQueryset",
-    "NasaCMRQueryset",
-    "Queryset",
+    "DownloadParams",
+    "EarthEngineDownloadParams",
+    "JaxaGportalDownloadParams",
+    "NasaCMRDownloadParams",
 ]
 
 
 @dataclass(kw_only=True)
-class Queryset:
+class DownloadParams:
     "Generic query parameters to be used in a catalogue request."
 
     start_date: date
@@ -39,21 +39,21 @@ class Queryset:
 
 
 @dataclass(kw_only=True)
-class NasaCMRQueryset(Queryset):
-    "Extends the base Queryset with parameters specific to NASA CMR queries."
+class NasaCMRDownloadParams(DownloadParams):
+    "Extends the base DownloadParams with parameters specific to NASA CMR queries."
 
     page_size: int = 200
 
 
 @dataclass(kw_only=True)
-class EarthEngineQueryset(Queryset):
-    "Extends the base Queryset with parameters specific to Google Earth Engine queries."
+class EarthEngineDownloadParams(DownloadParams):
+    "Extends the base DownloadParams with parameters specific to Google Earth Engine queries."
 
 
 @dataclass(kw_only=True)
-class JaxaGportalQueryset(Queryset):
+class JaxaGportalDownloadParams(DownloadParams):
     """
-    Extends the base Queryset with parameters specific to JAXA G-Portal queries.
+    Extends the base DownloadParams with parameters specific to JAXA G-Portal queries.
 
     params is a dictionary containing additional keys and values for JAXA G-Portal queries
     see: https://gportal.jaxa.jp/gpr/assets/mng_upload/COMMON/upload/GPortalUserManual_en.pdf appendix 7
