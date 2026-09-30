@@ -42,6 +42,12 @@ jobs:
           npx http-server site -p 8080 &
           sleep 3
           npx pa11y-ci --sitemap http://localhost:8080/sitemap.xml 2>&1 | tee pa11y_output.txt
+
+          # Fail step if 0 URLs were scanned
+          if grep -q "Running Pa11y on 0 URLs" pa11y_output.txt; then
+            echo "::error::pa11y-ci scanned 0 URLs. Check sitemap location, port, or host replacements."
+            exit 1
+          fi
         
       - name: Read pa11y_output file.
         id: pa11y_output
