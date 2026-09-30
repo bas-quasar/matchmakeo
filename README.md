@@ -1,6 +1,6 @@
 # `matchmakeo`
 
-<p align="center">
+<p style="text-align: center;">
     <img src="docs/images/logo_dark.png" alt="matchmakeo logo - outline of the antarctic continent with two superimposed overlapping squares"/>
 </p>
 

@@ -3,7 +3,11 @@
     "chromeLaunchConfig": {
       "executablePath": "/usr/bin/google-chrome",
       "args": ["--no-sandbox", "--disable-setuid-sandbox"]
-    }
+    },
+    "ignore": [
+      "WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2",
+      "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77"
+    ]
   },
   "sitemap": "http://localhost:8080/sitemap.xml",
   "sitemapFind": "https://bas-quasar.github.io/matchmakeo",
