@@ -917,6 +917,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../defaults/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    defaults
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download_params/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    download_params
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../field/" class="md-nav__link">
         
   
@@ -973,14 +1029,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../queryset/" class="md-nav__link">
+      <a href="../query/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    queryset
+    query
   
 
     
@@ -1301,8 +1357,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 63</span>
-<span class="normal"> 64</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 64</span>
 <span class="normal"> 65</span>
 <span class="normal"> 66</span>
 <span class="normal"> 67</span>
@@ -1358,35 +1413,36 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
-<span class="normal">120</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Catalogue</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="normal">120</span>
+<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Catalogue</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract Base Class for defining catalogue interfaces.</span>
 <span class="sd">    Do not call this class directly. Subclass it and define methods.</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">download_params_type</span><span class="p">:</span> <span class="n">DownloadParams</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">if</span> <span class="n">queryset_type</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span> <span class="o">=</span> <span class="n">queryset_type</span>
+        <span class="k">if</span> <span class="n">download_params_type</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">download_params_type</span> <span class="o">=</span> <span class="n">download_params_type</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-        <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+        <span class="n">download_params</span><span class="p">:</span> <span class="n">DownloadParams</span><span class="p">,</span>
         <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
         <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Abstract method"""</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_check_queryset_type</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_check_download_params_type</span><span class="p">(</span><span class="n">download_params</span><span class="o">=</span><span class="n">download_params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_database_dryrun</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_check_queryset_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Raise UserWarning if queryset type does not match catalogue type."""</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_download_params_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">download_params</span><span class="p">:</span> <span class="n">DownloadParams</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Raise UserWarning if download_params type does not match catalogue type."""</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">download_params</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_params_type</span><span class="p">:</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"Queryset of type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset_type</span><span class="si">}</span><span class="s2"> is advised. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">queryset</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead. Some features may not work as intended."</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">"DownloadParams of type </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">download_params_type</span><span class="si">}</span><span class="s2"> is advised. Got </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">download_params</span><span class="p">)</span><span class="si">}</span><span class="s2"> instead. Some features may not work as intended."</span><span class="p">,</span>
                 <span class="ne">UserWarning</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -1401,11 +1457,11 @@ Do not call this class directly. Subclass it and define methods.</p>
         <span class="bp">self</span><span class="p">,</span> <span class="n">connection</span><span class="p">:</span> <span class="n">Connection</span><span class="p">,</span> <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"pk"</span>
     <span class="p">):</span>
 
-        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating table </span><span class="si">{</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Creating table </span><span class="si">{</span><span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
         <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-            <span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+            <span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
             <span class="n">metadata</span><span class="p">,</span>
             <span class="n">Column</span><span class="p">(</span><span class="n">primary_key</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
             <span class="o">*</span><span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">_as_column</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">],</span>
@@ -1436,7 +1492,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
 
 <h3 id="matchmakeo.catalogues.Catalogue.download_footprints" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">download_params</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="s1">'id'</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1448,8 +1504,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
-<span class="normal">76</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">76</span>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
@@ -1458,16 +1513,17 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal">82</span>
 <span class="normal">83</span>
 <span class="normal">84</span>
-<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-    <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+    <span class="n">download_params</span><span class="p">:</span> <span class="n">DownloadParams</span><span class="p">,</span>
     <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
     <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract method"""</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">_check_queryset_type</span><span class="p">(</span><span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_check_download_params_type</span><span class="p">(</span><span class="n">download_params</span><span class="o">=</span><span class="n">download_params</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_check_database_dryrun</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1512,10 +1568,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">284</span>
-<span class="normal">285</span>
-<span class="normal">286</span>
-<span class="normal">287</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">287</span>
 <span class="normal">288</span>
 <span class="normal">289</span>
 <span class="normal">290</span>
@@ -1719,7 +1772,19 @@ Do not call this class directly. Subclass it and define methods.</p>
 <span class="normal">488</span>
 <span class="normal">489</span>
 <span class="normal">490</span>
-<span class="normal">491</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EarthEngine</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EarthEngine</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Interface for downloading footprints from Google Earth Engine.</span>
 
 <span class="sd">    Requires the earthengine-api package, install with `pip install matchmakeo[earthengine]` or `pip install earthengine-api`.</span>
@@ -1730,7 +1795,7 @@ Do not call this class directly. Subclass it and define methods.</p>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">project_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">service_account</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">EarthEngineQueryset</span><span class="p">,</span>
+        <span class="n">download_params_type</span><span class="p">:</span> <span class="n">DownloadParams</span> <span class="o">=</span> <span class="n">EarthEngineDownloadParams</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ee</span><span class="p">:</span>
@@ -1745,12 +1810,14 @@ Do not call this class directly. Subclass it and define methods.</p>
             <span class="n">project_id</span><span class="o">=</span><span class="n">project_id</span><span class="p">,</span> <span class="n">service_account</span><span class="o">=</span><span class="n">service_account</span>
         <span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">download_params_type</span><span class="p">)</span>
 
         <span class="c1"># add fields specific to this catalogue</span>
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span>
+                <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">DEFAULT_GEOMETRY_COLUMN_NAME</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+            <span class="p">),</span>
         <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">additional_fields</span><span class="p">)</span>
 
@@ -1799,15 +1866,22 @@ Do not call this class directly. Subclass it and define methods.</p>
                 <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Google Cloud API error during initialization: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">product</span><span class="p">,</span>
+        <span class="n">download_params</span><span class="p">,</span>
+        <span class="n">database</span><span class="p">,</span>
+        <span class="n">primary_key</span><span class="o">=</span><span class="s2">"id"</span><span class="p">,</span>
+        <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span>
+            <span class="n">product</span><span class="p">,</span> <span class="n">download_params</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">,</span> <span class="n">primary_key</span>
+        <span class="p">)</span>
 
         <span class="n">bbox</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Geometry</span><span class="o">.</span><span class="n">BBox</span><span class="p">(</span>
-            <span class="n">west</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
-            <span class="n">south</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
-            <span class="n">east</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
-            <span class="n">north</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
+            <span class="n">west</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
+            <span class="n">south</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
+            <span class="n">east</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
+            <span class="n">north</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">fetch_day_metadata</span><span class="p">(</span><span class="n">day_string</span><span class="p">):</span>
@@ -1868,8 +1942,8 @@ Do not call this class directly. Subclass it and define methods.</p>
 
             <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_table</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
 
-        <span class="n">delta</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span>
+        <span class="n">delta</span> <span class="o">=</span> <span class="n">download_params</span><span class="o">.</span><span class="n">end_date</span> <span class="o">-</span> <span class="n">download_params</span><span class="o">.</span><span class="n">start_date</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">download_params</span><span class="o">.</span><span class="n">start_date</span>
 
         <span class="n">daily_strings</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y-%m-</span><span class="si">%d</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">delta</span><span class="o">.</span><span class="n">days</span><span class="p">)</span>
@@ -1903,7 +1977,7 @@ Do not call this class directly. Subclass it and define methods.</p>
                         <span class="n">props</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 
                     <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span>
-                        <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                        <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
                         <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
                         <span class="n">product_fields</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
                         <span class="n">props</span><span class="o">=</span><span class="n">props</span><span class="p">,</span>
@@ -1911,7 +1985,7 @@ Do not call this class directly. Subclass it and define methods.</p>
 
                     <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
                     <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
-                        <span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span>
+                        <span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span>
                     <span class="p">)</span>
 
                     <span class="k">for</span> <span class="n">granule</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
@@ -1983,19 +2057,7 @@ or "11001002"</p>
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">494</span>
-<span class="normal">495</span>
-<span class="normal">496</span>
-<span class="normal">497</span>
-<span class="normal">498</span>
-<span class="normal">499</span>
-<span class="normal">500</span>
-<span class="normal">501</span>
-<span class="normal">502</span>
-<span class="normal">503</span>
-<span class="normal">504</span>
-<span class="normal">505</span>
-<span class="normal">506</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">506</span>
 <span class="normal">507</span>
 <span class="normal">508</span>
 <span class="normal">509</span>
@@ -2111,7 +2173,23 @@ or "11001002"</p>
 <span class="normal">619</span>
 <span class="normal">620</span>
 <span class="normal">621</span>
-<span class="normal">622</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportal</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
+<span class="normal">622</span>
+<span class="normal">623</span>
+<span class="normal">624</span>
+<span class="normal">625</span>
+<span class="normal">626</span>
+<span class="normal">627</span>
+<span class="normal">628</span>
+<span class="normal">629</span>
+<span class="normal">630</span>
+<span class="normal">631</span>
+<span class="normal">632</span>
+<span class="normal">633</span>
+<span class="normal">634</span>
+<span class="normal">635</span>
+<span class="normal">636</span>
+<span class="normal">637</span>
+<span class="normal">638</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">JaxaGportal</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Interface for downloading footprints from JAXA G-Portal.</span>
 
 <span class="sd">    Requires the gportal-python package install with `pip install matchmakeo[gportal]` or `pip install gportal`.</span>
@@ -2124,7 +2202,7 @@ or "11001002"</p>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">JaxaGportalQueryset</span><span class="p">,</span>
+        <span class="n">download_params_type</span><span class="p">:</span> <span class="n">DownloadParams</span> <span class="o">=</span> <span class="n">JaxaGportalDownloadParams</span><span class="p">,</span>
         <span class="n">username</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
@@ -2139,7 +2217,7 @@ or "11001002"</p>
         <span class="k">if</span> <span class="n">password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"GPORTAL_PASSWORD"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">download_params_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">username</span> <span class="ow">or</span> <span class="n">password</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
@@ -2148,7 +2226,9 @@ or "11001002"</p>
 
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"identifier"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span>
+                <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">DEFAULT_GEOMETRY_COLUMN_NAME</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+            <span class="p">),</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"beginPosition"</span><span class="p">,</span> <span class="s2">"datetime_start"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"endPosition"</span><span class="p">,</span> <span class="s2">"datetime_end"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="p">]</span>
@@ -2157,12 +2237,14 @@ or "11001002"</p>
     <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-        <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+        <span class="n">download_params</span><span class="p">:</span> <span class="n">DownloadParams</span><span class="p">,</span>
         <span class="n">database</span><span class="p">:</span> <span class="n">Database</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
         <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span><span class="n">product</span><span class="p">,</span> <span class="n">queryset</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span>
+            <span class="n">product</span><span class="p">,</span> <span class="n">download_params</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="n">primary_key</span><span class="p">,</span> <span class="n">dry_run</span>
+        <span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="kn">import</span><span class="w"> </span><span class="nn">gportal</span>
@@ -2185,15 +2267,15 @@ or "11001002"</p>
             <span class="n">dataset_ids</span><span class="o">=</span><span class="p">[</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
             <span class="k">else</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-            <span class="n">start_time</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span>
-            <span class="n">end_time</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="p">,</span>
+            <span class="n">start_time</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span>
+            <span class="n">end_time</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">end_date</span><span class="p">,</span>
             <span class="n">bbox</span><span class="o">=</span><span class="p">[</span>
-                <span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
-                <span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
-                <span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
-                <span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
+                <span class="n">download_params</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span>
+                <span class="n">download_params</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span>
+                <span class="n">download_params</span><span class="o">.</span><span class="n">lon_max</span><span class="p">,</span>
+                <span class="n">download_params</span><span class="o">.</span><span class="n">lat_max</span><span class="p">,</span>
             <span class="p">],</span>
-            <span class="n">params</span><span class="o">=</span><span class="n">queryset</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">download_params</span><span class="o">.</span><span class="n">params</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Found </span><span class="si">{</span><span class="n">search_results</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -2206,14 +2288,14 @@ or "11001002"</p>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span>
-                <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
                 <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
                 <span class="n">product_fields</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
                 <span class="n">props</span><span class="o">=</span><span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">properties</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">search_results</span><span class="o">.</span><span class="n">products</span><span class="p">()],</span>
             <span class="p">)</span>
 
             <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-            <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+            <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">prod</span> <span class="ow">in</span> <span class="n">search_results</span><span class="o">.</span><span class="n">products</span><span class="p">():</span>
                 <span class="nb">print</span><span class="p">(</span><span class="n">prod</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
@@ -2293,8 +2375,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
-<span class="normal">124</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
 <span class="normal">125</span>
 <span class="normal">126</span>
 <span class="normal">127</span>
@@ -2451,7 +2532,10 @@ Note: User accounts and hence access to restricted data are not currently suppor
 <span class="normal">278</span>
 <span class="normal">279</span>
 <span class="normal">280</span>
-<span class="normal">281</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NasaCMR</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">NasaCMR</span><span class="p">(</span><span class="n">Catalogue</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Interface to download from the NASA Common Metadata Repository (CMR) (&lt;https://cmr.earthdata.nasa.gov/&gt;) for all Earth Observing System Data and Information System (EOSDIS) metadata including MODIS footprints."</span>
 <span class="sd">    Note: User accounts and hence access to restricted data are not currently supported.</span>
 <span class="sd">    """</span>
@@ -2460,7 +2544,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span>  <span class="c1"># "https://cmr.earthdata.nasa.gov/search/granules.json",</span>
-        <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
+        <span class="n">download_params_type</span><span class="p">:</span> <span class="n">DownloadParams</span> <span class="o">=</span> <span class="n">NasaCMRDownloadParams</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""_summary_</span>
 <span class="sd">        Params:</span>
@@ -2469,7 +2553,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
         <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="o">=</span><span class="n">queryset_type</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">download_params_type</span><span class="o">=</span><span class="n">download_params_type</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
@@ -2479,7 +2563,9 @@ Note: User accounts and hence access to restricted data are not currently suppor
         <span class="c1"># add fields specific to this catalogue</span>
         <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-            <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+            <span class="n">Field</span><span class="p">(</span>
+                <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">DEFAULT_GEOMETRY_COLUMN_NAME</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+            <span class="p">),</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_start"</span><span class="p">,</span> <span class="s2">"datetime_start"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
             <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_end"</span><span class="p">,</span> <span class="s2">"datetime_end"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="p">]</span>
@@ -2488,14 +2574,14 @@ Note: User accounts and hence access to restricted data are not currently suppor
     <span class="k">def</span><span class="w"> </span><span class="nf">download_footprints</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">product</span><span class="p">:</span> <span class="n">Product</span><span class="p">,</span>
-        <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">,</span>
+        <span class="n">download_params</span><span class="p">:</span> <span class="n">DownloadParams</span><span class="p">,</span>
         <span class="n">database</span><span class="p">:</span> <span class="n">Database</span><span class="p">,</span>
         <span class="n">primary_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"id"</span><span class="p">,</span>
         <span class="n">dry_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">download_footprints</span><span class="p">(</span>
             <span class="n">product</span><span class="o">=</span><span class="n">product</span><span class="p">,</span>
-            <span class="n">queryset</span><span class="o">=</span><span class="n">queryset</span><span class="p">,</span>
+            <span class="n">download_params</span><span class="o">=</span><span class="n">download_params</span><span class="p">,</span>
             <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span>
             <span class="n">dry_run</span><span class="o">=</span><span class="n">dry_run</span><span class="p">,</span>
             <span class="n">primary_key</span><span class="o">=</span><span class="n">primary_key</span><span class="p">,</span>
@@ -2521,16 +2607,16 @@ Note: User accounts and hence access to restricted data are not currently suppor
             <span class="c1"># Query parameters</span>
             <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">"short_name"</span><span class="p">:</span> <span class="n">product</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
-                <span class="s2">"page_size"</span><span class="p">:</span> <span class="n">queryset</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
-                <span class="s2">"temporal"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z,</span><span class="si">{</span><span class="n">queryset</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z"</span><span class="p">,</span>
-                <span class="s2">"bounding_box"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounding_box</span><span class="p">(</span><span class="n">queryset</span><span class="p">),</span>
+                <span class="s2">"page_size"</span><span class="p">:</span> <span class="n">download_params</span><span class="o">.</span><span class="n">page_size</span><span class="p">,</span>
+                <span class="s2">"temporal"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">download_params</span><span class="o">.</span><span class="n">start_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z,</span><span class="si">{</span><span class="n">download_params</span><span class="o">.</span><span class="n">end_date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">'%Y-%m-</span><span class="si">%d</span><span class="s1">'</span><span class="p">)</span><span class="si">}</span><span class="s2">T00:00:00Z"</span><span class="p">,</span>
+                <span class="s2">"bounding_box"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_bounding_box</span><span class="p">(</span><span class="n">download_params</span><span class="p">),</span>
             <span class="p">}</span>
 
             <span class="k">if</span> <span class="n">product</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
                 <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">"version"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">product</span><span class="o">.</span><span class="n">version</span><span class="p">})</span>
 
-            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">queryset</span><span class="p">,</span> <span class="s2">"concept_id"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
-                <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queryset</span><span class="o">.</span><span class="n">concept_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">download_params</span><span class="p">,</span> <span class="s2">"concept_id"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download_params</span><span class="o">.</span><span class="n">concept_id</span><span class="p">)</span>
 
             <span class="c1"># if there is a previous response, check for additional available pages</span>
             <span class="c1"># as recommended by CMR https://wiki.earthdata.nasa.gov/display/CMR/CMR+Harvesting+Best+Practices</span>
@@ -2577,14 +2663,14 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">dry_run</span><span class="p">:</span>
             <span class="n">database</span><span class="o">.</span><span class="n">create_columns_from_footprint_props</span><span class="p">(</span>
-                <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span>
+                <span class="n">table_name</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span>
                 <span class="n">catalogue_fields</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">,</span>
                 <span class="n">product_fields</span><span class="o">=</span><span class="n">product</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">,</span>
                 <span class="n">props</span><span class="o">=</span><span class="p">[</span><span class="n">g</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">],</span>
             <span class="p">)</span>
 
             <span class="n">metadata</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
-            <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+            <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">product</span><span class="o">.</span><span class="n">table_name</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">autoload_with</span><span class="o">=</span><span class="n">connection</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">granule</span> <span class="ow">in</span> <span class="n">granules</span><span class="p">:</span>
                 <span class="n">insertion</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">insert</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
@@ -2603,13 +2689,13 @@ Note: User accounts and hence access to restricted data are not currently suppor
                 <span class="n">connection</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">insertion</span><span class="p">)</span>
                 <span class="n">connection</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_bounding_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queryset</span><span class="p">:</span> <span class="n">Queryset</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-        <span class="s2">"Returns bounding box string for NASA CMR spatial query, using queryset lat and lon."</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_bounding_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">download_params</span><span class="p">:</span> <span class="n">DownloadParams</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="s2">"Returns bounding box string for NASA CMR spatial query, using download_params lat and lon."</span>
 
         <span class="c1"># https://cmr.earthdata.nasa.gov/search/site/docs/search/api.html#g-bounding-box</span>
         <span class="c1"># 4 comma-separated numbers: lower left longitude, lower left latitude, upper right longitude, upper right latitude.</span>
 
-        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">queryset</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">"</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">download_params</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">download_params</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">min</span><span class="p">((</span><span class="n">download_params</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">download_params</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">download_params</span><span class="o">.</span><span class="n">lon_min</span><span class="p">,</span><span class="w"> </span><span class="n">download_params</span><span class="o">.</span><span class="n">lon_max</span><span class="p">))</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">max</span><span class="p">((</span><span class="n">download_params</span><span class="o">.</span><span class="n">lat_min</span><span class="p">,</span><span class="w"> </span><span class="n">download_params</span><span class="o">.</span><span class="n">lat_max</span><span class="p">))</span><span class="si">}</span><span class="s2">"</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -2630,7 +2716,7 @@ Note: User accounts and hence access to restricted data are not currently suppor
 
 
 <h3 id="matchmakeo.catalogues.NasaCMR.__init__" class="doc doc-heading">
-            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">'https://cmr.sit.earthdata.nasa.gov/search/granules.json'</span><span class="p">,</span> <span class="n">queryset_type</span><span class="o">=</span><span class="n">NasaCMRQueryset</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">client_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="s1">'https://cmr.sit.earthdata.nasa.gov/search/granules.json'</span><span class="p">,</span> <span class="n">download_params_type</span><span class="o">=</span><span class="n">NasaCMRDownloadParams</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2644,8 +2730,7 @@ Params:
 
             <details class="mkdocstrings-source">
               <summary>Source code in <code>src/matchmakeo/catalogues.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
-<span class="normal">129</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">129</span>
 <span class="normal">130</span>
 <span class="normal">131</span>
 <span class="normal">132</span>
@@ -2671,11 +2756,14 @@ Params:
 <span class="normal">152</span>
 <span class="normal">153</span>
 <span class="normal">154</span>
-<span class="normal">155</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">url</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"https://cmr.sit.earthdata.nasa.gov/search/granules.json"</span><span class="p">,</span>  <span class="c1"># "https://cmr.earthdata.nasa.gov/search/granules.json",</span>
-    <span class="n">queryset_type</span><span class="p">:</span> <span class="n">Queryset</span> <span class="o">=</span> <span class="n">NasaCMRQueryset</span><span class="p">,</span>
+    <span class="n">download_params_type</span><span class="p">:</span> <span class="n">DownloadParams</span> <span class="o">=</span> <span class="n">NasaCMRDownloadParams</span><span class="p">,</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">"""_summary_</span>
 <span class="sd">    Params:</span>
@@ -2684,7 +2772,7 @@ Params:
 
     <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
 
-    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">queryset_type</span><span class="o">=</span><span class="n">queryset_type</span><span class="p">)</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">download_params_type</span><span class="o">=</span><span class="n">download_params_type</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">client_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
@@ -2694,7 +2782,9 @@ Params:
     <span class="c1"># add fields specific to this catalogue</span>
     <span class="n">additional_fields</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">Field</span><span class="p">(</span><span class="s2">"id"</span><span class="p">,</span> <span class="s2">"id"</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
-        <span class="n">Field</span><span class="p">(</span><span class="s2">"geometry"</span><span class="p">,</span> <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)),</span>
+        <span class="n">Field</span><span class="p">(</span>
+            <span class="s2">"geometry"</span><span class="p">,</span> <span class="n">DEFAULT_GEOMETRY_COLUMN_NAME</span><span class="p">,</span> <span class="n">Geometry</span><span class="p">(</span><span class="s2">"POLYGON"</span><span class="p">,</span> <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">)</span>
+        <span class="p">),</span>
         <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_start"</span><span class="p">,</span> <span class="s2">"datetime_start"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
         <span class="n">Field</span><span class="p">(</span><span class="s2">"datetime_end"</span><span class="p">,</span> <span class="s2">"datetime_end"</span><span class="p">,</span> <span class="n">DateTime</span><span class="p">),</span>
     <span class="p">]</span>

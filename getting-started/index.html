@@ -473,6 +473,30 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../autoapi/matchmakeo/defaults/">
+<span class="md-ellipsis">
+    
+  
+    defaults
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../autoapi/matchmakeo/download_params/">
+<span class="md-ellipsis">
+    
+  
+    download_params
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../autoapi/matchmakeo/field/">
 <span class="md-ellipsis">
     
@@ -497,11 +521,11 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="../autoapi/matchmakeo/queryset/">
+<a class="md-nav__link" href="../autoapi/matchmakeo/query/">
 <span class="md-ellipsis">
     
   
-    queryset
+    query
   
 
     
@@ -636,7 +660,7 @@
 <p><code>matchmakeo</code> is designed to provide a high-level interface for researchers to obtain, manage and analyse earth observation image metadata, easing the need to write your own API queries or manage databases, whilst still allowing you to work in this way if you choose.</p>
 <p>It provides hopefully intuitive and concise interfaces with metadata catalogues and databases through python scripting, enabling you to focus on your research questions.</p>
 <h2 id="concepts">Concepts</h2>
-<p>Much of the terminology is heterogeneous across different data sources and we need to represent those concepts within <code>matchmakeo</code>'s interface, here we attempt to clarify.</p>
+<p>Much of the terminology is heterogeneous across different data sources and we need to represent those concepts within <code>matchmakeo</code>'s interface, here we attempt to clarify the terminology used here.</p>
 <h3 id="metadata">Metadata</h3>
 <p><code>matchmakeo</code> handles earth observation image <em>metadata</em>, not the image data itself. Metadata includes the geometry/footprint/outline of the image as well as any other properties of the image such as its acquisition time, whether it was night or day, the mode of the instrument, the orbit, <em>etc. etc.</em></p>
 <p>Once the metadata has been analysed and compared, <code>matchmakeo</code> can give a list of which images themselves match your criteria, which can then be downloaded and processed by other tools (watch this space...)</p>
@@ -660,12 +684,13 @@
 <p><code>matchmakeo</code> supports two types of geospatial database: PostGIS and spatialite.</p>
 <p>For help setting up a database, see the <a href="../databases/">databases page</a>.</p>
 <h3 id="querying">Querying</h3>
-<p><em>In progress...</em></p>
+<p>Using <code>matchmakeo</code> to request results from the database that match a set of criteria such as: within a bounding box; or intersecting with one another, for results from different products.</p>
 <h2 id="workflow">Workflow</h2>
+<p>This diagram aims to visualise the steps and structures used in a <code>matchmakeo</code> workflow.</p>
 <pre class="mermaid"><code>flowchart TB
     A[(Data Catalogue)]
     B(<code>Catalogue</code>)
-    C(Queryset)
+    C(DownloadParams)
     D(Product)
     E[(Database)]
     F(Query)
@@ -680,6 +705,19 @@
     G -.-&gt; H
     style H stroke-dasharray: 5 5
 </code></pre>
+<p>For each data product:</p>
+<ol>
+<li>We start by defining the information needed to get metadata from a Catalogue:</li>
+<li>A <code>DownloadParams</code> object defining the parameters that are supported for querying by a particular metadata catalogue for our download,</li>
+<li>Definition of the data product, in a <code>Product</code> object.</li>
+<li>These are passed to the <code>Catalogue</code> object, corresponding to the data catalogue needed.</li>
+<li>Run a download to bring the metadata into your database.</li>
+</ol>
+<p>Once all the metadata you want are in your database:</p>
+<ol>
+<li>Construct and execute a <code>Query</code> to find the images of interest,</li>
+<li>From the query results, output a list of images to be downloaded and processed by your preferred tools.</li>
+</ol>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>

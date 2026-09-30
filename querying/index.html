@@ -449,6 +449,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Querying
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -465,6 +483,86 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc">
+      
+        <li class="md-nav__item">
+  <a href="#single-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single products
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple products
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple products">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joinintersection-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Join/intersection queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaining-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaining queries
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -791,6 +889,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../autoapi/matchmakeo/defaults/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    defaults
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autoapi/matchmakeo/download_params/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    download_params
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../autoapi/matchmakeo/field/" class="md-nav__link">
         
   
@@ -847,14 +1001,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../autoapi/matchmakeo/queryset/" class="md-nav__link">
+      <a href="../autoapi/matchmakeo/query/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    queryset
+    query
   
 
     
@@ -931,6 +1085,75 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc">
+      
+        <li class="md-nav__item">
+  <a href="#single-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Single products
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiple-products" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiple products
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiple products">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#joinintersection-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Join/intersection queries
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chaining-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaining queries
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -958,7 +1181,90 @@
 
 
 <h1 id="querying">Querying</h1>
-<p><em>... under construction...</em></p>
+<p>Once we have copies of the metadata we want in our database, we can then perform more fine grained queries which can include combined querying across multiple products.</p>
+<h2 id="single-products">Single products</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># assuming we have run catalogue.download_footprints() to download metadata into our database</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo</span><span class="w"> </span><span class="kn">import</span> <span class="n">Product</span><span class="p">,</span> <span class="n">Query</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matchmakeo.databases</span><span class="w"> </span><span class="kn">import</span> <span class="n">PostGISDatabase</span>
+
+<span class="c1"># you don't need to run this in the same session as your footprint download</span>
+
+<span class="n">database</span> <span class="o">=</span> <span class="n">PostGISDatabase</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="s2">"postgres"</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="s2">"password"</span><span class="p">,</span>
+    <span class="n">database</span><span class="o">=</span><span class="s2">"matchmakeo"</span><span class="p">,</span>
+    <span class="n">host</span><span class="o">=</span><span class="s2">"localhost"</span><span class="p">,</span>
+    <span class="n">port</span><span class="o">=</span><span class="mi">5432</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># but define the same product object as you used for the download(s)</span>
+<span class="n">product</span> <span class="o">=</span> <span class="n">Product</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"MOD021KM"</span><span class="p">,</span>
+    <span class="n">table_name</span><span class="o">=</span><span class="s2">"modis_aqua"</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># construct and execute a simple bounding box query</span>
+<span class="n">results</span> <span class="o">=</span> <span class="p">(</span>  <span class="c1"># use brackets to separate a long query across multiple lines</span>
+    <span class="n">Query</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">product</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">intersects_bbox</span><span class="p">(</span>
+        <span class="n">min_x</span><span class="o">=</span><span class="mf">0.077591</span><span class="p">,</span>
+        <span class="n">min_y</span><span class="o">=</span><span class="mf">52.169931</span><span class="p">,</span>
+        <span class="n">max_x</span><span class="o">=</span><span class="mf">0.190887</span><span class="p">,</span>
+        <span class="n">max_y</span><span class="o">=</span><span class="mf">52.233477</span><span class="p">,</span>
+        <span class="n">srid</span><span class="o">=</span><span class="mi">4326</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># for single products, Query.execute() returns a matchmakeo.ResultSet object</span>
+<span class="c1"># which can be used to return the results in a few different formats</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>  <span class="c1"># returns the number of results</span>
+<span class="n">results</span><span class="o">.</span><span class="n">get_ids</span><span class="p">()</span>  <span class="c1"># returns a list of the ids of matching images</span>
+<span class="n">results</span><span class="o">.</span><span class="n">to_dicts</span><span class="p">()</span>  <span class="c1"># returns a list of dictionaries, each one representing one image and its metadata</span>
+</code></pre></div>
+<h2 id="multiple-products">Multiple products</h2>
+<h3 id="simple-queries">Simple queries</h3>
+<p>The single product queries can also be used with queries composed of multiple products, e.g.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># imagine we have a product_a and a product_b</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">Query</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">product_a</span><span class="p">,</span> <span class="n">product_b</span><span class="p">)</span><span class="o">.</span><span class="n">intersects_bbox</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="joinintersection-queries">Join/intersection queries</h3>
+<p>Things get interesting when we query depending on intersections across multiple products, for example</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Query</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">product_a</span><span class="p">,</span> <span class="n">product_b</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">where_spatiotemporal_match</span><span class="p">(</span>
+        <span class="n">product_a</span><span class="p">,</span>
+        <span class="n">product_b</span><span class="p">,</span>
+        <span class="n">relative_to</span><span class="o">=</span><span class="n">product_a</span><span class="p">,</span>  <span class="c1"># the product which the overlap fraction is measured against</span>
+        <span class="n">min_overlap_fraction</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>  <span class="c1"># the minimum fraction of the `relative_to` product which is covered by the other product</span>
+        <span class="n">max_time_delta</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">timedelta</span><span class="p">(</span>
+            <span class="n">days</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">),</span>  <span class="c1"># the time difference allowed between overlapping pairs</span>
+    <span class="p">)</span>
+    <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="p">)</span>
+
+<span class="c1"># results for more than one product are MatchResultSet objects</span>
+<span class="c1"># they have the same methods as ResultSet, such as get_ids()</span>
+<span class="n">results</span><span class="o">.</span><span class="n">get_ids</span><span class="p">()</span>
+
+<span class="c1"># but .to_dicts() returns a list of dicts containing dictionaries each representing a single metadata product</span>
+<span class="n">results</span><span class="o">.</span><span class="n">to_dicts</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="chaining-queries">Chaining queries</h2>
+<p>Each query method can be chained with others, with the first being the first to be evaluated, for example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">results</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Query</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">product_a</span><span class="p">,</span> <span class="n">product_b</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">intersects_bbox</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">where_spatiotemporal_match</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+<span class="p">)</span>
+</code></pre></div>
 
 
 

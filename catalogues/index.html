@@ -967,6 +967,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../autoapi/matchmakeo/defaults/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    defaults
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../autoapi/matchmakeo/download_params/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    download_params
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../autoapi/matchmakeo/field/" class="md-nav__link">
         
   
@@ -1023,14 +1079,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../autoapi/matchmakeo/queryset/" class="md-nav__link">
+      <a href="../autoapi/matchmakeo/query/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    queryset
+    query
   
 
     
@@ -1290,7 +1346,7 @@
 <p>You can also implement your own interface to another catalogue by inheriting from <code>matchmakeo.catalogues.Catalogue</code> - more documentation to follow. Or <a href="https://github.com/bas-quasar/matchmakeo/issues/new" target="_blank">open an issue on GitHub</a> to request another catalogue interface.</p>
 <p>Some of the same satellite data products are available through different catalogues, but you'll need to specify one for each download.</p>
 <p>The catalogues are each represented by a class in the <code>matchmakeo.catalogues</code> module, e.g. <code>NasaCMR</code>, <code>EarthEngine</code> or <code>JaxaGportal</code>.</p>
-<p>Some of the catalogues have a corresponding queryset class, e.g. <code>NasaCMRqueryset</code> which handle parameters which are specific to downloading from that catalogue, such as <code>page_size</code> (the number of records to download in one request).</p>
+<p>Some of the catalogues have a corresponding download_params class, e.g. <code>NasaCMRDownloadParams</code> which handle parameters which are specific to downloading from that catalogue, such as <code>page_size</code> (the number of records to download in one request).</p>
 <h2 id="nasacmr">NASA Common Metadata Repository (CMR)</h2>
 <p>Home: <a href="https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr">https://www.earthdata.nasa.gov/about/esdis/eosdis/cmr</a></p>
 <h3 id="nasacmr-auth">Authentication</h3>
