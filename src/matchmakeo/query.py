@@ -739,7 +739,7 @@ class MatchResultSet(ResultBase):
 
     def to_dicts(self, prefixes: str | None = None):
         """
-        Flattens the N-tuple records into single dictionaries.
+        Returns a list of dicts (products) of dicts (values).
         Auto-generates key name prefixes from product names by default, optionally provide prefixes.
         """
         if prefixes is None:
@@ -751,28 +751,59 @@ class MatchResultSet(ResultBase):
             )
 
         # produce a list of dicts (products) of dicts(fields)
-        flattened = []
+        product_list = []
         for row_group in self.raw_results:
             merged_dict = {}
             for idx, row in enumerate(row_group):
                 prefix = prefixes[idx]
                 merged_dict.update({prefix: dict(row._mapping)})
+            product_list.append(merged_dict)
+
+        return product_list
+
+    def to_flattened_dicts(self, prefixes=None):
+        """
+        Flattens the N-tuple records into single dictionaries.
+        Auto-generates prefixes (t0_, t1_, etc.) if none are provided.
+        """
+        if prefixes is None:
+            prefixes = [f"{product.name}_" for product in self.products]
+
+        if len(prefixes) != len(self.products):
+            raise ValueError(
+                f"Expected {len(self.products)} prefixes, got {len(prefixes)}"
+            )
+
+        flattened = []
+        for row_group in self.raw_results:
+            merged_dict = {}
+            for idx, row in enumerate(row_group):
+                prefix = prefixes[idx]
+                merged_dict.update({f"{prefix}{k}": v for k, v in row._mapping.items()})
             flattened.append(merged_dict)
 
         return flattened
 
-    def create_combined_table(self, db, table_name: str, prefixes=None):
+    def create_combined_table(self, database: Database, table_name: str, prefixes=None):
         """
-        Dynamically generates a new database table combining columns from all products.
+        Creates a new database table combining columns from all products in the results object.
+
+        Returns:
+            sqlalchemy.Table
         """
         if prefixes is None:
-            prefixes = [f"t{i}_" for i in range(len(self.products))]
+            prefixes = [f"{product.name}_" for product in self.products]
+
+        if len(prefixes) != len(self.products):
+            raise ValueError(
+                f"Expected {len(self.products)} prefixes, got {len(prefixes)}"
+            )
 
         new_columns = []
 
         # Clone column definitions from all Products dynamically
         for idx, product in enumerate(self.products):
-            table = product.get_table(db)
+            table = product.get_table(database)
             prefix = prefixes[idx]
 
             for col in table.c:
@@ -780,14 +811,14 @@ class MatchResultSet(ResultBase):
 
         # Define and create the new table
         combined_table = Table(
-            table_name, db.metadata, *new_columns, extend_existing=True
+            table_name, database.metadata, *new_columns, extend_existing=True
         )
-        combined_table.create(db.engine, checkfirst=True)
+        combined_table.create(database.engine, checkfirst=True)
 
         # Bulk insert the flattened records
-        records = self.to_dicts(prefixes)
+        records = self.to_flattened_dicts(prefixes)
         if records:
-            with db.engine.begin() as conn:
+            with database.engine.begin() as conn:
                 conn.execute(combined_table.insert(), records)
 
         return combined_table

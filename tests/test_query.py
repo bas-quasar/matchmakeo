@@ -4,8 +4,10 @@ import os
 
 import pytest
 import shapely
+import sqlalchemy
 from geoalchemy2 import Geometry
 from sqlalchemy import Column, DateTime, Integer, MetaData, Table
+from sqlalchemy.orm import Session
 
 from matchmakeo import MatchResultSet, Product, Query, ResultSet
 
@@ -299,3 +301,32 @@ class TestChainedQuery:
 
         assert len(single_query_results) == len(chained_query_results)
         assert single_query_results.to_dicts() == chained_query_results.to_dicts()
+
+
+class TestCreateResultTable:
+    def test_create_result_table(self, database, product_a, product_b):
+        results = (
+            Query(database, product_a, product_b)
+            .where_spatiotemporal_match(
+                relative_to=product_a,
+                min_overlap_fraction=0.1,
+                max_time_delta=datetime.timedelta(days=2),
+            )
+            .execute()
+        )
+
+        expected_num_results = 2
+
+        assert isinstance(results, MatchResultSet)
+        assert len(results) == expected_num_results
+
+        table_name = "ab_overlap"
+        results.create_combined_table(database, table_name=table_name)
+
+        metadata = sqlalchemy.MetaData()
+        table = sqlalchemy.Table(table_name, metadata, autoload_with=database.engine)
+
+        with Session(database.engine) as session:
+            statement = sqlalchemy.select(table)
+            rows = session.execute(statement).all()
+            assert len(rows) == expected_num_results
