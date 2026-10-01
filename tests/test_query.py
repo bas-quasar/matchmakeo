@@ -1,85 +1,11 @@
 import datetime
-import json
-import os
 
 import pytest
 import shapely
 import sqlalchemy
-from geoalchemy2 import Geometry
-from sqlalchemy import Column, DateTime, Integer, MetaData, Table
 from sqlalchemy.orm import Session
 
-from matchmakeo import MatchResultSet, Product, Query, ResultSet
-
-
-def _build_mock_product(db, fixtures_file, table_name, date_fields):
-    """
-    Generic helper to construct a dynamic table, insert JSON mock data,
-    and return the metadata and Product instance for testing.
-    """
-    metadata = MetaData()
-
-    columns = [
-        Column("id", Integer, primary_key=True),
-        Column("timestamp", DateTime, nullable=False),
-        Column("geometry", Geometry("POLYGON", srid=4326), nullable=False),
-    ]
-    table = Table(table_name, metadata, *columns)
-    db.create_engine()
-    metadata.create_all(db.engine)
-
-    records_to_insert = []
-    with open(fixtures_file, "r") as f:
-        fixture = json.load(f)
-    for row in fixture:
-        record = row.copy()
-
-        for field in date_fields:
-            if field in record:
-                record[field] = datetime.datetime.fromisoformat(record[field])
-        records_to_insert.append(record)
-
-    with db.connect() as conn:
-        conn.execute(table.insert(), records_to_insert)
-        conn.commit()
-
-    return metadata, Product(table_name)
-
-
-@pytest.fixture(scope="function")
-def product_a(database, filepath=None):
-    """Creates product table and populates it from JSON."""
-
-    if filepath is None:
-        filepath = os.path.join("tests", "fixtures", "dummy_product_a.json")
-
-    metadata, product = _build_mock_product(
-        db=database,
-        fixtures_file=filepath,
-        table_name="product_a",
-        date_fields=["timestamp"],
-    )
-
-    yield product
-    metadata.drop_all(database.engine)
-
-
-@pytest.fixture(scope="function")
-def product_b(database, filepath=None):
-    """Creates product table and populates it from JSON."""
-
-    if filepath is None:
-        filepath = os.path.join("tests", "fixtures", "dummy_product_b.json")
-
-    metadata, product = _build_mock_product(
-        db=database,
-        fixtures_file=filepath,
-        table_name="product_b",
-        date_fields=["timestamp"],
-    )
-
-    yield product
-    metadata.drop_all(database.engine)
+from matchmakeo import MatchResultSet, Query, ResultSet
 
 
 class TestSingleProductQuery:

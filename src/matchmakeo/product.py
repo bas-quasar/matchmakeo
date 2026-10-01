@@ -76,3 +76,6 @@ class Product:
     @geometry_column.setter
     def geometry_column(self, value: str):
         self._geometry_column = value
+
+    def __len__(self):
+        return self._table

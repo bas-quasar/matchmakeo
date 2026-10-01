@@ -58,3 +58,9 @@ def test_product_geometry_column():
         name=prod_name, table_name=prod_name, geometry_column="footprint"
     )
     assert product_2.geometry_column == "footprint"
+
+
+class TestProductLength:
+    def test_product_convenience_methods(database, product_a):
+        print(product_a)
+        len(product_a)
