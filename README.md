@@ -115,3 +115,8 @@ results = (
 # show the ids of the images that match the query
 print(results.get_ids())
 ```
+
+## Citation
+If you use `matchmakeo` in your work, please cite the package as:
+
+> Wyld, D., Kelly, T., & Rogers, M. matchmakeo [Computer software]. https://github.com/bas-quasar/matchmakeo
