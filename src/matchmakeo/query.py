@@ -637,6 +637,14 @@ class Query:
             self._session.close()
             self._connection.close()
 
+    def count(self):
+        try:
+            return self._query.count()
+
+        finally:
+            self._session.close()
+            self._connection.close()
+
 
 ### Spatial function mapping from PostGIS to Spatialite
 

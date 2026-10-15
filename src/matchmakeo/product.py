@@ -28,6 +28,7 @@ class Product:
         extra_fields: list | None = None,
         version: int | None = None,
         geometry_column: str | None = None,
+        database: Database | None = None,
     ):
         if extra_fields is None:
             extra_fields = []
@@ -37,6 +38,7 @@ class Product:
         self.version = version
         self._table = None
         self._geometry_column = geometry_column
+        self._database = database
 
         if not table_name:
             log.warning(
@@ -44,8 +46,16 @@ class Product:
             )
             self.table_name = self.name
 
-    def get_table(self, database: Database):
+    def get_table(self, database: Database = None):
         "The table object corresponding to the product."
+
+        if self._database is None and database is None:
+            raise RuntimeError(
+                f"Database associated with product is {self._database}, product objects must be initialised with a database to get details from the table."
+            )
+
+        if database is None:
+            database = self._database
 
         metadata = database.metadata
         if self._table is None:
@@ -78,4 +88,8 @@ class Product:
         self._geometry_column = value
 
     def __len__(self):
-        return self._table
+        if self._database is None:
+            raise RuntimeError(
+                f"Database associated with product is {self._database}, product objects must be initialised with a database to get details from the table."
+            )
+        return self.get_table(self._database)

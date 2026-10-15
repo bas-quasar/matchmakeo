@@ -61,6 +61,7 @@ def test_product_geometry_column():
 
 
 class TestProductLength:
-    def test_product_convenience_methods(database, product_a):
-        print(product_a)
+    def test_product_convenience_methods(self, database, product_a):
+        product_a._database = database
+        table = product_a.get_table()
         len(product_a)
