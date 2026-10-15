@@ -1412,13 +1412,14 @@
 <p>To launch a local container with a <a href="https://hub.docker.com/r/postgis/postgis">PostGIS image</a>, this command is a good starting point:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--name<span class="w"> </span>matchmakeo-db<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--volume<span class="w"> </span>./data/db:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--volume<span class="w"> </span>./pg_data/db:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>matchmakeo<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>password<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span>my_user
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>my_spatial_db<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>my_secure_password<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-d<span class="w"> </span>--rm<span class="w"> </span>postgis/postgis
 </code></pre></div>
-<p>This will launch a postgis container named <code>matchmakeo-db</code> with a database named <code>matchmakeo</code> using the default username <code>postgres</code>, with data stored at local disk location <code>./data/db</code> - run <code>mkdir -p ./data/db</code> if you don't already have this location.</p>
+<p>This will launch a postgis container named <code>matchmakeo-db</code> with a database named <code>my_spatial_db</code> using the username <code>my_user</code>, with data stored at local disk location <code>./pg_data/db</code> - run <code>mkdir -p ./pg_data/db</code> if you don't already have this location.</p>
 <h4 id="apptainer">apptainer</h4>
 <div class="admonition question">
 <p class="admonition-title">help!</p>
@@ -1429,42 +1430,31 @@
 <ol>
 <li>
 <p>Convert the official Docker Hub PostGIS image into an Apptainer <code>.sif</code> file:</p>
-<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>pull<span class="w"> </span>postgis.sif<span class="w"> </span>docker://postgis/postgis:latest
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>pull<span class="w"> </span>postgis.sif<span class="w"> </span>docker://postgis/postgis:17-3.5
 </code></pre></div>
 </li>
 <li>
 <p>Create some directories in your HPC workspace, for instance in your current working directory (<code>.</code>) for your database to use. Check with your HPC administrator where is the best location to use.</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>./pg_data<span class="w"> </span>./pg_run
+<p><div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>./pg_data<span class="w"> </span>./pg_run
 </code></pre></div>
-</li>
-<li>
-<p>If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name, making sure to pass the correct paths for <code>pg_data</code> and <code>pg_run</code> from the previous step:</p>
-<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
---cleanenv<span class="w"> </span><span class="se">\</span>
---env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_USER</span><span class="o">=</span><span class="s2">"my_user"</span><span class="w"> </span><span class="se">\</span>
---env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="w"> </span><span class="se">\</span>
---env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_DB</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="w"> </span><span class="se">\</span>
---bind<span class="w"> </span>./pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
---bind<span class="w"> </span>./pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
-postgis.sif
-</code></pre></div>
-</li>
-<li>
-<p>Run the container persistently in the background:</p>
-<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>instance<span class="w"> </span>start<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--cleanenv<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>postgis.sif<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>matchmakeo-db<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>postgres<span class="w"> </span>-D<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span>-h<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span>
+3. Run the container persistently in the background:</p>
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>run<span class="w"> </span>--cleanenv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--env<span class="w"> </span><span class="nv">POSTGRES_USER</span><span class="o">=</span><span class="s2">"my_user"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--env<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--env<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span>./pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span>./pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>postgis.sif<span class="w"> </span>postgres<span class="w"> </span>-h<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>-p<span class="w"> </span><span class="m">5432</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>&gt;<span class="w"> </span>pg.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
 </code></pre></div>
 <ul>
-<li><code>instance start</code>: Tells Apptainer to run this container persistently in the background.</li>
-<li><code>matchmakeo-db</code>: The custom name assigned to this specific running instance.</li>
-<li><code>--cleanenv</code>: Erases your host HPC environment variables inside the container to prevent software version conflicts.</li>
+<li><code>postgis.sif</code> is the image to run,</li>
+<li><code>postgres</code> is the command to run in the container, starting the database,</li>
 <li><code>-h 0.0.0.0</code>: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.</li>
 <li><code>-p 5432</code>: binds to this port number, you may need to use a different one as this is the default for postgres.</li>
+<li><code>&gt; pg.log</code> forwards all output into a log file.</li>
+<li><code>2&gt;&amp;1</code> forwards stderr output into stdout, so all printed output goes into one file.</li>
+<li><code>&amp;</code> runs the process in the background</li>
 </ul>
 </li>
 <li>
@@ -1491,7 +1481,10 @@ postgis.sif
 </li>
 <li>
 <p>Stop the container when you're done</p>
-<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>instance<span class="w"> </span>stop<span class="w"> </span>matchmakeo-db
+<div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span><span class="nb">exec</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span>./pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span>./pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>postgis.sif<span class="w"> </span>pg_ctl<span class="w"> </span>-D<span class="w"> </span>/var/lib/postgresql/data<span class="w"> </span>stop<span class="w"> </span>-m<span class="w"> </span>fast
 </code></pre></div>
 </li>
 </ol>
