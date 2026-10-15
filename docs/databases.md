@@ -24,14 +24,15 @@ To launch a local container with a [PostGIS image](https://hub.docker.com/r/post
 ```sh
 docker run \
     --name matchmakeo-db \
-    --volume ./data/db:/var/lib/postgresql/data \
+    --volume ./pg_data/db:/var/lib/postgresql/data \
     -p 5432:5432 \
-    -e POSTGRES_DB=matchmakeo \
-    -e POSTGRES_PASSWORD=password \
+    -e POSTGRES_USER=my_user
+    -e POSTGRES_DB=my_spatial_db \
+    -e POSTGRES_PASSWORD=my_secure_password \
     -d --rm postgis/postgis
 ```
 
-This will launch a postgis container named `matchmakeo-db` with a database named `matchmakeo` using the default username `postgres`, with data stored at local disk location `./data/db` - run `mkdir -p ./data/db` if you don't already have this location.
+This will launch a postgis container named `matchmakeo-db` with a database named `my_spatial_db` using the username `my_user`, with data stored at local disk location `./pg_data/db` - run `mkdir -p ./pg_data/db` if you don't already have this location.
 
 #### apptainer
 
@@ -45,7 +46,7 @@ You should consult with your HPC administrators and/or documentation before usin
 1.  Convert the official Docker Hub PostGIS image into an Apptainer `.sif` file:
 
     ```bash
-    apptainer pull postgis.sif docker://postgis/postgis:latest
+    apptainer pull postgis.sif docker://postgis/postgis:17-3.5
     ```
 
 2.  Create some directories in your HPC workspace, for instance in your current working directory (`.`) for your database to use. Check with your HPC administrator where is the best location to use.
@@ -53,39 +54,28 @@ You should consult with your HPC administrators and/or documentation before usin
     ```bash
     mkdir -p ./pg_data ./pg_run
     ```
-
-3. If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name, making sure to pass the correct paths for `pg_data` and `pg_run` from the previous step:
-
-    ```bash
-    apptainer run \
-    --cleanenv \
-    --env APPTAINERENV_POSTGRES_USER="my_user" \
-    --env APPTAINERENV_POSTGRES_PASSWORD="my_secure_password" \
-    --env APPTAINERENV_POSTGRES_DB="my_spatial_db" \
-    --bind ./pg_data:/var/lib/postgresql/data \
-    --bind ./pg_run:/var/run/postgresql \
-    postgis.sif
-    ```
-
-4. Run the container persistently in the background:
+3. Run the container persistently in the background:
 
     ```bash
-    apptainer instance start \
-        --cleanenv \
-        --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
-        --bind $SCRATCH/pg_run:/var/run/postgresql \
-        postgis.sif \
-        matchmakeo-db \
-        postgres -D /var/lib/postgresql/data -h 0.0.0.0 -p 5432
+    apptainer run --cleanenv \
+        --env POSTGRES_USER="my_user" \
+        --env POSTGRES_PASSWORD="my_secure_password" \
+        --env POSTGRES_DB="my_spatial_db" \
+        --bind ./pg_data:/var/lib/postgresql/data \
+        --bind ./pg_run:/var/run/postgresql \
+        postgis.sif postgres -h 0.0.0.0 -p 5432 \
+        > pg.log 2>&1 &
     ```
 
-    + `instance start`: Tells Apptainer to run this container persistently in the background.
-    + `matchmakeo-db`: The custom name assigned to this specific running instance.
-    + `--cleanenv`: Erases your host HPC environment variables inside the container to prevent software version conflicts.
+    + `postgis.sif` is the image to run,
+    + `postgres` is the command to run in the container, starting the database,
     + `-h 0.0.0.0`: Tells Postgres to listen on all network interfaces of the compute node, allowing your batch jobs or scripts to connect to it.
     + `-p 5432`: binds to this port number, you may need to use a different one as this is the default for postgres.
+    + `> pg.log` forwards all output into a log file.
+    + `2>&1` forwards stderr output into stdout, so all printed output goes into one file.
+    + `&` runs the process in the background
 
-5. Connect with the database inside your python scipt:
+4. Connect with the database inside your python scipt:
 
     ```python
     from matchmakeo.databases import PostGISDatabase
@@ -113,7 +103,10 @@ You should consult with your HPC administrators and/or documentation before usin
 9. Stop the container when you're done
 
     ```bash
-    apptainer instance stop matchmakeo-db
+    apptainer exec \
+        --bind ./pg_data:/var/lib/postgresql/data \
+        --bind ./pg_run:/var/run/postgresql \
+        postgis.sif pg_ctl -D /var/lib/postgresql/data stop -m fast
     ```
 
 ### Connection details
