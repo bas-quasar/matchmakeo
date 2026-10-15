@@ -38,7 +38,7 @@ This will launch a postgis container named `matchmakeo-db` with a database named
 !!! question "help!"
     We're looking for feedback on this section! [Help us out!](contributing.md)
 
-On many HPC systems, docker containers are not permitted and the alternative container approach is using _apptainer_ (formerly known as _singularity_), a very similar tool to docker.
+On many shared linux systems (including HPC), docker containers are not permitted and the alternative container approach is using _apptainer_ (formerly known as _singularity_), a very similar tool to docker.
 
 You should consult with your HPC administrators and/or documentation before using containers on HPC, but here's the basic procedure:
 
@@ -48,13 +48,13 @@ You should consult with your HPC administrators and/or documentation before usin
     apptainer pull postgis.sif docker://postgis/postgis:latest
     ```
 
-2.  Create some directories in your HPC workspace, here represented by $SCRATCH, for your database to use. Check with your HPC administrator where is the best location to use.
+2.  Create some directories in your HPC workspace, for instance in your current working directory (`.`) for your database to use. Check with your HPC administrator where is the best location to use.
 
     ```bash
-    mkdir -p $SCRATCH/pg_data $SCRATCH/pg_run
+    mkdir -p ./pg_data ./pg_run
     ```
 
-3. If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name:
+3. If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name, making sure to pass the correct paths for `pg_data` and `pg_run` from the previous step:
 
     ```bash
     apptainer run \
@@ -62,8 +62,8 @@ You should consult with your HPC administrators and/or documentation before usin
     --env APPTAINERENV_POSTGRES_USER="my_user" \
     --env APPTAINERENV_POSTGRES_PASSWORD="my_secure_password" \
     --env APPTAINERENV_POSTGRES_DB="my_spatial_db" \
-    --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
-    --bind $SCRATCH/pg_run:/var/run/postgresql \
+    --bind ./pg_data:/var/lib/postgresql/data \
+    --bind ./pg_run:/var/run/postgresql \
     postgis.sif
     ```
 
