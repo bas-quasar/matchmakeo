@@ -1424,7 +1424,7 @@
 <p class="admonition-title">help!</p>
 <p>We're looking for feedback on this section! <a href="../contributing/">Help us out!</a></p>
 </div>
-<p>On many HPC systems, docker containers are not permitted and the alternative container approach is using <em>apptainer</em> (formerly known as <em>singularity</em>), a very similar tool to docker.</p>
+<p>On many shared linux systems (including HPC), docker containers are not permitted and the alternative container approach is using <em>apptainer</em> (formerly known as <em>singularity</em>), a very similar tool to docker.</p>
 <p>You should consult with your HPC administrators and/or documentation before using containers on HPC, but here's the basic procedure:</p>
 <ol>
 <li>
@@ -1433,19 +1433,19 @@
 </code></pre></div>
 </li>
 <li>
-<p>Create some directories in your HPC workspace, here represented by $SCRATCH, for your database to use. Check with your HPC administrator where is the best location to use.</p>
-<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run
+<p>Create some directories in your HPC workspace, for instance in your current working directory (<code>.</code>) for your database to use. Check with your HPC administrator where is the best location to use.</p>
+<div class="highlight"><pre><span></span><code>mkdir<span class="w"> </span>-p<span class="w"> </span>./pg_data<span class="w"> </span>./pg_run
 </code></pre></div>
 </li>
 <li>
-<p>If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name:</p>
+<p>If this is your first time setting up this database, initialize the database cluster layout inside that folder; and also define username, password and database name, making sure to pass the correct paths for <code>pg_data</code> and <code>pg_run</code> from the previous step:</p>
 <div class="highlight"><pre><span></span><code>apptainer<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 --cleanenv<span class="w"> </span><span class="se">\</span>
 --env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_USER</span><span class="o">=</span><span class="s2">"my_user"</span><span class="w"> </span><span class="se">\</span>
 --env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="w"> </span><span class="se">\</span>
 --env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_DB</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="w"> </span><span class="se">\</span>
---bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
---bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
+--bind<span class="w"> </span>./pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+--bind<span class="w"> </span>./pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
 postgis.sif
 </code></pre></div>
 </li>
