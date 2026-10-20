@@ -57,8 +57,7 @@ nav:
 markdown_extensions:
   - admonition
   - attr_list
-  - pymdownx.highlight:
-      anchor_linenums: true
+  - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.superfences:
       custom_fences:
