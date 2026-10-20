@@ -1271,11 +1271,11 @@ cleanup<span class="o">()</span><span class="w"> </span><span class="o">{</span>
 <span class="c1"># Start the container in detached mode (-d)</span>
 docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--name<span class="w"> </span>matchmakeo-db<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--volume<span class="w"> </span>./data/db:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--volume<span class="w"> </span>./data/db:/var/lib/postgresql<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>matchmakeo<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>password<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-d<span class="w"> </span>--rm<span class="w"> </span>postgis/postgis
+<span class="w">    </span>-d<span class="w"> </span>--rm<span class="w"> </span>postgis/postgis:18-master
 
 <span class="c1"># Run the Python script</span>
 python<span class="w"> </span>my_matchmakeo_script.py
@@ -1305,7 +1305,7 @@ apptainer<span class="w"> </span>instance<span class="w"> </span>start<span clas
 <span class="w">    </span>--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_USER</span><span class="o">=</span><span class="s2">"my_user"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_PASSWORD</span><span class="o">=</span><span class="s2">"my_secure_password"</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--env<span class="w"> </span><span class="nv">APPTAINERENV_POSTGRES_DB</span><span class="o">=</span><span class="s2">"my_spatial_db"</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_data:/var/lib/postgresql<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--bind<span class="w"> </span><span class="nv">$SCRATCH</span>/pg_run:/var/run/postgresql<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>postgis.sif<span class="w"> </span>matchmakeo-db
 

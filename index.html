@@ -1241,11 +1241,11 @@ pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </s
 <p>For a basic example and for most use cases, we recommend using <a href="https://www.docker.com/get-started/">docker</a> to spin up a local container with a <a href="https://hub.docker.com/r/postgis/postgis">PostGIS image</a>, this oneliner should do it:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--name<span class="w"> </span>matchmakeo-db<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--volume<span class="w"> </span>./data/db:/var/lib/postgresql/data<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--volume<span class="w"> </span>./data/db:/var/lib/postgresql<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-p<span class="w"> </span><span class="m">5432</span>:5432<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_DB</span><span class="o">=</span>matchmakeo<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-e<span class="w"> </span><span class="nv">POSTGRES_PASSWORD</span><span class="o">=</span>password<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-d<span class="w"> </span>--rm<span class="w"> </span>postgis/postgis
+<span class="w">    </span>-d<span class="w"> </span>--rm<span class="w"> </span>postgis/postgis:18-master
 </code></pre></div>
 <p>This will launch a postgis container named <code>matchmakeo-db</code> with a database named <code>matchmakeo</code> using the default username <code>postgres</code>, with data stored at local disk location <code>./data/db</code> - run <code>mkdir -p ./data/db</code> if you don't already have this location.</p>
 <h2 id="basic-usage">Basic Usage</h2>
