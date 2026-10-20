@@ -26,7 +26,7 @@ docker run \
     --name matchmakeo-db \
     --volume ./pg_data/db:/var/lib/postgresql/data \
     -p 5432:5432 \
-    -e POSTGRES_USER=my_user
+    -e POSTGRES_USER=my_user \
     -e POSTGRES_DB=my_spatial_db \
     -e POSTGRES_PASSWORD=my_secure_password \
     -d --rm postgis/postgis
