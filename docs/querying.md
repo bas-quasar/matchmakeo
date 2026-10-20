@@ -30,10 +30,10 @@ product = Product(
 results = (  # use brackets to separate a long query across multiple lines
     Query(database, product)
     .intersects_bbox(
-        min_x=0.077591,
-        min_y=52.169931,
-        max_x=0.190887,
-        max_y=52.233477,
+        xmin=0.077591,
+        ymin=52.169931,
+        xmax=0.190887,
+        ymax=52.233477,
         srid=4326,
     )
     .execute()
