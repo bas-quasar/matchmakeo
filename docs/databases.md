@@ -24,12 +24,12 @@ To launch a local container with a [PostGIS image](https://hub.docker.com/r/post
 ```sh
 docker run \
     --name matchmakeo-db \
-    --volume ./pg_data/db:/var/lib/postgresql/data \
+    --volume ./pg_data/db:/var/lib/postgresql \
     -p 5432:5432 \
     -e POSTGRES_USER=my_user \
     -e POSTGRES_DB=my_spatial_db \
     -e POSTGRES_PASSWORD=my_secure_password \
-    -d --rm postgis/postgis
+    -d --rm postgis/postgis:18-master
 ```
 
 This will launch a postgis container named `matchmakeo-db` with a database named `my_spatial_db` using the username `my_user`, with data stored at local disk location `./pg_data/db` - run `mkdir -p ./pg_data/db` if you don't already have this location.
@@ -46,7 +46,7 @@ You should consult with your HPC administrators and/or documentation before usin
 1.  Convert the official Docker Hub PostGIS image into an Apptainer `.sif` file:
 
     ```bash
-    apptainer pull postgis.sif docker://postgis/postgis:17-3.5
+    apptainer pull postgis.sif docker://postgis/postgis:18-master
     ```
 
 2.  Create some directories in your HPC workspace, for instance in your current working directory (`.`) for your database to use. Check with your HPC administrator where is the best location to use.
@@ -61,7 +61,7 @@ You should consult with your HPC administrators and/or documentation before usin
         --env POSTGRES_USER="my_user" \
         --env POSTGRES_PASSWORD="my_secure_password" \
         --env POSTGRES_DB="my_spatial_db" \
-        --bind ./pg_data:/var/lib/postgresql/data \
+        --bind ./pg_data:/var/lib/postgresql \
         --bind ./pg_run:/var/run/postgresql \
         postgis.sif postgres -h 0.0.0.0 -p 5432 \
         > pg.log 2>&1 &
@@ -104,9 +104,9 @@ You should consult with your HPC administrators and/or documentation before usin
 
     ```bash
     apptainer exec \
-        --bind ./pg_data:/var/lib/postgresql/data \
+        --bind ./pg_data:/var/lib/postgresql \
         --bind ./pg_run:/var/run/postgresql \
-        postgis.sif pg_ctl -D /var/lib/postgresql/data stop -m fast
+        postgis.sif pg_ctl -D /var/lib/postgresql stop -m fast
     ```
 
 ### Connection details

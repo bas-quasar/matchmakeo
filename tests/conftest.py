@@ -47,7 +47,7 @@ def database(request):
 
 @pytest.fixture(scope="session")
 def postgres_image() -> str:
-    return "postgis/postgis:16-3.5"
+    return "postgis/postgis:18-master"
 
 
 @pytest.fixture(scope="session", autouse=True)

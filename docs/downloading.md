@@ -130,11 +130,11 @@ We recommend using the `trap` command as below to gracefully stop your container
     # Start the container in detached mode (-d)
     docker run \
         --name matchmakeo-db \
-        --volume ./data/db:/var/lib/postgresql/data \
+        --volume ./data/db:/var/lib/postgresql \
         -p 5432:5432 \
         -e POSTGRES_DB=matchmakeo \
         -e POSTGRES_PASSWORD=password \
-        -d --rm postgis/postgis
+        -d --rm postgis/postgis:18-master
 
     # Run the Python script
     python my_matchmakeo_script.py
@@ -166,7 +166,7 @@ We recommend using the `trap` command as below to gracefully stop your container
         --env APPTAINERENV_POSTGRES_USER="my_user" \
         --env APPTAINERENV_POSTGRES_PASSWORD="my_secure_password" \
         --env APPTAINERENV_POSTGRES_DB="my_spatial_db" \
-        --bind $SCRATCH/pg_data:/var/lib/postgresql/data \
+        --bind $SCRATCH/pg_data:/var/lib/postgresql \
         --bind $SCRATCH/pg_run:/var/run/postgresql \
         postgis.sif matchmakeo-db
 

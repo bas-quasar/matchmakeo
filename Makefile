@@ -40,7 +40,7 @@ serve-docs: ## Serve the documentation in a development server
 .PHONY: start-db
 start-db: ## Start a dev PostGIS instance in a docker container
 	@echo "+ $@"
-	@docker run --name ${DB_CONTAINER} --volume ./data/db:/var/lib/postgresql/data -p 5432:5432 -e POSTGRES_DB=matchmakeo -e POSTGRES_PASSWORD=password -d --rm postgis/postgis
+	@docker run --name ${DB_CONTAINER} --volume ./data/db:/var/lib/postgresql -p 5432:5432 -e POSTGRES_DB=matchmakeo -e POSTGRES_PASSWORD=password -d --rm postgis/postgis
 
 .PHONY: stop-db
 stop-db: ## Stop and remove a running database docker container
