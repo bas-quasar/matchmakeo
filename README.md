@@ -40,11 +40,11 @@ For a basic example and for most use cases, we recommend using [docker](https://
 ```sh
 docker run \
     --name matchmakeo-db \
-    --volume ./data/db:/var/lib/postgresql/data \
+    --volume ./data/db:/var/lib/postgresql \
     -p 5432:5432 \
     -e POSTGRES_DB=matchmakeo \
     -e POSTGRES_PASSWORD=password \
-    -d --rm postgis/postgis
+    -d --rm postgis/postgis:18-master
 ```
 
 This will launch a postgis container named `matchmakeo-db` with a database named `matchmakeo` using the default username `postgres`, with data stored at local disk location `./data/db` - run `mkdir -p ./data/db` if you don't already have this location.
