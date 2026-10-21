@@ -45,7 +45,7 @@ Note that the earth engine catalogue runs the `ee.Initialize()` method. when ins
 Also note that for non-interactive execution, such as in an HPC job, you will need a service account (see <https://developers.google.com/earth-engine/guides/service_account>). Also pass the argument `service_account=True` to `EarthEngine()`.
 
 ### Finding products
-The product name required by `matchmakeo.product.Product` can be found by looking for your matching product in the data catalogue at <https://developers.google.com/earth-engine/datasets/catalog>, for instance for the dataset at <https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED> you would use `Product(name="COPERNICUS_S2_SR_HARMONIZED")`.
+The product name required by `matchmakeo.product.Product` can be found by looking for your matching product in the data catalogue at <https://developers.google.com/earth-engine/datasets/catalog>, for instance for the dataset at <https://developers.google.com/earth-engine/datasets/catalog/COPERNICUS_S2_SR_HARMONIZED> you would use `Product(name="COPERNICUS/S2_SR_HARMONIZED")`.
 
 
 ## JAXA G-Portal {#gportal}
