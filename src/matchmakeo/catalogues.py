@@ -129,7 +129,7 @@ class NasaCMR(Catalogue):
     def __init__(
         self,
         client_id: str | None = None,
-        url: str = "https://cmr.sit.earthdata.nasa.gov/search/granules.json",  # "https://cmr.earthdata.nasa.gov/search/granules.json",
+        url: str = "https://cmr.earthdata.nasa.gov/search/granules.json",
         download_params_type: DownloadParams = NasaCMRDownloadParams,
     ):
         """_summary_
