@@ -108,7 +108,7 @@ catalogue.download_footprints(
 # run a basic query against this single product (for more sophisticated queries, see the docs!)
 results = (
     Query(database, product)
-    .intersects_bbox(xmin=0.0, ymin=52.1, xmax=0.2, ymax=52.2, product=product, srid=4326)
+    .intersects_bbox(xmin=0.0, ymin=-72.1, xmax=0.2, ymax=72.2, product=product, srid=4326)
     .execute()
 )
 
