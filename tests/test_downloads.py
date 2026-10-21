@@ -103,7 +103,8 @@ class TestNasaCmr:
 
         with Session(database.engine) as session:
             statement = sqlalchemy.select(table)
-            session.execute(statement).all()
+            rows = session.execute(statement).all()
+            assert len(rows) > 0
 
 
 class TestEarthEngine:
